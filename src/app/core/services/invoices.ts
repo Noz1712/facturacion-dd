@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore';
 
 import { firestore } from '../firebase';
 import { Invoice } from '../models/invoice.model';
@@ -48,6 +48,10 @@ export class Invoices {
       number: invoice.number?.trim() || this.generateRecurrenceCode(),
       createdAt: serverTimestamp(),
     });
+  }
+
+  async remove(invoiceId: string) {
+    await deleteDoc(doc(firestore, 'invoices', invoiceId));
   }
 
   private generateRecurrenceCode() {

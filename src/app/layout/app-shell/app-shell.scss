@@ -10,7 +10,7 @@
   padding: 1.5rem 1rem;
   border-right: 1px solid rgba(76, 29, 149, 0.08);
   background: linear-gradient(180deg, #4c1d95 0%, #6d28d9 48%, #7c3aed 100%);
-  color: #faf5ff;
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,12 +38,13 @@
 .user-panel p,
 .toolbar-label {
   margin: 0;
-  opacity: 0.72;
+  opacity: 0.9;
 }
 
 .active-link {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .nav-count {
@@ -52,8 +53,10 @@
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
   font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .user-panel {
@@ -65,6 +68,42 @@
   margin-top: 1rem;
   width: 100%;
   border-radius: 999px;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.brand-block strong,
+.user-panel strong {
+  color: #fff;
+}
+
+.shell-nav a[mat-list-item] {
+  color: #fff;
+}
+
+.shell-nav a[mat-list-item]:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.shell-nav mat-icon {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:host ::ng-deep .shell-nav .mdc-list-item__primary-text,
+:host ::ng-deep .shell-nav .mat-mdc-list-item-title,
+:host ::ng-deep .shell-nav .mat-mdc-list-item-line {
+  color: #fff !important;
+}
+
+:host ::ng-deep .shell-nav .mdc-list-item__start {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+:host ::ng-deep .shell-nav .mat-mdc-button-touch-target,
+:host ::ng-deep .shell-nav .mdc-button__label {
+  color: inherit;
 }
 
 .shell-toolbar {

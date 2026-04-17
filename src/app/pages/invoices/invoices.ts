@@ -41,7 +41,7 @@ export class InvoicesPage {
   readonly invoices = this.invoicesService.items;
   readonly clients = this.clientsService.items;
   readonly loading = this.invoicesService.loading;
-  readonly displayedColumns = ['number', 'clientName', 'recurringDay', 'currency', 'amount'];
+  readonly displayedColumns = ['number', 'clientName', 'recurringDay', 'currency', 'amount', 'actions'];
   readonly nioTotal = computed(() => this.totalByCurrency('NIO'));
   readonly usdTotal = computed(() => this.totalByCurrency('USD'));
 
@@ -118,6 +118,10 @@ export class InvoicesPage {
     });
 
     this.resetForm();
+  }
+
+  async deleteRecurrence(invoiceId: string) {
+    await this.invoicesService.remove(invoiceId);
   }
 
   currencySymbol(currency: CurrencyCode) {

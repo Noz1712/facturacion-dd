@@ -31,6 +31,14 @@ service cloud.firestore {
         && request.resource.data.userId == resource.data.userId;
     }
 
+    match /companyProfiles/{profileId} {
+      allow create: if isOwner(request.resource.data.userId) && profileId == request.auth.uid;
+      allow read, delete: if isOwner(resource.data.userId) && profileId == request.auth.uid;
+      allow update: if isOwner(resource.data.userId)
+        && request.resource.data.userId == resource.data.userId
+        && profileId == request.auth.uid;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

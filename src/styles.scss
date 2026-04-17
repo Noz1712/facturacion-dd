@@ -107,3 +107,35 @@ video {
     padding: 0.5rem;
   }
 }
+
+.mat-mdc-snack-bar-container.app-snackbar {
+  border-radius: 14px;
+  border: 1px solid transparent;
+  box-shadow: 0 14px 30px rgba(36, 21, 61, 0.12);
+}
+
+.mat-mdc-snack-bar-container.app-snackbar .mdc-snackbar__label {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.mat-mdc-snack-bar-container.app-snackbar-success {
+  --mdc-snackbar-container-color: #dff7e8;
+  --mdc-snackbar-supporting-text-color: #22543d;
+  --mat-snack-bar-button-color: #1f7a4e;
+  border-color: #b8e6cb;
+}
+
+.mat-mdc-snack-bar-container.app-snackbar-error {
+  --mdc-snackbar-container-color: #fde5e7;
+  --mdc-snackbar-supporting-text-color: #7f1d1d;
+  --mat-snack-bar-button-color: #b4232f;
+  border-color: #f3bec4;
+}
+
+.mat-mdc-snack-bar-container.app-snackbar-warning {
+  --mdc-snackbar-container-color: #fff3cf;
+  --mdc-snackbar-supporting-text-color: #744210;
+  --mat-snack-bar-button-color: #a16207;
+  border-color: #f3df9f;
+}

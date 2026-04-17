@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Auth } from '../../core/services/auth';
 import { Clients } from '../../core/services/clients';
 import { Client } from '../../core/models/client.model';
+import { Notifications } from '../../core/services/notifications';
 
 @Component({
   selector: 'app-clients-page',
@@ -29,6 +30,7 @@ export class ClientsPage {
   private readonly formBuilder = inject(FormBuilder);
   private readonly auth = inject(Auth);
   private readonly clientsService = inject(Clients);
+  private readonly notifications = inject(Notifications);
 
   readonly clients = this.clientsService.items;
   readonly loading = this.clientsService.loading;
@@ -54,11 +56,13 @@ export class ClientsPage {
   async saveClient() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.notifications.warning('Completa los campos obligatorios antes de guardar.');
       return;
     }
 
     const user = this.auth.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para guardar clientes.');
       return;
     }
 
@@ -73,23 +77,31 @@ export class ClientsPage {
     };
 
     if (this.editingClientId()) {
-      await this.clientsService.update(this.editingClientId()!, {
-        ...payload,
-        ruc: trimmedRuc || null,
-      });
+      try {
+        await this.clientsService.update(this.editingClientId()!, {
+          ...payload,
+          ruc: trimmedRuc || null,
+        });
+      } catch {
+        return;
+      }
     } else {
-      await this.clientsService.create(
-        trimmedRuc
-          ? {
-              userId: user.uid,
-              ...payload,
-              ruc: trimmedRuc,
-            }
-          : {
-              userId: user.uid,
-              ...payload,
-            },
-      );
+      try {
+        await this.clientsService.create(
+          trimmedRuc
+            ? {
+                userId: user.uid,
+                ...payload,
+                ruc: trimmedRuc,
+              }
+            : {
+                userId: user.uid,
+                ...payload,
+              },
+        );
+      } catch {
+        return;
+      }
     }
 
     this.resetForm();
@@ -108,7 +120,11 @@ export class ClientsPage {
   }
 
   async deleteClient(clientId: string) {
-    await this.clientsService.remove(clientId);
+    try {
+      await this.clientsService.remove(clientId);
+    } catch {
+      return;
+    }
 
     if (this.editingClientId() === clientId) {
       this.resetForm();

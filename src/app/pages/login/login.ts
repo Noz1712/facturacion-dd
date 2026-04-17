@@ -26,6 +26,8 @@ export class Login {
     try {
       await this.auth.signInWithGoogle();
       await this.router.navigateByUrl('/app/dashboard');
+    } catch {
+      return;
     } finally {
       this.submitting.set(false);
     }

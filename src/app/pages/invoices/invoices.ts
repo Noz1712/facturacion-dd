@@ -17,6 +17,7 @@ import { CurrencyCode, Invoice } from '../../core/models/invoice.model';
 import { Auth } from '../../core/services/auth';
 import { Clients } from '../../core/services/clients';
 import { Invoices } from '../../core/services/invoices';
+import { Notifications } from '../../core/services/notifications';
 
 @Component({
   selector: 'app-invoices-page',
@@ -42,6 +43,7 @@ export class InvoicesPage {
   private readonly auth = inject(Auth);
   private readonly clientsService = inject(Clients);
   private readonly invoicesService = inject(Invoices);
+  private readonly notifications = inject(Notifications);
 
   readonly invoices = this.invoicesService.items;
   readonly clients = this.clientsService.items;
@@ -106,11 +108,13 @@ export class InvoicesPage {
   async saveInvoice() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.notifications.warning('Completa los datos obligatorios de la recurrencia.');
       return;
     }
 
     const user = this.auth.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para guardar recurrencias.');
       return;
     }
 
@@ -126,6 +130,7 @@ export class InvoicesPage {
       .filter((item) => item.name && item.charge > 0 && item.cost >= 0);
 
     if (!selectedClient || !issueDate || !items.length) {
+      this.notifications.warning('Agrega al menos un item valido y selecciona un cliente.');
       return;
     }
 
@@ -144,12 +149,20 @@ export class InvoicesPage {
     };
 
     if (this.editingRecurrenceId()) {
-      await this.invoicesService.update(this.editingRecurrenceId()!, payload);
+      try {
+        await this.invoicesService.update(this.editingRecurrenceId()!, payload);
+      } catch {
+        return;
+      }
     } else {
-      await this.invoicesService.create({
-        userId: user.uid,
-        ...payload,
-      });
+      try {
+        await this.invoicesService.create({
+          userId: user.uid,
+          ...payload,
+        });
+      } catch {
+        return;
+      }
     }
 
     this.resetForm();
@@ -198,7 +211,11 @@ export class InvoicesPage {
   }
 
   async deleteRecurrence(invoiceId: string) {
-    await this.invoicesService.remove(invoiceId);
+    try {
+      await this.invoicesService.remove(invoiceId);
+    } catch {
+      return;
+    }
 
     if (this.editingRecurrenceId() === invoiceId) {
       this.resetForm();

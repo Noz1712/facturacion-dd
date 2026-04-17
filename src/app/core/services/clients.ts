@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import {
   addDoc,
   collection,
@@ -14,6 +14,7 @@ import {
 
 import { firestore } from '../firebase';
 import { Client } from '../models/client.model';
+import { Notifications } from './notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ import { Client } from '../models/client.model';
 export class Clients {
   readonly items = signal<Client[]>([]);
   readonly loading = signal(true);
+  private readonly notifications = inject(Notifications);
 
   private unsubscribe?: () => void;
 
@@ -52,11 +54,17 @@ export class Clients {
   }
 
   async create(client: Omit<Client, 'id' | 'createdAt' | 'updatedAt'>) {
-    await addDoc(collection(firestore, 'clients'), {
-      ...client,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
+    try {
+      await addDoc(collection(firestore, 'clients'), {
+        ...client,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+      this.notifications.success('Cliente guardado correctamente.');
+    } catch {
+      this.notifications.error('No se pudo guardar el cliente.');
+      throw new Error('create_client_failed');
+    }
   }
 
   async update(
@@ -72,10 +80,22 @@ export class Clients {
       payload['ruc'] = deleteField();
     }
 
-    await updateDoc(doc(firestore, 'clients', clientId), payload);
+    try {
+      await updateDoc(doc(firestore, 'clients', clientId), payload);
+      this.notifications.success('Cliente actualizado correctamente.');
+    } catch {
+      this.notifications.error('No se pudo actualizar el cliente.');
+      throw new Error('update_client_failed');
+    }
   }
 
   async remove(clientId: string) {
-    await deleteDoc(doc(firestore, 'clients', clientId));
+    try {
+      await deleteDoc(doc(firestore, 'clients', clientId));
+      this.notifications.success('Cliente eliminado correctamente.');
+    } catch {
+      this.notifications.error('No se pudo eliminar el cliente.');
+      throw new Error('delete_client_failed');
+    }
   }
 }

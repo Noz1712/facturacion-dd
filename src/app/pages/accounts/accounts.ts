@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { BankAccount, BankName } from '../../core/models/company-profile.model';
 import { Auth } from '../../core/services/auth';
 import { CompanyProfileService } from '../../core/services/company-profile';
+import { Notifications } from '../../core/services/notifications';
 
 @Component({
   selector: 'app-accounts-page',
@@ -31,6 +32,7 @@ export class AccountsPage {
   private readonly auth = inject(Auth);
   private readonly formBuilder = inject(FormBuilder);
   private readonly companyProfile = inject(CompanyProfileService);
+  private readonly notifications = inject(Notifications);
 
   readonly user = this.auth.user;
   readonly profile = this.companyProfile.item;
@@ -60,11 +62,13 @@ export class AccountsPage {
   async addAccount() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.notifications.warning('Completa todos los campos de la cuenta bancaria.');
       return;
     }
 
     const user = this.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para agregar cuentas.');
       return;
     }
 
@@ -77,11 +81,16 @@ export class AccountsPage {
     };
 
     if (!newAccount.accountNumber || !newAccount.holder) {
+      this.notifications.warning('Numero de cuenta y titular son obligatorios.');
       return;
     }
 
     const nextAccounts = [...this.bankAccounts(), newAccount];
-    await this.companyProfile.saveBankAccounts(user.uid, nextAccounts);
+    try {
+      await this.companyProfile.saveBankAccounts(user.uid, nextAccounts);
+    } catch {
+      return;
+    }
 
     this.form.reset({
       bank: 'LAFISE',
@@ -94,10 +103,15 @@ export class AccountsPage {
   async removeAccount(index: number) {
     const user = this.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para eliminar cuentas.');
       return;
     }
 
     const nextAccounts = this.bankAccounts().filter((_, currentIndex) => currentIndex !== index);
-    await this.companyProfile.saveBankAccounts(user.uid, nextAccounts);
+    try {
+      await this.companyProfile.saveBankAccounts(user.uid, nextAccounts);
+    } catch {
+      return;
+    }
   }
 }

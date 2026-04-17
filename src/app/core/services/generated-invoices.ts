@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import {
   addDoc,
   collection,
@@ -14,6 +14,7 @@ import {
 import { firestore } from '../firebase';
 import { GeneratedInvoice } from '../models/generated-invoice.model';
 import { Invoice } from '../models/invoice.model';
+import { Notifications } from './notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ import { Invoice } from '../models/invoice.model';
 export class GeneratedInvoices {
   readonly items = signal<GeneratedInvoice[]>([]);
   readonly loading = signal(true);
+  private readonly notifications = inject(Notifications);
 
   private unsubscribe?: () => void;
 
@@ -60,6 +62,7 @@ export class GeneratedInvoices {
     );
 
     if (alreadyGenerated) {
+      this.notifications.warning('Esta factura ya fue generada para el periodo seleccionado.');
       return;
     }
 
@@ -70,26 +73,32 @@ export class GeneratedInvoices {
     const costTotal = this.getCostTotal(recurrence);
     const margin = chargeTotal - costTotal;
 
-    await addDoc(collection(firestore, 'generatedInvoices'), {
-      userId: recurrence.userId,
-      invoiceCode,
-      recurrenceId: recurrence.id,
-      recurrenceCode: recurrence.number,
-      clientId: recurrence.clientId,
-      clientName: recurrence.clientName,
-      currency: recurrence.currency,
-      issueDate: today,
-      dueDate,
-      scheduledDate: scheduledDate.toISOString().slice(0, 10),
-      periodKey,
-      items: recurrence.items,
-      chargeTotal,
-      costTotal,
-      margin,
-      status: 'Pendiente',
-      transactionNumber: '',
-      notes: recurrence.notes ?? '',
-    });
+    try {
+      await addDoc(collection(firestore, 'generatedInvoices'), {
+        userId: recurrence.userId,
+        invoiceCode,
+        recurrenceId: recurrence.id,
+        recurrenceCode: recurrence.number,
+        clientId: recurrence.clientId,
+        clientName: recurrence.clientName,
+        currency: recurrence.currency,
+        issueDate: today,
+        dueDate,
+        scheduledDate: scheduledDate.toISOString().slice(0, 10),
+        periodKey,
+        items: recurrence.items,
+        chargeTotal,
+        costTotal,
+        margin,
+        status: 'Pendiente',
+        transactionNumber: '',
+        notes: recurrence.notes ?? '',
+      });
+      this.notifications.success('Factura generada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo generar la factura.');
+      throw new Error('generate_invoice_failed');
+    }
   }
 
   async updatePayment(
@@ -97,10 +106,16 @@ export class GeneratedInvoices {
     status: GeneratedInvoice['status'],
     transactionNumber: string,
   ) {
-    await updateDoc(doc(firestore, 'generatedInvoices', invoiceId), {
-      status,
-      transactionNumber: transactionNumber.trim(),
-    });
+    try {
+      await updateDoc(doc(firestore, 'generatedInvoices', invoiceId), {
+        status,
+        transactionNumber: transactionNumber.trim(),
+      });
+      this.notifications.success('Pago actualizado correctamente.');
+    } catch {
+      this.notifications.error('No se pudo actualizar el pago.');
+      throw new Error('update_payment_failed');
+    }
   }
 
   async createManual(payload: {
@@ -119,27 +134,33 @@ export class GeneratedInvoices {
     const margin = chargeTotal - costTotal;
     const invoiceCode = this.buildInvoiceCode(payload.clientCode, payload.clientId);
 
-    await addDoc(collection(firestore, 'generatedInvoices'), {
-      userId: payload.userId,
-      invoiceCode,
-      isManual: true,
-      recurrenceId: 'manual',
-      recurrenceCode: 'MANUAL',
-      clientId: payload.clientId,
-      clientName: payload.clientName,
-      currency: payload.currency,
-      issueDate: payload.issueDate,
-      dueDate: payload.dueDate,
-      scheduledDate: payload.issueDate,
-      periodKey: payload.issueDate.slice(0, 7),
-      items: payload.items,
-      chargeTotal,
-      costTotal,
-      margin,
-      status: 'Pendiente',
-      transactionNumber: '',
-      notes: payload.notes ?? '',
-    });
+    try {
+      await addDoc(collection(firestore, 'generatedInvoices'), {
+        userId: payload.userId,
+        invoiceCode,
+        isManual: true,
+        recurrenceId: 'manual',
+        recurrenceCode: 'MANUAL',
+        clientId: payload.clientId,
+        clientName: payload.clientName,
+        currency: payload.currency,
+        issueDate: payload.issueDate,
+        dueDate: payload.dueDate,
+        scheduledDate: payload.issueDate,
+        periodKey: payload.issueDate.slice(0, 7),
+        items: payload.items,
+        chargeTotal,
+        costTotal,
+        margin,
+        status: 'Pendiente',
+        transactionNumber: '',
+        notes: payload.notes ?? '',
+      });
+      this.notifications.success('Factura manual registrada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo registrar la factura manual.');
+      throw new Error('create_manual_invoice_failed');
+    }
   }
 
   async updateManual(
@@ -160,28 +181,40 @@ export class GeneratedInvoices {
     const margin = chargeTotal - costTotal;
     const invoiceCode = this.buildInvoiceCode(payload.clientCode, payload.clientId);
 
-    await updateDoc(doc(firestore, 'generatedInvoices', invoiceId), {
-      invoiceCode,
-      isManual: true,
-      recurrenceId: 'manual',
-      recurrenceCode: 'MANUAL',
-      clientId: payload.clientId,
-      clientName: payload.clientName,
-      currency: payload.currency,
-      issueDate: payload.issueDate,
-      dueDate: payload.dueDate,
-      scheduledDate: payload.issueDate,
-      periodKey: payload.issueDate.slice(0, 7),
-      items: payload.items,
-      chargeTotal,
-      costTotal,
-      margin,
-      notes: payload.notes ?? '',
-    });
+    try {
+      await updateDoc(doc(firestore, 'generatedInvoices', invoiceId), {
+        invoiceCode,
+        isManual: true,
+        recurrenceId: 'manual',
+        recurrenceCode: 'MANUAL',
+        clientId: payload.clientId,
+        clientName: payload.clientName,
+        currency: payload.currency,
+        issueDate: payload.issueDate,
+        dueDate: payload.dueDate,
+        scheduledDate: payload.issueDate,
+        periodKey: payload.issueDate.slice(0, 7),
+        items: payload.items,
+        chargeTotal,
+        costTotal,
+        margin,
+        notes: payload.notes ?? '',
+      });
+      this.notifications.success('Factura manual actualizada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo actualizar la factura manual.');
+      throw new Error('update_manual_invoice_failed');
+    }
   }
 
   async revert(invoiceId: string) {
-    await deleteDoc(doc(firestore, 'generatedInvoices', invoiceId));
+    try {
+      await deleteDoc(doc(firestore, 'generatedInvoices', invoiceId));
+      this.notifications.success('Factura revertida correctamente.');
+    } catch {
+      this.notifications.error('No se pudo revertir la factura.');
+      throw new Error('revert_invoice_failed');
+    }
   }
 
   private getChargeTotal(recurrence: Invoice) {

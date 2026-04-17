@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Auth } from '../../core/services/auth';
 import { CompanyProfileService } from '../../core/services/company-profile';
+import { Notifications } from '../../core/services/notifications';
 
 @Component({
   selector: 'app-profile-page',
@@ -28,6 +29,7 @@ export class ProfilePage {
   private readonly auth = inject(Auth);
   private readonly formBuilder = inject(FormBuilder);
   private readonly companyProfile = inject(CompanyProfileService);
+  private readonly notifications = inject(Notifications);
 
   readonly user = this.auth.user;
   readonly profile = this.companyProfile.item;
@@ -67,11 +69,13 @@ export class ProfilePage {
   async save() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.notifications.warning('Completa los campos obligatorios del perfil.');
       return;
     }
 
     const user = this.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para guardar el perfil.');
       return;
     }
 
@@ -79,15 +83,19 @@ export class ProfilePage {
     const currentBankAccounts = this.profile()?.bankAccounts ?? [];
     const paymentTermDays = Math.max(0, Math.floor(Number(value.paymentTermDays) || 0));
 
-    await this.companyProfile.save({
-      userId: user.uid,
-      name: value.name.trim(),
-      manager: value.manager.trim(),
-      phone: value.phone.trim(),
-      paymentTermDays,
-      address: value.address.trim(),
-      description: value.description.trim(),
-      bankAccounts: currentBankAccounts,
-    });
+    try {
+      await this.companyProfile.save({
+        userId: user.uid,
+        name: value.name.trim(),
+        manager: value.manager.trim(),
+        phone: value.phone.trim(),
+        paymentTermDays,
+        address: value.address.trim(),
+        description: value.description.trim(),
+        bankAccounts: currentBankAccounts,
+      });
+    } catch {
+      return;
+    }
   }
 }

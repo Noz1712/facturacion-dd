@@ -66,8 +66,12 @@ export class AppShell {
   async logout() {
     this.invoices.stopWatching();
     this.generatedInvoices.stopWatching();
-    await this.auth.logout();
-    await this.router.navigateByUrl('/login');
+    try {
+      await this.auth.logout();
+      await this.router.navigateByUrl('/login');
+    } catch {
+      return;
+    }
   }
 
   closeNavOnMobile(drawer: MatSidenav) {

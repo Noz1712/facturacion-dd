@@ -1,8 +1,9 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 
 import { firestore } from '../firebase';
 import { Invoice } from '../models/invoice.model';
+import { Notifications } from './notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { Invoice } from '../models/invoice.model';
 export class Invoices {
   readonly items = signal<Invoice[]>([]);
   readonly loading = signal(true);
+  private readonly notifications = inject(Notifications);
 
   private unsubscribe?: () => void;
 
@@ -43,25 +45,43 @@ export class Invoices {
   }
 
   async create(invoice: Omit<Invoice, 'id' | 'createdAt' | 'number'> & { number?: string }) {
-    await addDoc(collection(firestore, 'invoices'), {
-      ...invoice,
-      number: invoice.number?.trim() || this.generateRecurrenceCode(),
-      createdAt: serverTimestamp(),
-    });
+    try {
+      await addDoc(collection(firestore, 'invoices'), {
+        ...invoice,
+        number: invoice.number?.trim() || this.generateRecurrenceCode(),
+        createdAt: serverTimestamp(),
+      });
+      this.notifications.success('Recurrencia guardada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo guardar la recurrencia.');
+      throw new Error('create_recurrence_failed');
+    }
   }
 
   async update(
     invoiceId: string,
     invoice: Omit<Invoice, 'id' | 'userId' | 'createdAt' | 'number'>,
   ) {
-    await updateDoc(doc(firestore, 'invoices', invoiceId), {
-      ...invoice,
-      updatedAt: serverTimestamp(),
-    });
+    try {
+      await updateDoc(doc(firestore, 'invoices', invoiceId), {
+        ...invoice,
+        updatedAt: serverTimestamp(),
+      });
+      this.notifications.success('Recurrencia actualizada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo actualizar la recurrencia.');
+      throw new Error('update_recurrence_failed');
+    }
   }
 
   async remove(invoiceId: string) {
-    await deleteDoc(doc(firestore, 'invoices', invoiceId));
+    try {
+      await deleteDoc(doc(firestore, 'invoices', invoiceId));
+      this.notifications.success('Recurrencia eliminada correctamente.');
+    } catch {
+      this.notifications.error('No se pudo eliminar la recurrencia.');
+      throw new Error('delete_recurrence_failed');
+    }
   }
 
   private generateRecurrenceCode() {

@@ -1,9 +1,10 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
 import { firestore } from '../firebase';
 import { BankAccount } from '../models/company-profile.model';
 import { CompanyProfile } from '../models/company-profile.model';
+import { Notifications } from './notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { CompanyProfile } from '../models/company-profile.model';
 export class CompanyProfileService {
   readonly item = signal<CompanyProfile | null>(null);
   readonly loading = signal(true);
+  private readonly notifications = inject(Notifications);
 
   private unsubscribe?: () => void;
 
@@ -37,17 +39,29 @@ export class CompanyProfileService {
   }
 
   async save(profile: Omit<CompanyProfile, 'id'>) {
-    await setDoc(doc(firestore, 'companyProfiles', profile.userId), profile, { merge: true });
+    try {
+      await setDoc(doc(firestore, 'companyProfiles', profile.userId), profile, { merge: true });
+      this.notifications.success('Perfil de empresa guardado correctamente.');
+    } catch {
+      this.notifications.error('No se pudo guardar el perfil de empresa.');
+      throw new Error('save_company_profile_failed');
+    }
   }
 
   async saveBankAccounts(userId: string, bankAccounts: BankAccount[]) {
-    await setDoc(
-      doc(firestore, 'companyProfiles', userId),
-      {
-        userId,
-        bankAccounts,
-      },
-      { merge: true },
-    );
+    try {
+      await setDoc(
+        doc(firestore, 'companyProfiles', userId),
+        {
+          userId,
+          bankAccounts,
+        },
+        { merge: true },
+      );
+      this.notifications.success('Cuentas bancarias actualizadas correctamente.');
+    } catch {
+      this.notifications.error('No se pudieron actualizar las cuentas bancarias.');
+      throw new Error('save_bank_accounts_failed');
+    }
   }
 }

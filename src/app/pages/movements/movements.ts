@@ -21,6 +21,7 @@ import { Clients } from '../../core/services/clients';
 import { CompanyProfileService } from '../../core/services/company-profile';
 import { GeneratedInvoices } from '../../core/services/generated-invoices';
 import { Invoices } from '../../core/services/invoices';
+import { Notifications } from '../../core/services/notifications';
 
 interface UpcomingRecurrence {
   recurrence: Invoice;
@@ -60,6 +61,7 @@ export class MovementsPage {
   private readonly dialog = inject(MatDialog);
   private readonly recurrencesService = inject(Invoices);
   private readonly generatedInvoicesService = inject(GeneratedInvoices);
+  private readonly notifications = inject(Notifications);
   private paymentDialogRef?: MatDialogRef<unknown>;
   private manualDialogRef?: MatDialogRef<unknown>;
 
@@ -155,11 +157,13 @@ export class MovementsPage {
     const hasInvalidHeader = headerControls.some((control) => control.invalid);
     if (hasInvalidHeader) {
       this.manualForm.markAllAsTouched();
+      this.notifications.warning('Completa los campos obligatorios para la factura manual.');
       return;
     }
 
     const user = this.auth.user();
     if (!user) {
+      this.notifications.warning('Debes iniciar sesion para registrar facturas manuales.');
       return;
     }
 
@@ -176,6 +180,7 @@ export class MovementsPage {
 
     if (!selectedClient || !items.length) {
       this.manualItems.controls.forEach((group) => group.markAllAsTouched());
+      this.notifications.warning('Selecciona cliente y agrega al menos un item valido.');
       return;
     }
 
@@ -191,12 +196,20 @@ export class MovementsPage {
     };
 
     if (this.editingManualInvoiceId()) {
-      await this.generatedInvoicesService.updateManual(this.editingManualInvoiceId()!, payload);
+      try {
+        await this.generatedInvoicesService.updateManual(this.editingManualInvoiceId()!, payload);
+      } catch {
+        return;
+      }
     } else {
-      await this.generatedInvoicesService.createManual({
-        userId: user.uid,
-        ...payload,
-      });
+      try {
+        await this.generatedInvoicesService.createManual({
+          userId: user.uid,
+          ...payload,
+        });
+      } catch {
+        return;
+      }
     }
 
     this.closeManualDialog();
@@ -277,15 +290,23 @@ export class MovementsPage {
       clientCode: selectedClient?.clientCode?.trim() || undefined,
     };
 
-    await this.generatedInvoicesService.generateNow(
-      recurrenceWithCatalogCode,
-      item.nextGenerateDate,
-      this.getPaymentTermDays(),
-    );
+    try {
+      await this.generatedInvoicesService.generateNow(
+        recurrenceWithCatalogCode,
+        item.nextGenerateDate,
+        this.getPaymentTermDays(),
+      );
+    } catch {
+      return;
+    }
   }
 
   async revert(invoiceId: string) {
-    await this.generatedInvoicesService.revert(invoiceId);
+    try {
+      await this.generatedInvoicesService.revert(invoiceId);
+    } catch {
+      return;
+    }
   }
 
   updateDraft(
@@ -311,11 +332,15 @@ export class MovementsPage {
 
   async savePayment(invoice: GeneratedInvoice) {
     const draft = this.paymentDrafts()[invoice.id];
-    await this.generatedInvoicesService.updatePayment(
-      invoice.id,
-      draft?.status ?? invoice.status,
-      draft?.transactionNumber ?? invoice.transactionNumber ?? '',
-    );
+    try {
+      await this.generatedInvoicesService.updatePayment(
+        invoice.id,
+        draft?.status ?? invoice.status,
+        draft?.transactionNumber ?? invoice.transactionNumber ?? '',
+      );
+    } catch {
+      return;
+    }
   }
 
   openPaymentDialog(invoice: GeneratedInvoice) {
@@ -357,22 +382,28 @@ export class MovementsPage {
   async saveSelectedPayment() {
     const invoice = this.selectedInvoice();
     if (!invoice) {
+      this.notifications.warning('Selecciona una factura para registrar el pago.');
       return;
     }
 
     if (this.paymentForm.invalid) {
       this.paymentForm.markAllAsTouched();
+      this.notifications.warning('Completa el formulario antes de guardar el pago.');
       return;
     }
 
     const formValue = this.paymentForm.getRawValue();
     const transactionNumber = formValue.transactionNumber.trim();
 
-    await this.generatedInvoicesService.updatePayment(
-      invoice.id,
-      formValue.status,
-      transactionNumber,
-    );
+    try {
+      await this.generatedInvoicesService.updatePayment(
+        invoice.id,
+        formValue.status,
+        transactionNumber,
+      );
+    } catch {
+      return;
+    }
 
     this.paymentDrafts.update((drafts) => ({
       ...drafts,

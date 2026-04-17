@@ -37,6 +37,18 @@ body {
   box-sizing: border-box;
 }
 
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
 :root {
   --brand-950: #2d1066;
   --brand-900: #4c1d95;
@@ -48,4 +60,50 @@ body {
   --surface-soft: #f7f1ff;
   --text-strong: #24153d;
   --text-soft: #665a7c;
+}
+
+.app-calendar .mat-datepicker-content {
+  border-radius: 18px;
+  border: 1px solid rgba(76, 29, 149, 0.16);
+  box-shadow: 0 24px 48px rgba(76, 29, 149, 0.2);
+  overflow: hidden;
+}
+
+.app-calendar .mat-calendar {
+  background: #fff;
+}
+
+.app-calendar .mat-calendar-header {
+  padding: 0.9rem 0.9rem 0.6rem;
+  color: var(--brand-950);
+}
+
+.app-calendar .mat-calendar-body-selected {
+  background: linear-gradient(135deg, var(--brand-900), var(--brand-500));
+  color: #fff;
+}
+
+.app-calendar .mat-calendar-body-cell-content {
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .app-calendar .mat-datepicker-content {
+    width: min(96vw, 380px);
+  }
+}
+
+.payment-dialog-panel .mat-mdc-dialog-surface,
+.payment-dialog-panel .mdc-dialog__surface {
+  border-radius: 20px;
+  padding: 0.8rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
+}
+
+@media (max-width: 900px) {
+  .payment-dialog-panel .mat-mdc-dialog-surface,
+  .payment-dialog-panel .mdc-dialog__surface {
+    border-radius: 16px;
+    padding: 0.5rem;
+  }
 }

@@ -8,17 +8,17 @@ import { auth } from '../firebase';
 })
 export class Auth {
   private readonly provider = new GoogleAuthProvider();
-  private initialSessionPromise: Promise<User | null>;
+  private authReadyPromise: Promise<void>;
 
   readonly user = signal<User | null>(null);
   readonly loading = signal(true);
 
   constructor() {
-    this.initialSessionPromise = new Promise((resolve) => {
+    this.authReadyPromise = new Promise((resolve) => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         this.user.set(user);
         this.loading.set(false);
-        resolve(user);
+        resolve();
         unsubscribe();
       });
     });
@@ -30,7 +30,7 @@ export class Auth {
   }
 
   waitForInitialSession() {
-    return this.initialSessionPromise;
+    return this.authReadyPromise;
   }
 
   async signInWithGoogle() {

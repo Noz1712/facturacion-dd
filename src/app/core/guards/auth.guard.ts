@@ -6,7 +6,8 @@ import { Auth } from '../services/auth';
 export const authGuard = async () => {
   const auth = inject(Auth);
   const router = inject(Router);
-  const user = await auth.waitForInitialSession();
+  await auth.waitForInitialSession();
+  const user = auth.user();
 
   return user ? true : router.createUrlTree(['/login']);
 };
@@ -14,7 +15,8 @@ export const authGuard = async () => {
 export const guestGuard = async () => {
   const auth = inject(Auth);
   const router = inject(Router);
-  const user = await auth.waitForInitialSession();
+  await auth.waitForInitialSession();
+  const user = auth.user();
 
   return user ? router.createUrlTree(['/app']) : true;
 };

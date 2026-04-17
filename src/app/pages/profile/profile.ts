@@ -35,7 +35,9 @@ export class ProfilePage {
 
   readonly form = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required]],
-    manager: ['', [Validators.required]],
+    manager: [''],
+    phone: [''],
+    paymentTermDays: [0, [Validators.required, Validators.min(0)]],
     address: ['', [Validators.required]],
     description: [''],
   });
@@ -48,12 +50,17 @@ export class ProfilePage {
 
     effect(() => {
       const profile = this.profile();
-      this.form.reset({
+
+      this.form.patchValue({
         name: profile?.name ?? '',
         manager: profile?.manager ?? '',
+        phone: profile?.phone ?? '',
+        paymentTermDays: profile?.paymentTermDays ?? 0,
         address: profile?.address ?? '',
         description: profile?.description ?? '',
       });
+
+      this.form.markAsPristine();
     });
   }
 
@@ -69,12 +76,18 @@ export class ProfilePage {
     }
 
     const value = this.form.getRawValue();
+    const currentBankAccounts = this.profile()?.bankAccounts ?? [];
+    const paymentTermDays = Math.max(0, Math.floor(Number(value.paymentTermDays) || 0));
+
     await this.companyProfile.save({
       userId: user.uid,
       name: value.name.trim(),
       manager: value.manager.trim(),
+      phone: value.phone.trim(),
+      paymentTermDays,
       address: value.address.trim(),
       description: value.description.trim(),
+      bankAccounts: currentBankAccounts,
     });
   }
 }

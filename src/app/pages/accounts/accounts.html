@@ -1,0 +1,95 @@
+<mat-card class="accounts-card" appearance="outlined">
+  <div class="accounts-header">
+    <div>
+      <p class="section-label">Finanzas</p>
+      <h2>Cuentas bancarias</h2>
+      <p class="helper-copy">Formulario arriba y detalle de cuentas agregadas en tabla.</p>
+    </div>
+    @if (loading()) {
+      <mat-spinner diameter="24" />
+    } @else {
+      <mat-icon>account_balance</mat-icon>
+    }
+  </div>
+
+  <form class="account-form" [formGroup]="form" (ngSubmit)="addAccount()">
+    <mat-form-field appearance="outline">
+      <mat-label>Banco</mat-label>
+      <mat-select formControlName="bank">
+        @for (bankName of bankCatalog; track bankName) {
+          <mat-option [value]="bankName">{{ bankName }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numero de cuenta</mat-label>
+      <input matInput formControlName="accountNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Titular</mat-label>
+      <input matInput formControlName="holder" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Moneda</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option value="NIO">NIO</mat-option>
+        <mat-option value="USD">USD</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-flat-button type="submit" class="save-button">Agregar cuenta</button>
+    </div>
+  </form>
+
+  <section class="table-section">
+    <div class="table-header">
+      <h3>Detalle de cuentas</h3>
+      <span class="table-count">{{ bankAccounts().length }} cuenta(s)</span>
+    </div>
+
+    @if (bankAccounts().length) {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Banco</th>
+              <th>Numero de cuenta</th>
+              <th>Titular</th>
+              <th>Moneda</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (account of bankAccounts(); track account.bank + account.accountNumber + $index) {
+              <tr>
+                <td>{{ account.bank }}</td>
+                <td>{{ account.accountNumber }}</td>
+                <td>{{ account.holder }}</td>
+                <td>{{ account.currency }}</td>
+                <td class="actions-cell">
+                  <button
+                    mat-icon-button
+                    type="button"
+                    (click)="removeAccount($index)"
+                    aria-label="Eliminar cuenta"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <p>No hay cuentas bancarias agregadas.</p>
+      </div>
+    }
+  </section>
+</mat-card>

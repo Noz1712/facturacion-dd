@@ -19,6 +19,11 @@
   margin-bottom: 1rem;
 }
 
+.manual-quick-header {
+  align-items: center;
+  margin-bottom: 0;
+}
+
 .card-header h2,
 .movement-main h3,
 .movement-side strong,
@@ -48,6 +53,67 @@
   gap: 1rem;
 }
 
+.manual-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.manual-items {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(76, 29, 149, 0.1);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.manual-items-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.manual-items-header h3 {
+  margin: 0;
+  color: var(--brand-950);
+  font-size: 1rem;
+}
+
+.manual-item-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.manual-item-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px 160px auto;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.manual-totals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.manual-total {
+  margin: 0;
+  color: var(--brand-900);
+  font-weight: 700;
+}
+
+.manual-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
 .movement-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
@@ -61,6 +127,42 @@
 .movement-main p {
   margin: 0.35rem 0;
   color: var(--text-soft);
+  word-break: break-word;
+}
+
+.generated-item {
+  grid-template-columns: minmax(0, 1fr) 300px;
+  padding: 1.2rem;
+  border: 1px solid rgba(76, 29, 149, 0.14);
+  background: linear-gradient(180deg, #ffffff, var(--surface-soft));
+}
+
+.generated-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.generated-head h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(234, 179, 8, 0.2);
+  color: #854d0e;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.status-tag.paid {
+  background: rgba(34, 197, 94, 0.2);
+  color: #14532d;
 }
 
 .line-list {
@@ -79,6 +181,9 @@
   color: var(--brand-900);
   font-size: 0.8rem;
   font-weight: 700;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .movement-side,
@@ -86,16 +191,250 @@
   display: grid;
   align-content: start;
   gap: 0.75rem;
+  min-width: 0;
+}
+
+.payment-panel {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(76, 29, 149, 0.1);
+  background: #fff;
 }
 
 .payment-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.payment-actions button {
+  min-width: 0;
 }
 
 .primary-button {
   background: linear-gradient(135deg, var(--brand-900), var(--brand-500));
   color: #fff;
+}
+
+.payment-dialog {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  min-width: min(88vw, 500px);
+}
+
+.payment-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+
+.payment-dialog-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(234, 179, 8, 0.2);
+  color: #854d0e;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.payment-dialog-status-badge.paid {
+  background: rgba(34, 197, 94, 0.2);
+  color: #14532d;
+}
+
+.payment-dialog-metrics {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid rgba(76, 29, 149, 0.12);
+  background: var(--surface-soft);
+}
+
+.payment-summary-row {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+  color: var(--text-soft);
+}
+
+.payment-summary-row + .payment-summary-row {
+  border-top: 1px solid rgba(76, 29, 149, 0.08);
+}
+
+.payment-summary-row p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.payment-summary-row strong {
+  color: var(--brand-950);
+  font-size: 0.98rem;
+}
+
+.payment-dialog-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(76, 29, 149, 0.14);
+  background: rgba(247, 241, 255, 0.9);
+  color: var(--brand-900);
+  font-size: 0.84rem;
+}
+
+.payment-dialog-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 170px) minmax(0, 1fr);
+  gap: 0.7rem;
+}
+
+.payment-submit-button {
+  color: #fff;
+  border-radius: 999px;
+}
+
+.payment-submit-button.pending-state {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+.payment-submit-button.paid-state {
+  background: linear-gradient(135deg, #15803d, #22c55e);
+}
+
+.manual-dialog {
+  display: grid;
+  gap: 1.15rem;
+  width: min(98vw, 1080px);
+  max-height: 88vh;
+  overflow: auto;
+  padding: 0.9rem 0.95rem 0.8rem;
+}
+
+.manual-dialog-header h3 {
+  margin: 0.1rem 0 0;
+  color: var(--brand-950);
+}
+
+.manual-dialog-subtitle {
+  margin: 0.38rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  max-width: 720px;
+}
+
+.manual-dialog .manual-form {
+  grid-template-columns: 1fr;
+  gap: 1.05rem;
+}
+
+.manual-top-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 0.85rem;
+  padding: 0.95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(76, 29, 149, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, #fbf8ff 100%);
+}
+
+.manual-dialog .manual-items {
+  padding: 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(76, 29, 149, 0.14);
+  background: linear-gradient(180deg, #fdfbff 0%, #f7f2ff 100%);
+}
+
+.manual-dialog .manual-item-row {
+  grid-template-columns: minmax(0, 1fr) 150px 150px auto;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(76, 29, 149, 0.08);
+}
+
+.manual-item-row button[mat-icon-button] {
+  margin-top: 0.25rem;
+}
+
+.payment-dialog h3 {
+  margin: 0;
+  color: var(--brand-950);
+}
+
+.payment-dialog-subtitle {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.payment-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.manual-total-card {
+  margin: 0;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid rgba(76, 29, 149, 0.14);
+  background: #fff;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.manual-total-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.manual-total-card strong {
+  color: var(--brand-950);
+  font-size: 1.08rem;
+}
+
+.manual-total-card.margin {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.12), rgba(79, 70, 229, 0.08));
+}
+
+.manual-dialog .manual-actions {
+  justify-content: flex-end;
+  padding-top: 0.35rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(76, 29, 149, 0.12);
+}
+
+.manual-notes-field {
+  padding: 0.9rem;
+  border-radius: 16px;
+  border: 1px solid rgba(76, 29, 149, 0.12);
+  background: #fff;
+}
+
+::ng-deep .manual-dialog-panel .mat-mdc-dialog-surface {
+  border-radius: 22px;
+  padding: 0.8rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
+}
+
+::ng-deep .payment-dialog-panel .mat-mdc-dialog-surface {
+  border-radius: 20px;
+  padding: 0.8rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
 }
 
 .empty-state {
@@ -112,7 +451,117 @@
     grid-template-columns: 1fr;
   }
 
+  .manual-form {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-item-row {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-totals {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-actions {
+    flex-direction: column;
+  }
+
+  .generated-item {
+    grid-template-columns: 1fr;
+  }
+
   .payment-actions {
     flex-direction: column;
+  }
+
+  .payment-actions button,
+  .movement-side button,
+  .manual-actions button,
+  .manual-items-header button {
+    width: 100%;
+  }
+
+  .payment-dialog-actions {
+    flex-direction: column;
+  }
+
+  .payment-dialog-header {
+    flex-direction: column;
+  }
+
+  .payment-dialog-status-badge {
+    align-self: flex-start;
+  }
+
+  .payment-dialog-metrics,
+  .payment-dialog-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .manual-dialog {
+    width: 100%;
+    max-height: 84vh;
+    padding: 0.3rem 0.2rem;
+  }
+
+  .manual-dialog .manual-form {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .manual-top-fields {
+    grid-template-columns: 1fr;
+    padding: 0.7rem;
+  }
+
+  .manual-dialog .manual-item-row {
+    grid-template-columns: 1fr;
+    padding: 0.35rem;
+  }
+
+  .manual-dialog .manual-items-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .manual-dialog .manual-actions {
+    flex-direction: column-reverse;
+  }
+
+  ::ng-deep .manual-dialog-panel .mat-mdc-dialog-surface {
+    border-radius: 16px;
+    padding: 0.5rem;
+  }
+
+  ::ng-deep .payment-dialog-panel .mat-mdc-dialog-surface {
+    border-radius: 16px;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel-card {
+    padding: 1rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .line-list span {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .generated-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

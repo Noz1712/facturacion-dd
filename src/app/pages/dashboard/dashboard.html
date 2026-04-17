@@ -28,66 +28,9 @@
 
   <mat-card class="metric-card wide-card" appearance="outlined">
     <mat-icon>payments</mat-icon>
-    <span>Programado en C$</span>
+    <span>Cobro programado en C$</span>
     <strong>C$ {{ nioRecurringTotal() | number: '1.2-2' }}</strong>
-    <small>Programado en $: $ {{ usdRecurringTotal() | number: '1.2-2' }}</small>
-  </mat-card>
-
-  <mat-card class="panel-card" appearance="outlined">
-    <div class="panel-header">
-      <div>
-        <p class="section-label">Generacion</p>
-        <h3>Proximas recurrencias</h3>
-      </div>
-      <mat-icon>event_repeat</mat-icon>
-    </div>
-
-    @if (upcomingCharges().length) {
-      <div class="list">
-        @for (charge of upcomingCharges(); track charge.number) {
-          <article class="list-item">
-            <div>
-              <strong>{{ charge.clientName }}</strong>
-              <p>Recurrencia {{ charge.number }} | Dia {{ charge.recurringDay }}</p>
-            </div>
-            <div class="list-meta">
-              <span>{{ charge.nextChargeDate | date: 'dd/MM/yyyy' }}</span>
-              <strong>{{ currencySymbol(charge.currency) }} {{ charge.amount | number: '1.2-2' }}</strong>
-            </div>
-          </article>
-        }
-      </div>
-    } @else {
-      <p class="empty-copy">Aun no hay recurrencias para proyectar generaciones.</p>
-    }
-  </mat-card>
-
-  <mat-card class="panel-card" appearance="outlined">
-    <div class="panel-header">
-      <div>
-        <p class="section-label">Clientes</p>
-        <h3>Top clientes por monto</h3>
-      </div>
-      <mat-icon>leaderboard</mat-icon>
-    </div>
-
-    @if (topClients().length) {
-      <div class="list">
-        @for (client of topClients(); track client.clientName + client.currency) {
-          <article class="list-item">
-            <div>
-              <strong>{{ client.clientName }}</strong>
-              <p>{{ client.recurrences }} recurrencia(s)</p>
-            </div>
-            <div class="list-meta">
-              <strong>{{ currencySymbol(client.currency) }} {{ client.total | number: '1.2-2' }}</strong>
-            </div>
-          </article>
-        }
-      </div>
-    } @else {
-      <p class="empty-copy">Todavia no hay clientes con recurrencias registradas.</p>
-    }
+    <small>Cobro programado en $: $ {{ usdRecurringTotal() | number: '1.2-2' }}</small>
   </mat-card>
 
   <mat-card class="panel-card full-width" appearance="outlined">
@@ -117,12 +60,70 @@
             <span class="status-chip" [class.paid]="invoice.status === 'Pagada'">
               {{ invoice.status }}
             </span>
-            <span>{{ currencySymbol(invoice.currency) }} {{ invoice.amount | number: '1.2-2' }}</span>
+            <span>{{ currencySymbol(invoice.currency) }} {{ chargeTotal(invoice) | number: '1.2-2' }}</span>
           </article>
         }
       </div>
     } @else {
       <p class="empty-copy">Todavia no hay movimientos recientes para mostrar.</p>
+    }
+  </mat-card>
+
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="panel-header">
+      <div>
+        <p class="section-label">Generacion</p>
+        <h3>Proximas recurrencias</h3>
+      </div>
+      <mat-icon>event_repeat</mat-icon>
+    </div>
+
+    @if (upcomingCharges().length) {
+      <div class="list">
+        @for (charge of upcomingCharges(); track charge.number) {
+          <article class="list-item">
+            <div>
+              <strong>{{ charge.clientName }}</strong>
+              <p>Recurrencia {{ charge.number }} | Dia {{ charge.recurringDay }}</p>
+            </div>
+            <div class="list-meta">
+              <span>{{ charge.nextChargeDate | date: 'dd/MM/yyyy' }}</span>
+              <strong>{{ currencySymbol(charge.currency) }} {{ chargeTotal(charge) | number: '1.2-2' }}</strong>
+              <small>Margen: {{ currencySymbol(charge.currency) }} {{ margin(charge) | number: '1.2-2' }}</small>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <p class="empty-copy">Aun no hay recurrencias para proyectar generaciones.</p>
+    }
+  </mat-card>
+
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="panel-header">
+      <div>
+        <p class="section-label">Clientes</p>
+        <h3>Top clientes por cobro</h3>
+      </div>
+      <mat-icon>leaderboard</mat-icon>
+    </div>
+
+    @if (topClients().length) {
+      <div class="list">
+        @for (client of topClients(); track client.clientName + client.currency) {
+          <article class="list-item">
+            <div>
+              <strong>{{ client.clientName }}</strong>
+              <p>{{ client.recurrences }} recurrencia(s)</p>
+            </div>
+            <div class="list-meta">
+              <strong>{{ currencySymbol(client.currency) }} {{ chargeTotal(client) | number: '1.2-2' }}</strong>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <p class="empty-copy">Todavia no hay clientes con recurrencias registradas.</p>
     }
   </mat-card>
 </section>

@@ -20,8 +20,8 @@
   <mat-card class="form-card" appearance="outlined">
     <div class="card-header">
       <div>
-        <p class="section-label">Nueva recurrencia</p>
-        <h2>Programar generacion mensual</h2>
+        <p class="section-label">{{ isEditing() ? 'Editar recurrencia' : 'Nueva recurrencia' }}</p>
+        <h2>{{ isEditing() ? 'Actualizar programacion mensual' : 'Programar generacion mensual' }}</h2>
       </div>
       <mat-icon>event_repeat</mat-icon>
     </div>
@@ -46,7 +46,14 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Fecha de inicio</mat-label>
-        <input matInput formControlName="issueDateDisplay" placeholder="DD/MM/YYYY" />
+        <input
+          matInput
+          [matDatepicker]="issueDatePicker"
+          formControlName="issueDate"
+          readonly
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="issueDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #issueDatePicker [touchUi]="true" panelClass="app-calendar"></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -66,7 +73,7 @@
         </div>
 
         <div class="item-list">
-          @for (item of items.controls; track $index) {
+          @for (item of items.controls; track item) {
             <div class="item-row" [formGroupName]="$index">
               <mat-form-field appearance="outline">
                 <mat-label>Nombre</mat-label>
@@ -74,8 +81,13 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline">
-                <mat-label>Monto</mat-label>
-                <input matInput type="number" min="0.01" step="0.01" formControlName="amount" />
+                <mat-label>Cobro</mat-label>
+                <input matInput type="number" min="0.01" step="0.01" formControlName="charge" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Costo</mat-label>
+                <input matInput type="number" min="0" step="0.01" formControlName="cost" />
               </mat-form-field>
 
               <button
@@ -92,8 +104,18 @@
         </div>
 
         <div class="items-total">
-          <span>Total calculado</span>
-          <strong>{{ currencySymbol(form.controls.currency.value) }} {{ draftAmount() | number: '1.2-2' }}</strong>
+          <span>Total cobro</span>
+          <strong>{{ currencySymbol(form.controls.currency.value) }} {{ draftChargeTotal() | number: '1.2-2' }}</strong>
+        </div>
+
+        <div class="items-total">
+          <span>Total costo</span>
+          <strong>{{ currencySymbol(form.controls.currency.value) }} {{ draftCostTotal() | number: '1.2-2' }}</strong>
+        </div>
+
+        <div class="items-total">
+          <span>Margen estimado</span>
+          <strong>{{ currencySymbol(form.controls.currency.value) }} {{ draftMargin() | number: '1.2-2' }}</strong>
         </div>
       </div>
 
@@ -103,8 +125,14 @@
       </mat-form-field>
 
       <button mat-flat-button type="submit" class="save-button">
-        Guardar recurrencia
+        {{ isEditing() ? 'Actualizar recurrencia' : 'Guardar recurrencia' }}
       </button>
+
+      @if (isEditing()) {
+        <button mat-stroked-button type="button" class="full-width" (click)="cancelEdit()">
+          Cancelar edicion
+        </button>
+      }
     </form>
   </mat-card>
 
@@ -121,46 +149,65 @@
     </div>
 
     @if (invoices().length) {
-      <table mat-table [dataSource]="invoices()" class="invoice-table">
-        <ng-container matColumnDef="number">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let invoice">{{ invoice.number }}</td>
-        </ng-container>
+      <div class="table-wrap">
+        <table mat-table [dataSource]="invoices()" class="invoice-table">
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>Codigo</th>
+            <td mat-cell *matCellDef="let invoice">{{ invoice.number }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="clientName">
-          <th mat-header-cell *matHeaderCellDef>Cliente</th>
-          <td mat-cell *matCellDef="let invoice">{{ invoice.clientName }}</td>
-        </ng-container>
+          <ng-container matColumnDef="clientName">
+            <th mat-header-cell *matHeaderCellDef>Cliente</th>
+            <td mat-cell *matCellDef="let invoice">{{ invoice.clientName }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="recurringDay">
-          <th mat-header-cell *matHeaderCellDef>Generacion</th>
-          <td mat-cell *matCellDef="let invoice">Dia {{ invoice.recurringDay }}</td>
-        </ng-container>
+          <ng-container matColumnDef="recurringDay">
+            <th mat-header-cell *matHeaderCellDef>Generacion</th>
+            <td mat-cell *matCellDef="let invoice">Dia {{ invoice.recurringDay }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="currency">
-          <th mat-header-cell *matHeaderCellDef>Moneda</th>
-          <td mat-cell *matCellDef="let invoice">{{ currencySymbol(invoice.currency) }}</td>
-        </ng-container>
+          <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef>Moneda</th>
+            <td mat-cell *matCellDef="let invoice">{{ currencySymbol(invoice.currency) }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef>Total</th>
-          <td mat-cell *matCellDef="let invoice">
-            {{ currencySymbol(invoice.currency) }} {{ invoice.amount | number: '1.2-2' }}
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="chargeTotal">
+            <th mat-header-cell *matHeaderCellDef>Cobro</th>
+            <td mat-cell *matCellDef="let invoice">
+              {{ currencySymbol(invoice.currency) }} {{ invoiceChargeTotal(invoice) | number: '1.2-2' }}
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let invoice">
-            <button mat-stroked-button type="button" (click)="deleteRecurrence(invoice.id)">
-              Eliminar
-            </button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="costTotal">
+            <th mat-header-cell *matHeaderCellDef>Costo</th>
+            <td mat-cell *matCellDef="let invoice">
+              {{ currencySymbol(invoice.currency) }} {{ invoiceCostTotal(invoice) | number: '1.2-2' }}
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+          <ng-container matColumnDef="margin">
+            <th mat-header-cell *matHeaderCellDef>Margen</th>
+            <td mat-cell *matCellDef="let invoice">
+              {{ currencySymbol(invoice.currency) }} {{ invoiceMargin(invoice) | number: '1.2-2' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let invoice">
+              <button mat-stroked-button type="button" (click)="editRecurrence(invoice)">
+                Editar
+              </button>
+              <button mat-stroked-button type="button" (click)="deleteRecurrence(invoice.id)">
+                Eliminar
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
     } @else {
       <div class="empty-state">
         <mat-icon>inventory_2</mat-icon>

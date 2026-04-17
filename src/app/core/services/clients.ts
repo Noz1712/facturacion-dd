@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import {
   addDoc,
   collection,
+  deleteField,
   deleteDoc,
   doc,
   onSnapshot,
@@ -58,11 +59,20 @@ export class Clients {
     });
   }
 
-  async update(clientId: string, client: Omit<Client, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) {
-    await updateDoc(doc(firestore, 'clients', clientId), {
+  async update(
+    clientId: string,
+    client: Omit<Client, 'id' | 'userId' | 'createdAt' | 'updatedAt' | 'ruc'> & { ruc?: string | null },
+  ) {
+    const payload: Record<string, unknown> = {
       ...client,
       updatedAt: serverTimestamp(),
-    });
+    };
+
+    if (client.ruc === null) {
+      payload['ruc'] = deleteField();
+    }
+
+    await updateDoc(doc(firestore, 'clients', clientId), payload);
   }
 
   async remove(clientId: string) {

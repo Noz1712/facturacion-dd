@@ -1,5 +1,10 @@
 <mat-sidenav-container class="shell">
-  <mat-sidenav class="shell-nav" mode="side" opened>
+  <mat-sidenav
+    #drawer
+    class="shell-nav"
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()"
+  >
     <div class="brand-block">
       <div class="brand-mark">FD</div>
       <div>
@@ -14,6 +19,7 @@
           mat-list-item
           [routerLink]="item.route"
           routerLinkActive="active-link"
+          (click)="closeNavOnMobile(drawer)"
         >
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           <span matListItemTitle>{{ item.label }}</span>
@@ -41,6 +47,18 @@
 
   <mat-sidenav-content>
     <mat-toolbar class="shell-toolbar">
+      @if (isMobile()) {
+        <button
+          mat-icon-button
+          type="button"
+          class="menu-toggle"
+          (click)="drawer.toggle()"
+          aria-label="Abrir menu"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
+
       <div>
         <p class="toolbar-label">Seguimiento</p>
         <h1>Menu principal</h1>

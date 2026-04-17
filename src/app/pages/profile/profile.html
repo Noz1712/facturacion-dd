@@ -19,8 +19,18 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Responsable</mat-label>
+      <mat-label>Responsable (opcional)</mat-label>
       <input matInput formControlName="manager" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Telefono</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Plazo de pago (dias)</mat-label>
+      <input matInput type="number" min="0" step="1" formControlName="paymentTermDays" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">

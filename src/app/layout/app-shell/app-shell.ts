@@ -1,8 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -30,18 +33,26 @@ export class AppShell {
   private readonly invoices = inject(Invoices);
   private readonly generatedInvoices = inject(GeneratedInvoices);
   private readonly router = inject(Router);
+  private readonly breakpointObserver = inject(BreakpointObserver);
+
+  private readonly mobileBreakpoint = toSignal(
+    this.breakpointObserver.observe('(max-width: 960px)'),
+    { initialValue: { matches: false, breakpoints: {} } },
+  );
 
   readonly user = this.auth.user;
   readonly invoiceCount = computed(() => this.invoices.items().length);
   readonly movementCount = computed(
     () => this.generatedInvoices.items().filter((item) => item.status === 'Pendiente').length,
   );
+  readonly isMobile = computed(() => this.mobileBreakpoint().matches);
   readonly menuItems = [
     { label: 'Dashboard', icon: 'dashboard', route: '/app/dashboard' },
     { label: 'Cliente', icon: 'groups', route: '/app/cliente' },
     { label: 'Recurrencias', icon: 'event_repeat', route: '/app/recurrencias' },
     { label: 'Movimiento', icon: 'receipt_long', route: '/app/movimiento' },
     { label: 'Perfil', icon: 'account_circle', route: '/app/perfil' },
+    { label: 'Cuentas', icon: 'account_balance', route: '/app/cuentas' },
   ];
 
   constructor() {
@@ -57,5 +68,11 @@ export class AppShell {
     this.generatedInvoices.stopWatching();
     await this.auth.logout();
     await this.router.navigateByUrl('/login');
+  }
+
+  closeNavOnMobile(drawer: MatSidenav) {
+    if (this.isMobile()) {
+      drawer.close();
+    }
   }
 }

@@ -4,18 +4,22 @@ export interface Invoice {
   number: string;
   clientId: string;
   clientName: string;
+  clientCode?: string;
   currency: CurrencyCode;
   issueDate: string;
   recurringDay: number;
   items: InvoiceItem[];
-  amount: number;
+  chargeTotal: number;
+  costTotal: number;
+  margin: number;
   notes?: string;
   createdAt?: string;
 }
 
 export interface InvoiceItem {
   name: string;
-  amount: number;
+  charge: number;
+  cost: number;
 }
 
 export type CurrencyCode = 'NIO' | 'USD';

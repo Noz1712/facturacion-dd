@@ -49,6 +49,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/profile/profile').then((m) => m.ProfilePage),
       },
+      {
+        path: 'cuentas',
+        loadComponent: () =>
+          import('./pages/accounts/accounts').then((m) => m.AccountsPage),
+      },
     ],
   },
   {

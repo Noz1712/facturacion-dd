@@ -37,7 +37,8 @@ export class ClientsPage {
 
   readonly form = this.formBuilder.nonNullable.group({
     name: ['', [Validators.required]],
-    ruc: ['', [Validators.required]],
+    ruc: [''],
+    phone: ['', [Validators.required]],
     address: ['', [Validators.required]],
     manager: ['', [Validators.required]],
     billingEmails: ['', [Validators.required]],
@@ -62,21 +63,33 @@ export class ClientsPage {
     }
 
     const formValue = this.form.getRawValue();
+    const trimmedRuc = formValue.ruc.trim();
     const payload = {
       name: formValue.name.trim(),
-      ruc: formValue.ruc.trim(),
+      phone: formValue.phone.trim(),
       address: formValue.address.trim(),
       manager: formValue.manager.trim(),
       billingEmails: this.parseEmails(formValue.billingEmails),
     };
 
     if (this.editingClientId()) {
-      await this.clientsService.update(this.editingClientId()!, payload);
-    } else {
-      await this.clientsService.create({
-        userId: user.uid,
+      await this.clientsService.update(this.editingClientId()!, {
         ...payload,
+        ruc: trimmedRuc || null,
       });
+    } else {
+      await this.clientsService.create(
+        trimmedRuc
+          ? {
+              userId: user.uid,
+              ...payload,
+              ruc: trimmedRuc,
+            }
+          : {
+              userId: user.uid,
+              ...payload,
+            },
+      );
     }
 
     this.resetForm();
@@ -86,7 +99,8 @@ export class ClientsPage {
     this.editingClientId.set(client.id);
     this.form.reset({
       name: client.name,
-      ruc: client.ruc,
+      ruc: client.ruc ?? '',
+      phone: client.phone,
       address: client.address,
       manager: client.manager,
       billingEmails: client.billingEmails.join(', '),
@@ -110,6 +124,7 @@ export class ClientsPage {
     this.form.reset({
       name: '',
       ruc: '',
+      phone: '',
       address: '',
       manager: '',
       billingEmails: '',

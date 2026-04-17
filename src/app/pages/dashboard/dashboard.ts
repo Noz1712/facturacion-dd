@@ -11,14 +11,15 @@ interface ClientSummary {
   clientName: string;
   currency: CurrencyCode;
   recurrences: number;
-  total: number;
+  chargeTotal: number;
 }
 
 interface UpcomingCharge {
   number: string;
   clientName: string;
   recurringDay: number;
-  amount: number;
+  chargeTotal: number;
+  margin: number;
   currency: CurrencyCode;
   nextChargeDate: Date;
 }
@@ -53,16 +54,16 @@ export class DashboardPage {
         clientName: invoice.clientName,
         currency: invoice.currency,
         recurrences: 0,
-        total: 0,
+        chargeTotal: 0,
       };
 
       current.recurrences += 1;
-      current.total += invoice.amount;
+      current.chargeTotal += this.chargeTotal(invoice);
       grouped.set(key, current);
     }
 
     return [...grouped.values()]
-      .sort((left, right) => right.total - left.total)
+      .sort((left, right) => right.chargeTotal - left.chargeTotal)
       .slice(0, 5);
   });
   readonly recentInvoices = computed(() =>
@@ -76,7 +77,8 @@ export class DashboardPage {
         number: invoice.number,
         clientName: invoice.clientName,
         recurringDay: invoice.recurringDay,
-        amount: invoice.amount,
+        chargeTotal: this.chargeTotal(invoice),
+        margin: this.margin(invoice),
         currency: invoice.currency,
         nextChargeDate: this.getNextChargeDate(invoice.recurringDay),
       }))
@@ -88,10 +90,30 @@ export class DashboardPage {
     return currency === 'USD' ? '$' : 'C$';
   }
 
-  private totalByCurrency(source: { currency: CurrencyCode; amount: number }[], currency: CurrencyCode) {
+  chargeTotal(record: { chargeTotal?: number; amount?: number }) {
+    if (typeof record.chargeTotal === 'number') {
+      return record.chargeTotal;
+    }
+
+    return typeof record.amount === 'number' ? record.amount : 0;
+  }
+
+  costTotal(record: { costTotal?: number }) {
+    return typeof record.costTotal === 'number' ? record.costTotal : 0;
+  }
+
+  margin(record: { margin?: number; chargeTotal?: number; costTotal?: number; amount?: number }) {
+    if (typeof record.margin === 'number') {
+      return record.margin;
+    }
+
+    return this.chargeTotal(record) - this.costTotal(record);
+  }
+
+  private totalByCurrency(source: Array<{ currency: CurrencyCode; chargeTotal?: number; amount?: number }>, currency: CurrencyCode) {
     return source
       .filter((invoice) => invoice.currency === currency)
-      .reduce((sum, invoice) => sum + invoice.amount, 0);
+      .reduce((sum, invoice) => sum + this.chargeTotal(invoice), 0);
   }
 
   private getNextChargeDate(day: number) {

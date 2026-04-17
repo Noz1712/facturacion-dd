@@ -19,6 +19,11 @@
         <input matInput formControlName="ruc" />
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Direccion</mat-label>
         <textarea matInput rows="3" formControlName="address"></textarea>
@@ -70,7 +75,8 @@
           <article class="client-item">
             <div class="client-main">
               <h3>{{ client.name }}</h3>
-              <p><strong>RUC:</strong> {{ client.ruc }}</p>
+              <p><strong>RUC:</strong> {{ client.ruc || 'No registrado' }}</p>
+              <p><strong>Telefono:</strong> {{ client.phone }}</p>
               <p><strong>Direccion:</strong> {{ client.address }}</p>
               <p><strong>Responsable:</strong> {{ client.manager }}</p>
               <div class="email-block">

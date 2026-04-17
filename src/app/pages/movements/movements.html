@@ -12,21 +12,39 @@
         <mat-label>Desde</mat-label>
         <input
           matInput
-          placeholder="DD/MM/YYYY"
+          [matDatepicker]="fromPicker"
           [value]="filters().from"
-          (input)="updateFilter('from', $any($event.target).value)"
+          readonly
+          (dateChange)="updateFilter('from', $event.value)"
         />
+        <mat-datepicker-toggle matIconSuffix [for]="fromPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fromPicker [touchUi]="true" panelClass="app-calendar"></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Hasta</mat-label>
         <input
           matInput
-          placeholder="DD/MM/YYYY"
+          [matDatepicker]="toPicker"
           [value]="filters().to"
-          (input)="updateFilter('to', $any($event.target).value)"
+          readonly
+          (dateChange)="updateFilter('to', $event.value)"
         />
+        <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
+        <mat-datepicker #toPicker [touchUi]="true" panelClass="app-calendar"></mat-datepicker>
       </mat-form-field>
+    </div>
+  </mat-card>
+
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="card-header manual-quick-header">
+      <div>
+        <p class="section-label">Manual</p>
+        <h2>Factura manual extra</h2>
+      </div>
+      <button mat-flat-button type="button" class="primary-button" (click)="startManualCreate()">
+        Nueva factura manual
+      </button>
     </div>
   </mat-card>
 
@@ -50,14 +68,19 @@
               <p>Recurrencia {{ item.recurrence.number }}</p>
               <p>Se genera el {{ item.nextGenerateDate | date: 'dd/MM/yyyy' }}</p>
               <div class="line-list">
-                @for (line of item.recurrence.items; track line.name + line.amount) {
-                  <span>{{ line.name }} | {{ currencySymbol(item.recurrence.currency) }} {{ line.amount | number: '1.2-2' }}</span>
+                @for (line of item.recurrence.items; track line.name + lineCharge(line)) {
+                  <span>
+                    {{ line.name }} | Cobro {{ currencySymbol(item.recurrence.currency) }} {{ lineCharge(line) | number: '1.2-2' }} |
+                    Costo {{ currencySymbol(item.recurrence.currency) }} {{ lineCost(line) | number: '1.2-2' }}
+                  </span>
                 }
               </div>
             </div>
 
             <div class="movement-side">
-              <strong>{{ currencySymbol(item.recurrence.currency) }} {{ item.recurrence.amount | number: '1.2-2' }}</strong>
+              <strong>Cobro: {{ currencySymbol(item.recurrence.currency) }} {{ chargeTotal(item.recurrence) | number: '1.2-2' }}</strong>
+              <span>Costo: {{ currencySymbol(item.recurrence.currency) }} {{ costTotal(item.recurrence) | number: '1.2-2' }}</span>
+              <span>Margen: {{ currencySymbol(item.recurrence.currency) }} {{ margin(item.recurrence) | number: '1.2-2' }}</span>
               <button
                 mat-flat-button
                 type="button"
@@ -92,41 +115,37 @@
         @for (invoice of recentGeneratedInvoices(); track invoice.id) {
           <article class="movement-item generated-item">
             <div class="movement-main">
-              <h3>{{ invoice.clientName }}</h3>
-              <p>{{ invoice.recurrenceCode }} | {{ invoice.issueDate | date: 'dd/MM/yyyy' }}</p>
+              <div class="generated-head">
+                <h3>{{ invoice.clientName }}</h3>
+                <span class="status-tag" [class.paid]="invoice.status === 'Pagada'">{{ invoice.status }}</span>
+              </div>
+              <p>{{ invoice.recurrenceCode }} | Emitida {{ invoice.issueDate | date: 'dd/MM/yyyy' }}</p>
               <div class="line-list">
-                @for (line of invoice.items; track line.name + line.amount) {
-                  <span>{{ line.name }} | {{ currencySymbol(invoice.currency) }} {{ line.amount | number: '1.2-2' }}</span>
+                @for (line of invoice.items; track line.name + lineCharge(line)) {
+                  <span>
+                    {{ line.name }} | Cobro {{ currencySymbol(invoice.currency) }} {{ lineCharge(line) | number: '1.2-2' }} |
+                    Costo {{ currencySymbol(invoice.currency) }} {{ lineCost(line) | number: '1.2-2' }}
+                  </span>
                 }
               </div>
             </div>
 
             <div class="payment-panel">
-              <strong>{{ currencySymbol(invoice.currency) }} {{ invoice.amount | number: '1.2-2' }}</strong>
-
-              <mat-form-field appearance="outline">
-                <mat-label>No. transaccion</mat-label>
-                <input
-                  matInput
-                  [value]="getDraft(invoice).transactionNumber"
-                  (input)="updateDraft(invoice, { transactionNumber: $any($event.target).value })"
-                />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Estado</mat-label>
-                <mat-select
-                  [value]="getDraft(invoice).status"
-                  (selectionChange)="updateDraft(invoice, { status: $event.value })"
-                >
-                  <mat-option value="Pendiente">Pendiente</mat-option>
-                  <mat-option value="Pagada">Pagada</mat-option>
-                </mat-select>
-              </mat-form-field>
+              <strong>Cobro: {{ currencySymbol(invoice.currency) }} {{ chargeTotal(invoice) | number: '1.2-2' }}</strong>
+              <span>Costo: {{ currencySymbol(invoice.currency) }} {{ costTotal(invoice) | number: '1.2-2' }}</span>
+              <span>Margen: {{ currencySymbol(invoice.currency) }} {{ margin(invoice) | number: '1.2-2' }}</span>
 
               <div class="payment-actions">
-                <button mat-flat-button type="button" class="primary-button" (click)="savePayment(invoice)">
-                  Guardar movimiento
+                <button mat-stroked-button type="button" (click)="downloadInvoicePdf(invoice)">
+                  Descargar PDF
+                </button>
+                @if (isManualInvoice(invoice)) {
+                  <button mat-stroked-button type="button" (click)="editManualInvoice(invoice)">
+                    Editar
+                  </button>
+                }
+                <button mat-flat-button type="button" class="primary-button" (click)="openPaymentDialog(invoice)">
+                  Registrar pago
                 </button>
                 <button mat-stroked-button type="button" (click)="revert(invoice.id)">
                   Revertir
@@ -143,4 +162,200 @@
       </div>
     }
   </mat-card>
+
+  <ng-template #paymentDialogTemplate>
+    @if (selectedInvoice(); as invoice) {
+      <form
+        class="payment-dialog"
+        [formGroup]="paymentForm"
+        [class.payment-mode-paid]="paymentForm.controls.status.value === 'Pagada'"
+        (ngSubmit)="saveSelectedPayment()"
+      >
+        <header class="payment-dialog-header">
+          <div>
+            <p class="section-label">Pago</p>
+            <h3>Registrar pago</h3>
+            <p class="payment-dialog-subtitle">
+              {{ invoice.clientName }} | {{ invoice.recurrenceCode }} | {{ invoice.issueDate | date: 'dd/MM/yyyy' }}
+            </p>
+          </div>
+          <span class="payment-dialog-status-badge" [class.paid]="paymentForm.controls.status.value === 'Pagada'">
+            {{ paymentForm.controls.status.value }}
+          </span>
+        </header>
+
+        <div class="payment-dialog-metrics">
+          <article class="payment-summary-row">
+            <p>Cobro</p>
+            <strong>{{ currencySymbol(invoice.currency) }} {{ chargeTotal(invoice) | number: '1.2-2' }}</strong>
+          </article>
+          <article class="payment-summary-row">
+            <p>Costo</p>
+            <strong>{{ currencySymbol(invoice.currency) }} {{ costTotal(invoice) | number: '1.2-2' }}</strong>
+          </article>
+          <article class="payment-summary-row">
+            <p>Margen</p>
+            <strong>{{ currencySymbol(invoice.currency) }} {{ margin(invoice) | number: '1.2-2' }}</strong>
+          </article>
+        </div>
+
+        <div class="payment-dialog-tip">
+          <mat-icon>info</mat-icon>
+          <span>Marca como Pagada solo cuando tengas confirmado el numero de transaccion.</span>
+        </div>
+
+        <div class="payment-dialog-form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="Pendiente">Pendiente</mat-option>
+              <mat-option value="Pagada">Pagada</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>No. transaccion</mat-label>
+            <input
+              matInput
+              formControlName="transactionNumber"
+              autocomplete="off"
+              maxlength="60"
+              placeholder="Ej. TRX-12345"
+            />
+            @if (isTransactionRequired()) {
+              <mat-hint>Obligatorio cuando el estado sea Pagada.</mat-hint>
+            }
+            @if (paymentForm.controls.transactionNumber.touched && paymentForm.controls.transactionNumber.invalid) {
+              <mat-error>
+                @if (paymentForm.controls.transactionNumber.errors?.['required']) {
+                  Ingresa el numero de transaccion para marcar como pagada.
+                } @else {
+                  El numero de transaccion debe tener al menos 3 caracteres.
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="payment-dialog-actions">
+          <button mat-stroked-button type="button" (click)="closePaymentDialog()">
+            Cancelar
+          </button>
+          <button
+            mat-flat-button
+            type="submit"
+            class="payment-submit-button"
+            [class.paid-state]="paymentForm.controls.status.value === 'Pagada'"
+            [class.pending-state]="paymentForm.controls.status.value === 'Pendiente'"
+            [disabled]="paymentForm.invalid"
+          >
+            Guardar pago
+          </button>
+        </div>
+      </form>
+    }
+  </ng-template>
+
+  <ng-template #manualInvoiceDialogTemplate>
+    <div class="manual-dialog">
+      <div class="manual-dialog-header">
+        <p class="section-label">Facturacion manual</p>
+        <h3>{{ isEditingManual() ? 'Editar factura manual' : 'Nueva factura manual' }}</h3>
+        <p class="manual-dialog-subtitle">Completa cliente, detalle de lineas y controla cobro, costo y margen en tiempo real.</p>
+      </div>
+
+      <form class="manual-form" [formGroup]="manualForm" (ngSubmit)="saveManualInvoice()">
+        <div class="manual-top-fields full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select formControlName="clientId">
+              @for (client of clients(); track client.id) {
+                <mat-option [value]="client.id">{{ client.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="manualDatePicker" formControlName="issueDate" readonly />
+            <mat-datepicker-toggle matIconSuffix [for]="manualDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #manualDatePicker [touchUi]="true" panelClass="app-calendar"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="currency">
+              <mat-option value="NIO">NIO</mat-option>
+              <mat-option value="USD">USD</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="manual-items full-width" formArrayName="items">
+          <div class="manual-items-header">
+            <h3>Detalle</h3>
+            <button mat-stroked-button type="button" (click)="addManualItem()">Agregar linea</button>
+          </div>
+
+          <div class="manual-item-list">
+            @for (item of manualItems.controls; track item) {
+              <div class="manual-item-row" [formGroupName]="$index">
+                <mat-form-field appearance="outline">
+                  <mat-label>Concepto</mat-label>
+                  <input matInput formControlName="name" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Cobro</mat-label>
+                  <input matInput type="number" min="0.01" step="0.01" formControlName="charge" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Costo</mat-label>
+                  <input matInput type="number" min="0" step="0.01" formControlName="cost" />
+                </mat-form-field>
+
+                <button
+                  mat-icon-button
+                  type="button"
+                  [disabled]="manualItems.length === 1"
+                  (click)="removeManualItem($index)"
+                  aria-label="Eliminar linea"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="manual-totals">
+            <article class="manual-total-card">
+              <p>Cobro</p>
+              <strong>{{ currencySymbol(manualForm.controls.currency.value) }} {{ manualChargeTotal() | number: '1.2-2' }}</strong>
+            </article>
+            <article class="manual-total-card">
+              <p>Costo</p>
+              <strong>{{ currencySymbol(manualForm.controls.currency.value) }} {{ manualCostTotal() | number: '1.2-2' }}</strong>
+            </article>
+            <article class="manual-total-card margin">
+              <p>Margen</p>
+              <strong>{{ currencySymbol(manualForm.controls.currency.value) }} {{ manualMarginTotal() | number: '1.2-2' }}</strong>
+            </article>
+          </div>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width manual-notes-field">
+          <mat-label>Notas</mat-label>
+          <textarea matInput rows="3" formControlName="notes"></textarea>
+        </mat-form-field>
+
+        <div class="manual-actions full-width">
+          <button mat-stroked-button type="button" (click)="closeManualDialog()">Cancelar</button>
+          <button mat-flat-button type="submit" class="primary-button">
+            {{ isEditingManual() ? 'Actualizar manual' : 'Guardar manual' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
 </section>

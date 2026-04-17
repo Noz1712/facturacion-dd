@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
 import { firestore } from '../firebase';
+import { BankAccount } from '../models/company-profile.model';
 import { CompanyProfile } from '../models/company-profile.model';
 
 @Injectable({
@@ -37,5 +38,16 @@ export class CompanyProfileService {
 
   async save(profile: Omit<CompanyProfile, 'id'>) {
     await setDoc(doc(firestore, 'companyProfiles', profile.userId), profile, { merge: true });
+  }
+
+  async saveBankAccounts(userId: string, bankAccounts: BankAccount[]) {
+    await setDoc(
+      doc(firestore, 'companyProfiles', userId),
+      {
+        userId,
+        bankAccounts,
+      },
+      { merge: true },
+    );
   }
 }

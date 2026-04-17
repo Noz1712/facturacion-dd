@@ -1,7 +1,8 @@
 .invoice-grid {
   display: grid;
-  grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
+  align-items: start;
 }
 
 .summary-card,
@@ -91,7 +92,7 @@
 
 .item-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 180px auto;
+  grid-template-columns: minmax(0, 1fr) 140px 140px auto;
   gap: 0.75rem;
   align-items: start;
 }
@@ -128,6 +129,36 @@
 
 .invoice-table {
   width: 100%;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(76, 29, 149, 0.08);
+  border-radius: 16px;
+}
+
+.invoice-table .mat-mdc-header-cell,
+.invoice-table .mat-mdc-cell {
+  padding: 0.85rem 1rem;
+  white-space: nowrap;
+}
+
+.invoice-table .mat-mdc-header-cell {
+  font-weight: 700;
+  color: var(--brand-900);
+  background: var(--surface-soft);
+}
+
+.invoice-table .mat-column-clientName {
+  min-width: 220px;
+}
+
+.invoice-table .mat-column-number {
+  min-width: 150px;
+}
+
+.invoice-table .mat-column-actions {
+  min-width: 130px;
 }
 
 .status-chip {

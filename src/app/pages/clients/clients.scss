@@ -82,6 +82,7 @@
 .email-block {
   margin: 0.35rem 0;
   color: var(--text-soft);
+  overflow-wrap: anywhere;
 }
 
 .email-list {
@@ -134,5 +135,15 @@
 
   .client-actions {
     min-width: auto;
+    width: 100%;
+  }
+
+  .client-actions button,
+  .form-actions button {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
   }
 }

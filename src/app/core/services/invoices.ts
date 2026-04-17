@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from 'firebase/firestore';
 
 import { firestore } from '../firebase';
 import { Invoice } from '../models/invoice.model';
@@ -47,6 +47,16 @@ export class Invoices {
       ...invoice,
       number: invoice.number?.trim() || this.generateRecurrenceCode(),
       createdAt: serverTimestamp(),
+    });
+  }
+
+  async update(
+    invoiceId: string,
+    invoice: Omit<Invoice, 'id' | 'userId' | 'createdAt' | 'number'>,
+  ) {
+    await updateDoc(doc(firestore, 'invoices', invoiceId), {
+      ...invoice,
+      updatedAt: serverTimestamp(),
     });
   }
 

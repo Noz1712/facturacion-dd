@@ -1,6 +1,6 @@
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -37,6 +37,7 @@
   padding: 1.5rem;
   display: grid;
   gap: 0.75rem;
+  grid-column: span 2;
 }
 
 .metric-card mat-icon,
@@ -49,11 +50,12 @@
 }
 
 .wide-card {
-  grid-column: span 2;
+  grid-column: 1 / -1;
 }
 
 .panel-card {
   padding: 1.5rem;
+  grid-column: span 3;
 }
 
 .full-width {
@@ -100,6 +102,7 @@
 
 .list-item p {
   margin: 0.25rem 0 0;
+  overflow-wrap: anywhere;
 }
 
 .list-meta {
@@ -160,6 +163,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .metric-card,
+  .panel-card,
   .wide-card,
   .full-width {
     grid-column: 1 / -1;
@@ -187,6 +192,49 @@
 
   .table-head {
     display: none;
+  }
+
+  .table-row {
+    gap: 0.55rem;
+    padding: 0.85rem;
+  }
+
+  .table-row span {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .table-row span:nth-child(1)::before {
+    content: 'Recurrencia';
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+
+  .table-row span:nth-child(2)::before {
+    content: 'Cliente';
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+
+  .table-row span:nth-child(3)::before {
+    content: 'Fecha';
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+
+  .table-row span:nth-child(4)::before {
+    content: 'Estado';
+    color: var(--text-soft);
+    font-weight: 700;
+  }
+
+  .table-row span:nth-child(5)::before {
+    content: 'Total';
+    color: var(--text-soft);
+    font-weight: 700;
   }
 
   .list-meta {

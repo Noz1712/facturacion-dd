@@ -1,0 +1,1014 @@
+[debug] [2026-04-17T12:37:34.955Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:37:34.957Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:list
+[debug] [2026-04-17T12:37:34.958Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:37:34.958Z] Platform:      win32
+[debug] [2026-04-17T12:37:34.958Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:37:34.958Z] Time:          Fri Apr 17 2026 06:37:34 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:37:34.958Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T12:37:35.140Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T12:37:35.141Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T12:37:35.144Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:35.145Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:35.146Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-04-17T12:37:34.992Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:37:34.995Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login:list
+[debug] [2026-04-17T12:37:34.996Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:37:34.996Z] Platform:      win32
+[debug] [2026-04-17T12:37:34.996Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:37:34.996Z] Time:          Fri Apr 17 2026 06:37:34 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:37:34.996Z] ----------------------------------------------------------------------
+[debug] 
+[info] Logged in as anosbel@gmail.com
+[debug] [2026-04-17T12:37:35.586Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-04-17T12:37:35.586Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] ┌──────────────────────┬──────────────────────────┬────────────────┬──────────────────────┐
+│ Project Display Name │ Project ID               │ Project Number │ Resource Location ID │
+├──────────────────────┼──────────────────────────┼────────────────┼──────────────────────┤
+│ Facturacion DD       │ facturacion-dd (current) │ 586057447376   │ [Not specified]      │
+├──────────────────────┼──────────────────────────┼────────────────┼──────────────────────┤
+│ Ingresos y gastos    │ ingresos-y-gastos-888d2  │ 1028885325631  │ [Not specified]      │
+└──────────────────────┴──────────────────────────┴────────────────┴──────────────────────┘
+[info] 
+[info] 2 project(s) total.
+[debug] [2026-04-17T12:37:41.179Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:37:41.181Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only firestore:rules firestore:indexes hosting
+[debug] [2026-04-17T12:37:41.181Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:37:41.182Z] Platform:      win32
+[debug] [2026-04-17T12:37:41.182Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:37:41.182Z] Time:          Fri Apr 17 2026 06:37:41 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:37:41.182Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T12:37:43.111Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T12:37:43.112Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T12:37:43.112Z] [iam] checking project facturacion-dd for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-17T12:37:43.113Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.113Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.114Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions [none]
+[debug] [2026-04-17T12:37:43.114Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions  x-goog-user-project=facturacion-dd
+[debug] [2026-04-17T12:37:43.115Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:37:43.434Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions 200
+[debug] [2026-04-17T12:37:43.434Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:37:43.434Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.434Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.435Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd [none]
+[debug] [2026-04-17T12:37:43.848Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd 200
+[debug] [2026-04-17T12:37:43.848Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd {"projectId":"facturacion-dd","projectNumber":"586057447376","displayName":"Facturacion DD","name":"projects/facturacion-dd","resources":{"hostingSite":"facturacion-dd"},"state":"ACTIVE","etag":"1_8a760070-4db1-4f7f-8b6e-f4766bd81662"}
+[info] 
+[info] === Deploying to 'facturacion-dd'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-17T12:37:43.851Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.851Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:43.851Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T12:37:44.403Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T12:37:44.403Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IJSr/Lnz9JMDML6m46Dz9JMD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-17T12:37:44.405Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:44.405Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:44.405Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [none]
+[debug] [2026-04-17T12:37:44.405Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [omitted]
+[debug] [2026-04-17T12:37:44.698Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test 200
+[debug] [2026-04-17T12:37:44.698Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-04-17T12:37:44.701Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:44.701Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:44.702Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions [none]
+[debug] [2026-04-17T12:37:44.702Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:37:45.958Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions 200
+[debug] [2026-04-17T12:37:45.958Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"name":"projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:37:45.959Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:45.959Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:45.959Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases pageSize=10&pageToken=
+[debug] [2026-04-17T12:37:46.202Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases 200
+[debug] [2026-04-17T12:37:46.202Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases {"releases":[{"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T12:36:59.347402Z"}]}
+[debug] [2026-04-17T12:37:46.202Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.202Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.203Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 [none]
+[debug] [2026-04-17T12:37:46.401Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 200
+[debug] [2026-04-17T12:37:46.401Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2026-04-17T12:37:46.403Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.403Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.403Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-17T12:37:46.588Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-17T12:37:46.588Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes {"indexes":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/invoices/indexes/CICAgOjXh4EK","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}],"state":"CREATING","density":"SPARSE_ALL"}]}
+[debug] [2026-04-17T12:37:46.588Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.588Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.589Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-17T12:37:46.730Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-17T12:37:46.730Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-04-17T12:37:46.730Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.730Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.731Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T12:37:46.879Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T12:37:46.879Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IJy3k7vz9JMDML6m46Dz9JMD"}
+[debug] [2026-04-17T12:37:46.880Z] Skipping existing index: {"collectionGroup":"invoices","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}]}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] i  hosting[facturacion-dd]: beginning deploy... 
+[info] i  hosting[facturacion-dd]: found 14 files in dist/frontend 
+[debug] [2026-04-17T12:37:46.891Z] [hosting] uploading with 200 concurrency
+[debug] [2026-04-17T12:37:46.894Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.895Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:46.896Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZA] stored for 14 files
+[debug] [2026-04-17T12:37:46.896Z] [hosting][hash queue][FINAL] {"max":2,"min":0,"avg":0,"active":0,"complete":14,"success":14,"errored":0,"retried":0,"total":14,"elapsed":4}
+[debug] [2026-04-17T12:37:46.896Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb:populateFiles [none]
+[debug] [2026-04-17T12:37:46.896Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb:populateFiles {"files":{"/prerendered-routes.json":"acea2ed63a273ab4ca21a5071e93c8246d013bca031410b2d34087a30f99602d","/3rdpartylicenses.txt":"d7da4cf1dda3d2e3c3295941526bb9c3d0f273bb3d01b3537edab63054bbd496","/browser/styles-AGHFMDT3.css":"091b14b3f0faac0f622594780e7e92970f8ef0b2536f5b267e57c3bf33fd871d","/browser/main-FJXGHYY2.js":"23e9604ea8082887c737a1225f2d160748028381d2f41d3ed53364abc4c97e96","/browser/index.html":"75d019e1f267d241d7c0a1b9e6059abb7ff04f25bf13348e6ab7b26f40a4767a","/browser/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/browser/chunk-LOKQ3FIW.js":"6cf56d4b1b3f3fbdb0da7fac60509c3e784d10ac22659be2fa09310446afd382","/browser/chunk-JG3SIGNZ.js":"48d0004cc1a9db9a98ab737e79230356f6b8eef5b61c4a695391e775a04c5f8d","/browser/chunk-HXZ2Z6VG.js":"9f5818c453d29c91791c95d8cdd810e8af874fb9a124744bdb13ad1e474b27f4","/browser/chunk-H5S6PAB4.js":"3f7f69af38bdb7864aa9150a93e0f7dd856af9766979a97f9f43992b0d5bfb37","/browser/chunk-GZJUTZQP.js":"786b2f8c793a0bd7763dcebf9d2e3921e59d93d909f68bde92575f1006616a6f","/browser/chunk-E7BJCCVQ.js":"946402535425cb473d459fb4e61da042386ced244037b8a9f7e4cfb6767f2bb4","/browser/chunk-5RCYLYZO.js":"c375d81aea28708b79c10ca935bc7af8d8add0b69bb28b3536e659848962f43b","/browser/chunk-4K3ZZMKH.js":"fc5c5dbe0b26058927ba85adb4c77926010f9c24210a15b9d0ad81a3a71e1d95"}}
+[debug] [2026-04-17T12:37:47.622Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb:populateFiles 200
+[debug] [2026-04-17T12:37:47.623Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/57bc5be3244e8bfb/files"}
+[debug] [2026-04-17T12:37:47.623Z] [hosting][populate queue][FINAL] {"max":729,"min":729,"avg":729,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":729}
+[debug] [2026-04-17T12:37:47.623Z] [hosting] uploads queued: 0
+[debug] [2026-04-17T12:37:47.623Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1776429467623}
+[info] i  hosting: upload complete 
+[info] +  hosting[facturacion-dd]: file upload complete 
+[debug] [2026-04-17T12:37:47.623Z] [hosting] deploy completed after 741ms
+[debug] [2026-04-17T12:37:47.624Z] [rules] releasing cloud.firestore/(default) with ruleset projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49
+[debug] [2026-04-17T12:37:47.624Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:47.624Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:47.624Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) [none]
+[debug] [2026-04-17T12:37:47.624Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"release":{"name":"projects/facturacion-dd/releases/cloud.firestore/(default)","rulesetName":"projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49"}}
+[debug] [2026-04-17T12:37:48.013Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) 200
+[debug] [2026-04-17T12:37:48.013Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T12:37:48.854984Z"}
+[debug] [2026-04-17T12:37:48.013Z] [rules] updated release projects/facturacion-dd/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2026-04-17T12:37:48.013Z] [
+  {
+    "config": {
+      "public": "dist/frontend",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "facturacion-dd"
+    },
+    "version": "projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb"
+  }
+]
+[info] i  hosting[facturacion-dd]: finalizing version... 
+[debug] [2026-04-17T12:37:48.014Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:48.014Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:48.015Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/57bc5be3244e8bfb updateMask=status%2Cconfig
+[debug] [2026-04-17T12:37:48.015Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/57bc5be3244e8bfb {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-04-17T12:37:48.586Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/57bc5be3244e8bfb 200
+[debug] [2026-04-17T12:37:48.586Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/57bc5be3244e8bfb {"name":"projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:37:46.281489Z","createUser":{"email":"anosbel@gmail.com"},"finalizeTime":"2026-04-17T12:37:49.390880Z","finalizeUser":{"email":"anosbel@gmail.com"}}
+[debug] [2026-04-17T12:37:48.586Z] [hosting] finalized version for facturacion-dd:[object Object]
+[info] +  hosting[facturacion-dd]: version finalized 
+[info] i  hosting[facturacion-dd]: releasing new version... 
+[debug] [2026-04-17T12:37:48.587Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:48.587Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:37:48.587Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases versionName=projects%2F586057447376%2Fsites%2Ffacturacion-dd%2Fversions%2F57bc5be3244e8bfb
+[debug] [2026-04-17T12:37:48.587Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {}
+[debug] [2026-04-17T12:37:49.227Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases 200
+[debug] [2026-04-17T12:37:49.227Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776429469345000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:37:46.281489Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:37:49.390880Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:37:49.345Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[debug] [2026-04-17T12:37:49.227Z] [hosting] release: {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776429469345000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/57bc5be3244e8bfb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:37:46.281489Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:37:49.390880Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:37:49.345Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[info] +  hosting[facturacion-dd]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/facturacion-dd/overview
+[info] Hosting URL: https://facturacion-dd.web.app
+[debug] [2026-04-17T12:38:18.886Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:38:18.891Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2026-04-17T12:38:18.891Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:38:18.891Z] Platform:      win32
+[debug] [2026-04-17T12:38:18.892Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:38:18.892Z] Time:          Fri Apr 17 2026 06:38:18 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:38:18.892Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T12:38:20.991Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T12:38:20.992Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T12:38:20.993Z] [iam] checking project facturacion-dd for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-17T12:38:20.994Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:20.994Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:20.995Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions [none]
+[debug] [2026-04-17T12:38:20.995Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions  x-goog-user-project=facturacion-dd
+[debug] [2026-04-17T12:38:20.995Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:38:21.315Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions 200
+[debug] [2026-04-17T12:38:21.316Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:38:21.316Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:21.316Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:21.317Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd [none]
+[debug] [2026-04-17T12:38:21.729Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd 200
+[debug] [2026-04-17T12:38:21.729Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd {"projectId":"facturacion-dd","projectNumber":"586057447376","displayName":"Facturacion DD","name":"projects/facturacion-dd","resources":{"hostingSite":"facturacion-dd"},"state":"ACTIVE","etag":"1_8a760070-4db1-4f7f-8b6e-f4766bd81662"}
+[info] 
+[info] === Deploying to 'facturacion-dd'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-04-17T12:38:21.734Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:21.735Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:21.735Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions [none]
+[debug] [2026-04-17T12:38:21.735Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:38:22.815Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions 200
+[debug] [2026-04-17T12:38:22.815Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"name":"projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[facturacion-dd]: beginning deploy... 
+[info] i  hosting[facturacion-dd]: found 12 files in dist/frontend/browser 
+[debug] [2026-04-17T12:38:22.827Z] [hosting] uploading with 200 concurrency
+[debug] [2026-04-17T12:38:22.827Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZFxicm93c2Vy] not populated
+[debug] [2026-04-17T12:38:22.857Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:22.857Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:22.858Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZFxicm93c2Vy] stored for 12 files
+[debug] [2026-04-17T12:38:22.859Z] [hosting][hash queue][FINAL] {"max":26,"min":7,"avg":9.833333333333334,"active":0,"complete":12,"success":12,"errored":0,"retried":0,"total":12,"elapsed":31}
+[debug] [2026-04-17T12:38:22.859Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78:populateFiles [none]
+[debug] [2026-04-17T12:38:22.859Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78:populateFiles {"files":{"/chunk-JG3SIGNZ.js":"48d0004cc1a9db9a98ab737e79230356f6b8eef5b61c4a695391e775a04c5f8d","/chunk-LOKQ3FIW.js":"6cf56d4b1b3f3fbdb0da7fac60509c3e784d10ac22659be2fa09310446afd382","/styles-AGHFMDT3.css":"091b14b3f0faac0f622594780e7e92970f8ef0b2536f5b267e57c3bf33fd871d","/index.html":"75d019e1f267d241d7c0a1b9e6059abb7ff04f25bf13348e6ab7b26f40a4767a","/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/chunk-HXZ2Z6VG.js":"9f5818c453d29c91791c95d8cdd810e8af874fb9a124744bdb13ad1e474b27f4","/main-FJXGHYY2.js":"23e9604ea8082887c737a1225f2d160748028381d2f41d3ed53364abc4c97e96","/chunk-5RCYLYZO.js":"c375d81aea28708b79c10ca935bc7af8d8add0b69bb28b3536e659848962f43b","/chunk-H5S6PAB4.js":"3f7f69af38bdb7864aa9150a93e0f7dd856af9766979a97f9f43992b0d5bfb37","/chunk-4K3ZZMKH.js":"fc5c5dbe0b26058927ba85adb4c77926010f9c24210a15b9d0ad81a3a71e1d95","/chunk-E7BJCCVQ.js":"946402535425cb473d459fb4e61da042386ced244037b8a9f7e4cfb6767f2bb4","/chunk-GZJUTZQP.js":"786b2f8c793a0bd7763dcebf9d2e3921e59d93d909f68bde92575f1006616a6f"}}
+[debug] [2026-04-17T12:38:23.425Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78:populateFiles 200
+[debug] [2026-04-17T12:38:23.425Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/2d39e4f6571e1d78/files"}
+[debug] [2026-04-17T12:38:23.425Z] [hosting][populate queue][FINAL] {"max":568,"min":568,"avg":568,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":568}
+[debug] [2026-04-17T12:38:23.425Z] [hosting] uploads queued: 0
+[debug] [2026-04-17T12:38:23.425Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1776429503425}
+[info] i  hosting: upload complete 
+[info] +  hosting[facturacion-dd]: file upload complete 
+[debug] [2026-04-17T12:38:23.426Z] [hosting] deploy completed after 609ms
+[debug] [2026-04-17T12:38:23.426Z] [
+  {
+    "config": {
+      "public": "dist/frontend/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "facturacion-dd"
+    },
+    "version": "projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78"
+  }
+]
+[info] i  hosting[facturacion-dd]: finalizing version... 
+[debug] [2026-04-17T12:38:23.428Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:23.428Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:23.428Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/2d39e4f6571e1d78 updateMask=status%2Cconfig
+[debug] [2026-04-17T12:38:23.428Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/2d39e4f6571e1d78 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-04-17T12:38:23.951Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/2d39e4f6571e1d78 200
+[debug] [2026-04-17T12:38:23.951Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/2d39e4f6571e1d78 {"name":"projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:38:23.226087Z","createUser":{"email":"anosbel@gmail.com"},"finalizeTime":"2026-04-17T12:38:24.746401Z","finalizeUser":{"email":"anosbel@gmail.com"}}
+[debug] [2026-04-17T12:38:23.951Z] [hosting] finalized version for facturacion-dd:[object Object]
+[info] +  hosting[facturacion-dd]: version finalized 
+[info] i  hosting[facturacion-dd]: releasing new version... 
+[debug] [2026-04-17T12:38:23.951Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:23.951Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:38:23.951Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases versionName=projects%2F586057447376%2Fsites%2Ffacturacion-dd%2Fversions%2F2d39e4f6571e1d78
+[debug] [2026-04-17T12:38:23.951Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {}
+[debug] [2026-04-17T12:38:24.629Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases 200
+[debug] [2026-04-17T12:38:24.629Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776429504761000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:38:23.226087Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:38:24.746401Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:38:24.761Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[debug] [2026-04-17T12:38:24.630Z] [hosting] release: {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776429504761000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/2d39e4f6571e1d78","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:38:23.226087Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:38:24.746401Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:38:24.761Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[info] +  hosting[facturacion-dd]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/facturacion-dd/overview
+[info] Hosting URL: https://facturacion-dd.web.app
+[debug] [2026-04-17T12:52:08.605Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:52:08.608Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2026-04-17T12:52:08.608Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:52:08.609Z] Platform:      win32
+[debug] [2026-04-17T12:52:08.609Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:52:08.609Z] Time:          Fri Apr 17 2026 06:52:08 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:52:08.609Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T12:52:10.733Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T12:52:10.734Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T12:52:10.734Z] [iam] checking project facturacion-dd for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-17T12:52:10.735Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:10.735Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:10.736Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions [none]
+[debug] [2026-04-17T12:52:10.736Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions  x-goog-user-project=facturacion-dd
+[debug] [2026-04-17T12:52:10.737Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:52:14.194Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions 200
+[debug] [2026-04-17T12:52:14.194Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:52:14.195Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:14.195Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:14.195Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd [none]
+[debug] [2026-04-17T12:52:15.824Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd 200
+[debug] [2026-04-17T12:52:15.824Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd {"projectId":"facturacion-dd","projectNumber":"586057447376","displayName":"Facturacion DD","name":"projects/facturacion-dd","resources":{"hostingSite":"facturacion-dd"},"state":"ACTIVE","etag":"1_2bf629a1-1b25-4cbe-8b23-cc4151fec393"}
+[info] 
+[info] === Deploying to 'facturacion-dd'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-04-17T12:52:15.829Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:15.829Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:15.829Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions [none]
+[debug] [2026-04-17T12:52:15.829Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:52:20.189Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions 200
+[debug] [2026-04-17T12:52:20.189Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"name":"projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[facturacion-dd]: beginning deploy... 
+[info] i  hosting[facturacion-dd]: found 22 files in dist/frontend/browser 
+[debug] [2026-04-17T12:52:20.205Z] [hosting] uploading with 200 concurrency
+[debug] [2026-04-17T12:52:20.251Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.251Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.252Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZFxicm93c2Vy] stored for 22 files
+[debug] [2026-04-17T12:52:20.253Z] [hosting][hash queue][FINAL] {"max":41,"min":4,"avg":15.909090909090908,"active":0,"complete":22,"success":22,"errored":0,"retried":0,"total":22,"elapsed":46}
+[debug] [2026-04-17T12:52:20.253Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4:populateFiles [none]
+[debug] [2026-04-17T12:52:20.253Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4:populateFiles {"files":{"/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/chunk-VYEGDQOC.js":"7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07","/styles-JKJX2YU2.css":"d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493","/index.html":"e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c","/chunk-VRB6Q2ZV.js":"7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2","/chunk-SRSRGS7V.js":"3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf","/chunk-QUNQC274.js":"020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517","/chunk-NZAEZN53.js":"ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b","/chunk-NI6GHOE4.js":"230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff","/chunk-LA2IF27E.js":"e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756","/chunk-GPEO7NUS.js":"3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac","/chunk-I3DJM6YN.js":"bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5","/chunk-BT47RFGU.js":"3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d","/chunk-FQ24TTJQ.js":"bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922","/chunk-BFHVZP5V.js":"265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02","/main-3XTAZ3RC.js":"20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85","/chunk-J7X4OCPY.js":"8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd","/chunk-WEGTYFBU.js":"c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91","/chunk-HTRBF2EE.js":"b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3","/chunk-S6CAZBLH.js":"aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a","/images/logo.png":"97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f","/chunk-S4Q6H5EG.js":"65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698"}}
+[debug] [2026-04-17T12:52:20.896Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4:populateFiles 200
+[debug] [2026-04-17T12:52:20.897Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4:populateFiles {"uploadRequiredHashes":["265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02","97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f","e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c","65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698","230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff","3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d","d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493","3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac","020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517","8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd","7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07","b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3","e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756","3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf","20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85","c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91","ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b","7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2","bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5","bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922","aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files"}
+[debug] [2026-04-17T12:52:20.897Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.897Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.898Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.899Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.900Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.901Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.902Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.903Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:20.904Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02 [none]
+[debug] [2026-04-17T12:52:20.904Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02 [stream]
+[debug] [2026-04-17T12:52:20.905Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f [none]
+[debug] [2026-04-17T12:52:20.906Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f [stream]
+[debug] [2026-04-17T12:52:20.907Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c [none]
+[debug] [2026-04-17T12:52:20.907Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c [stream]
+[debug] [2026-04-17T12:52:20.908Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698 [none]
+[debug] [2026-04-17T12:52:20.908Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698 [stream]
+[debug] [2026-04-17T12:52:20.910Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff [none]
+[debug] [2026-04-17T12:52:20.910Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff [stream]
+[debug] [2026-04-17T12:52:20.911Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d [none]
+[debug] [2026-04-17T12:52:20.911Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d [stream]
+[debug] [2026-04-17T12:52:20.912Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493 [none]
+[debug] [2026-04-17T12:52:20.912Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493 [stream]
+[debug] [2026-04-17T12:52:20.913Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac [none]
+[debug] [2026-04-17T12:52:20.913Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac [stream]
+[debug] [2026-04-17T12:52:20.914Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517 [none]
+[debug] [2026-04-17T12:52:20.914Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517 [stream]
+[debug] [2026-04-17T12:52:20.915Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd [none]
+[debug] [2026-04-17T12:52:20.915Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd [stream]
+[debug] [2026-04-17T12:52:20.916Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07 [none]
+[debug] [2026-04-17T12:52:20.916Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07 [stream]
+[debug] [2026-04-17T12:52:20.917Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3 [none]
+[debug] [2026-04-17T12:52:20.917Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3 [stream]
+[debug] [2026-04-17T12:52:20.918Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756 [none]
+[debug] [2026-04-17T12:52:20.918Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756 [stream]
+[debug] [2026-04-17T12:52:20.919Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf [none]
+[debug] [2026-04-17T12:52:20.919Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf [stream]
+[debug] [2026-04-17T12:52:20.920Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85 [none]
+[debug] [2026-04-17T12:52:20.920Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85 [stream]
+[debug] [2026-04-17T12:52:20.921Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91 [none]
+[debug] [2026-04-17T12:52:20.921Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91 [stream]
+[debug] [2026-04-17T12:52:20.923Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b [none]
+[debug] [2026-04-17T12:52:20.923Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b [stream]
+[debug] [2026-04-17T12:52:20.924Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2 [none]
+[debug] [2026-04-17T12:52:20.924Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2 [stream]
+[debug] [2026-04-17T12:52:20.925Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5 [none]
+[debug] [2026-04-17T12:52:20.925Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5 [stream]
+[debug] [2026-04-17T12:52:20.926Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922 [none]
+[debug] [2026-04-17T12:52:20.926Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922 [stream]
+[debug] [2026-04-17T12:52:20.927Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a [none]
+[debug] [2026-04-17T12:52:20.927Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a [stream]
+[debug] [2026-04-17T12:52:20.928Z] [hosting][populate queue][FINAL] {"max":652,"min":652,"avg":652,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":677}
+[debug] [2026-04-17T12:52:20.928Z] [hosting] uploads queued: 21
+[info] i  hosting: uploading new files [0/21] (0%) 
+[debug] [2026-04-17T12:52:22.773Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493 200
+[debug] [2026-04-17T12:52:22.773Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493 [stream]
+[debug] [2026-04-17T12:52:22.774Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07 200
+[debug] [2026-04-17T12:52:22.774Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7ff3fd84b18f1ba57204a59cb6bbb52a20a564e06ae08334f9b064987f448a07 [stream]
+[debug] [2026-04-17T12:52:22.777Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517 200
+[debug] [2026-04-17T12:52:22.777Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517 [stream]
+[debug] [2026-04-17T12:52:22.791Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756 200
+[debug] [2026-04-17T12:52:22.791Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756 [stream]
+[debug] [2026-04-17T12:52:22.806Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff 200
+[debug] [2026-04-17T12:52:22.807Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff [stream]
+[debug] [2026-04-17T12:52:22.819Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd 200
+[debug] [2026-04-17T12:52:22.819Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/8723e4700344273f3a7e66d04005e48fb50665b90eafcd75977de9ce3fa5f1bd [stream]
+[debug] [2026-04-17T12:52:22.836Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac 200
+[debug] [2026-04-17T12:52:22.836Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac [stream]
+[debug] [2026-04-17T12:52:22.840Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf 200
+[debug] [2026-04-17T12:52:22.840Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf [stream]
+[debug] [2026-04-17T12:52:22.864Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a 200
+[debug] [2026-04-17T12:52:22.864Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/aca56fcd4d4974018967ff7b24c0702b85aad5f69e27672720aba9922079ea7a [stream]
+[debug] [2026-04-17T12:52:22.882Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91 200
+[debug] [2026-04-17T12:52:22.882Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91 [stream]
+[debug] [2026-04-17T12:52:22.890Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698 200
+[debug] [2026-04-17T12:52:22.890Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698 [stream]
+[debug] [2026-04-17T12:52:22.891Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85 200
+[debug] [2026-04-17T12:52:22.891Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/20080f3b3f026ab67b263ac5dbb74c7867eff7285181b633669bb9e6cd33bc85 [stream]
+[debug] [2026-04-17T12:52:22.914Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3 200
+[debug] [2026-04-17T12:52:22.914Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3 [stream]
+[debug] [2026-04-17T12:52:22.944Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922 200
+[debug] [2026-04-17T12:52:22.944Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bc0729ee69f54e397b6b4f735fd9b9bcda03df36e7873793b51c4086bbf71922 [stream]
+[debug] [2026-04-17T12:52:22.945Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b 200
+[debug] [2026-04-17T12:52:22.945Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/ae5b8d038c21516c99795595ecac930e711bb599360fa3cd5e4def1da91e873b [stream]
+[debug] [2026-04-17T12:52:22.992Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5 200
+[debug] [2026-04-17T12:52:22.992Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5 [stream]
+[debug] [2026-04-17T12:52:23.097Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d 200
+[debug] [2026-04-17T12:52:23.097Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d [stream]
+[debug] [2026-04-17T12:52:23.098Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c 200
+[debug] [2026-04-17T12:52:23.098Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/e4631b6eac73493bdc4005b4ad5c92672f8eef61887169f132ac3f93f06f166c [stream]
+[debug] [2026-04-17T12:52:23.109Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2 200
+[debug] [2026-04-17T12:52:23.109Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2 [stream]
+[debug] [2026-04-17T12:52:23.156Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02 200
+[debug] [2026-04-17T12:52:23.157Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02 [stream]
+[debug] [2026-04-17T12:52:23.197Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f 200
+[debug] [2026-04-17T12:52:23.197Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/332e4678b27983a4/files/97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f [stream]
+[debug] [2026-04-17T12:52:23.198Z] [hosting][upload queue][FINAL] {"max":2300,"min":1874,"avg":2023.7142857142858,"active":0,"complete":21,"success":21,"errored":0,"retried":0,"total":21,"elapsed":2301}
+[info] i  hosting: upload complete 
+[info] +  hosting[facturacion-dd]: file upload complete 
+[debug] [2026-04-17T12:52:23.198Z] [hosting] deploy completed after 3006ms
+[debug] [2026-04-17T12:52:23.198Z] [
+  {
+    "config": {
+      "public": "dist/frontend/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "facturacion-dd"
+    },
+    "version": "projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4"
+  }
+]
+[info] i  hosting[facturacion-dd]: finalizing version... 
+[debug] [2026-04-17T12:52:23.200Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:23.200Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:23.201Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/332e4678b27983a4 updateMask=status%2Cconfig
+[debug] [2026-04-17T12:52:23.202Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/332e4678b27983a4 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-04-17T12:52:23.737Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/332e4678b27983a4 200
+[debug] [2026-04-17T12:52:23.738Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/332e4678b27983a4 {"name":"projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:52:20.480805Z","createUser":{"email":"anosbel@gmail.com"},"finalizeTime":"2026-04-17T12:52:24.515027Z","finalizeUser":{"email":"anosbel@gmail.com"}}
+[debug] [2026-04-17T12:52:23.738Z] [hosting] finalized version for facturacion-dd:[object Object]
+[info] +  hosting[facturacion-dd]: version finalized 
+[info] i  hosting[facturacion-dd]: releasing new version... 
+[debug] [2026-04-17T12:52:23.739Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:23.739Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:52:23.739Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases versionName=projects%2F586057447376%2Fsites%2Ffacturacion-dd%2Fversions%2F332e4678b27983a4
+[debug] [2026-04-17T12:52:23.739Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {}
+[debug] [2026-04-17T12:52:24.349Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases 200
+[debug] [2026-04-17T12:52:24.349Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776430344467000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:52:20.480805Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:52:24.515027Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:52:24.467Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[debug] [2026-04-17T12:52:24.349Z] [hosting] release: {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776430344467000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/332e4678b27983a4","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:52:20.480805Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:52:24.515027Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:52:24.467Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[info] +  hosting[facturacion-dd]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/facturacion-dd/overview
+[info] Hosting URL: https://facturacion-dd.web.app
+[debug] [2026-04-17T12:59:35.393Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T12:59:35.395Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only firestore:rules firestore:indexes hosting
+[debug] [2026-04-17T12:59:35.396Z] CLI Version:   15.15.0
+[debug] [2026-04-17T12:59:35.396Z] Platform:      win32
+[debug] [2026-04-17T12:59:35.396Z] Node Version:  v24.13.0
+[debug] [2026-04-17T12:59:35.396Z] Time:          Fri Apr 17 2026 06:59:35 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T12:59:35.396Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T12:59:37.332Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T12:59:37.332Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T12:59:37.333Z] [iam] checking project facturacion-dd for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-17T12:59:37.334Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:37.334Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:37.335Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions [none]
+[debug] [2026-04-17T12:59:37.335Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions  x-goog-user-project=facturacion-dd
+[debug] [2026-04-17T12:59:37.335Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:59:40.855Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions 200
+[debug] [2026-04-17T12:59:40.856Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T12:59:40.856Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:40.856Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:40.856Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd [none]
+[debug] [2026-04-17T12:59:42.448Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd 200
+[debug] [2026-04-17T12:59:42.448Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd {"projectId":"facturacion-dd","projectNumber":"586057447376","displayName":"Facturacion DD","name":"projects/facturacion-dd","resources":{"hostingSite":"facturacion-dd"},"state":"ACTIVE","etag":"1_2bf629a1-1b25-4cbe-8b23-cc4151fec393"}
+[info] 
+[info] === Deploying to 'facturacion-dd'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-17T12:59:42.452Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:42.452Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:42.452Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T12:59:43.099Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T12:59:43.099Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IK+A4q749JMDML6m46Dz9JMD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-17T12:59:43.102Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:43.102Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:43.102Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [none]
+[debug] [2026-04-17T12:59:43.102Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [omitted]
+[debug] [2026-04-17T12:59:43.657Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test 200
+[debug] [2026-04-17T12:59:43.658Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-04-17T12:59:43.661Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:43.661Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:43.661Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions [none]
+[debug] [2026-04-17T12:59:43.661Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:59:44.956Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions 200
+[debug] [2026-04-17T12:59:44.957Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"name":"projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T12:59:44.957Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:44.957Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:44.957Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases pageSize=10&pageToken=
+[debug] [2026-04-17T12:59:45.161Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases 200
+[debug] [2026-04-17T12:59:45.161Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases {"releases":[{"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T12:37:48.854984Z"}]}
+[debug] [2026-04-17T12:59:45.162Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.162Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.162Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 [none]
+[debug] [2026-04-17T12:59:45.385Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 200
+[debug] [2026-04-17T12:59:45.385Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/edba230c-8ede-40d0-8443-62ceb1551d49 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-04-17T12:59:45.386Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.386Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.386Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets [none]
+[debug] [2026-04-17T12:59:45.386Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets [omitted]
+[debug] [2026-04-17T12:59:45.723Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets 200
+[debug] [2026-04-17T12:59:45.723Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets {"name":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2","source":{"files":[{"content":"rules_version = '2';\n\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    function isSignedIn() {\n      return request.auth != null;\n    }\n\n    function isOwner(userId) {\n      return isSignedIn() && request.auth.uid == userId;\n    }\n\n    match /invoices/{invoiceId} {\n      allow create: if isOwner(request.resource.data.userId);\n      allow read, delete: if isOwner(resource.data.userId);\n      allow update: if isOwner(resource.data.userId)\n        && request.resource.data.userId == resource.data.userId;\n    }\n\n    match /clients/{clientId} {\n      allow create: if isOwner(request.resource.data.userId);\n      allow read, delete: if isOwner(resource.data.userId);\n      allow update: if isOwner(resource.data.userId)\n        && request.resource.data.userId == resource.data.userId;\n    }\n\n    match /generatedInvoices/{invoiceId} {\n      allow create: if isOwner(request.resource.data.userId);\n      allow read, delete: if isOwner(resource.data.userId);\n      allow update: if isOwner(resource.data.userId)\n        && request.resource.data.userId == resource.data.userId;\n    }\n\n    match /{document=**} {\n      allow read, write: if false;\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-04-17T12:59:46.542079Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-04-17T12:59:45.723Z] [rules] created ruleset projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2
+[info] i  firestore: deploying indexes... 
+[debug] [2026-04-17T12:59:45.725Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.725Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.725Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-17T12:59:45.889Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-17T12:59:45.890Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes {"indexes":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/invoices/indexes/CICAgOjXh4EK","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}],"state":"READY","density":"SPARSE_ALL"}]}
+[debug] [2026-04-17T12:59:45.890Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.890Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:45.890Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-17T12:59:46.024Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-17T12:59:46.024Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-04-17T12:59:46.025Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.025Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.025Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T12:59:46.183Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T12:59:46.183Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IOejnrD49JMDML6m46Dz9JMD"}
+[debug] [2026-04-17T12:59:46.184Z] Skipping existing index: {"collectionGroup":"invoices","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}]}
+[debug] [2026-04-17T12:59:46.184Z] Creating new index: {"collectionGroup":"generatedInvoices","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"}]}
+[debug] [2026-04-17T12:59:46.184Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.184Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.184Z] >>> [apiv2][query] POST https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes [none]
+[debug] [2026-04-17T12:59:46.185Z] >>> [apiv2][body] POST https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes {"fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"}],"queryScope":"COLLECTION"}
+[debug] [2026-04-17T12:59:46.549Z] <<< [apiv2][status] POST https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes 200
+[debug] [2026-04-17T12:59:46.550Z] <<< [apiv2][body] POST https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes {"name":"projects/facturacion-dd/databases/(default)/operations/S0FKazNpT2dBQ0lDDCoDIGM2MTgyYmIzZTQwNy1lNGM5LWRhYTQtYjQ3OC01N2M5MTIyMCQac2VuaWxlcGlwCQpBEg","metadata":{"@type":"type.googleapis.com/google.firestore.admin.v1.IndexOperationMetadata","startTime":"2026-04-17T12:59:47.280555Z","index":"projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes/CICAgOi3kJAK","state":"INITIALIZING"}}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] i  hosting[facturacion-dd]: beginning deploy... 
+[info] i  hosting[facturacion-dd]: found 26 files in dist/frontend/browser 
+[debug] [2026-04-17T12:59:46.563Z] [hosting] uploading with 200 concurrency
+[debug] [2026-04-17T12:59:46.600Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.600Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:46.601Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZFxicm93c2Vy] stored for 26 files
+[debug] [2026-04-17T12:59:46.601Z] [hosting][hash queue][FINAL] {"max":33,"min":0,"avg":10.615384615384615,"active":0,"complete":26,"success":26,"errored":0,"retried":0,"total":26,"elapsed":37}
+[debug] [2026-04-17T12:59:46.602Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb:populateFiles [none]
+[debug] [2026-04-17T12:59:46.602Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb:populateFiles {"files":{"/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/images/logo.png":"97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f","/chunk-VRB6Q2ZV.js":"7bc27ed9364f4790d99956bfa5a4c2b9a6f7ffd700dae633bde40f89411a4ae2","/index.html":"5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306","/styles-JKJX2YU2.css":"d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493","/chunk-SRSRGS7V.js":"3d4c7e3554744e34ee6413e47115228665be01c33a5d43977c736426b86fd2cf","/chunk-VPEGAMXL.js":"310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613","/chunk-I3DJM6YN.js":"bb4806cd7dd77079ad2b1d001be1f3eead92309d06210a305296e96c91a794e5","/chunk-NI6GHOE4.js":"230de0777d714196e5987a3de0e841acefc7be7af3a269b2cb92a99074323dff","/chunk-LA2IF27E.js":"e4be5d5e92647d0436d0fb3550abebe5f1f0605f4767a24fdbe710d6c0001756","/chunk-GPEO7NUS.js":"3d0daba424b6c27c6394af57c70e5968d5d09c1d1b75c75bd709ec946d0a20ac","/chunk-GDLSQCPP.js":"db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707","/chunk-DCTV6GLE.js":"5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d","/chunk-BT47RFGU.js":"3b4cf2133ac4cf77472a6800c6b27f1b5e9d83ba1a16b9521b520f6892bc9d2d","/chunk-BFHVZP5V.js":"265929376329c316e142c2974dd3067eef987b9c8558881cd50da70db485ac02","/chunk-4RFQ4SRD.js":"2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413","/chunk-3Q7XSLPM.js":"d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa","/chunk-QUNQC274.js":"020af1716822acce4961340515aaf8c459de1f87fc9ad57b14ae34c851b10517","/chunk-4AFDHPVU.js":"388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130","/chunk-FUKGU2WJ.js":"ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959","/main-LZW2FG6N.js":"7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107","/chunk-MC3XYAD2.js":"e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a","/chunk-WEGTYFBU.js":"c28b01aa5134818c3408c34ced03ee4d10f0918293bd7e9282240eea4b65ce91","/chunk-HTRBF2EE.js":"b2125780282b21dc636e0d0d564e383ba4fe86aec8e03578ac7d8a7a01fb20f3","/chunk-HEYEWKAQ.js":"6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b","/chunk-S4Q6H5EG.js":"65e2f70db6fc9e3648fc09f2f4af71e64b8cef48d9e98c43409f9ec382867698"}}
+[debug] [2026-04-17T12:59:47.405Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb:populateFiles 200
+[debug] [2026-04-17T12:59:47.405Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb:populateFiles {"uploadRequiredHashes":["310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613","d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa","2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413","5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306","db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707","5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d","6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b","e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a","388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130","7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107","ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files"}
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.406Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.407Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.408Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.408Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.408Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.408Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:47.408Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613 [none]
+[debug] [2026-04-17T12:59:47.408Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613 [stream]
+[debug] [2026-04-17T12:59:47.409Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa [none]
+[debug] [2026-04-17T12:59:47.409Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa [stream]
+[debug] [2026-04-17T12:59:47.410Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413 [none]
+[debug] [2026-04-17T12:59:47.410Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413 [stream]
+[debug] [2026-04-17T12:59:47.411Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306 [none]
+[debug] [2026-04-17T12:59:47.411Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306 [stream]
+[debug] [2026-04-17T12:59:47.412Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707 [none]
+[debug] [2026-04-17T12:59:47.412Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707 [stream]
+[debug] [2026-04-17T12:59:47.413Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d [none]
+[debug] [2026-04-17T12:59:47.413Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d [stream]
+[debug] [2026-04-17T12:59:47.414Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b [none]
+[debug] [2026-04-17T12:59:47.415Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b [stream]
+[debug] [2026-04-17T12:59:47.415Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a [none]
+[debug] [2026-04-17T12:59:47.415Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a [stream]
+[debug] [2026-04-17T12:59:47.416Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130 [none]
+[debug] [2026-04-17T12:59:47.416Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130 [stream]
+[debug] [2026-04-17T12:59:47.417Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107 [none]
+[debug] [2026-04-17T12:59:47.417Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107 [stream]
+[debug] [2026-04-17T12:59:47.417Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959 [none]
+[debug] [2026-04-17T12:59:47.417Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959 [stream]
+[debug] [2026-04-17T12:59:47.418Z] [hosting][populate queue][FINAL] {"max":808,"min":808,"avg":808,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":818}
+[debug] [2026-04-17T12:59:47.418Z] [hosting] uploads queued: 11
+[info] i  hosting: uploading new files [0/11] (0%) 
+[info] i  hosting: uploading new files [0/11] (0%) 
+[debug] [2026-04-17T12:59:51.222Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b 200
+[debug] [2026-04-17T12:59:51.222Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/6a401e51dba8276cf11547c21de02380387110a3095b953e5baa02c0958fa95b [stream]
+[debug] [2026-04-17T12:59:51.287Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a 200
+[debug] [2026-04-17T12:59:51.287Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/e696fd090aef0a704833995eb7d3dd1ffda609eef73c0b26995f24c275a5d00a [stream]
+[debug] [2026-04-17T12:59:51.310Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa 200
+[debug] [2026-04-17T12:59:51.310Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/d2512cf538bd404828ac373aa8679809e1635bdf11ec2fe339c9b2008525b0aa [stream]
+[debug] [2026-04-17T12:59:51.346Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107 200
+[debug] [2026-04-17T12:59:51.346Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/7a9f6118ab78b4198216d0780f1a823972400c434167772ea44e4915c1ff2107 [stream]
+[debug] [2026-04-17T12:59:51.347Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d 200
+[debug] [2026-04-17T12:59:51.347Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5d4904dd8b7658b812b0560413f574ff2bbcdd4fe252ed9b08eb56193584059d [stream]
+[debug] [2026-04-17T12:59:51.403Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413 200
+[debug] [2026-04-17T12:59:51.403Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/2cdfd06d202a766feb23e09cd777c2992b6e381e46515d802f43d2ba98316413 [stream]
+[debug] [2026-04-17T12:59:51.405Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959 200
+[debug] [2026-04-17T12:59:51.406Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/ba32b0542e669c1b045a0039c99df563c0bf193e17bdbe4649809f214ec20959 [stream]
+[debug] [2026-04-17T12:59:51.484Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130 200
+[debug] [2026-04-17T12:59:51.484Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/388a584d357daa0d5731504e625418e5307ac72253c83d28cf8b1b6cc84b5130 [stream]
+[debug] [2026-04-17T12:59:51.621Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613 200
+[debug] [2026-04-17T12:59:51.621Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/310b4c6fd7c41fe2ec1b62385c7d7119c2dcc4e69ea23bce84bc14ff1f99b613 [stream]
+[debug] [2026-04-17T12:59:51.637Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306 200
+[debug] [2026-04-17T12:59:51.637Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/5f5771f3edead8309ae7b2755bfaebbc5011da1c4907d5a35d3803892f270306 [stream]
+[debug] [2026-04-17T12:59:51.726Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707 200
+[debug] [2026-04-17T12:59:51.726Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/7980602feb398beb/files/db97051a4f31b974dcf5422c7051bf29bbf55c863294c7c51df0b519b74a5707 [stream]
+[debug] [2026-04-17T12:59:51.726Z] [hosting][upload queue][FINAL] {"max":4319,"min":3815,"avg":4028.5454545454545,"active":0,"complete":11,"success":11,"errored":0,"retried":0,"total":11,"elapsed":4320}
+[info] i  hosting: upload complete 
+[info] +  hosting[facturacion-dd]: file upload complete 
+[debug] [2026-04-17T12:59:51.726Z] [hosting] deploy completed after 5174ms
+[debug] [2026-04-17T12:59:51.727Z] [rules] releasing cloud.firestore/(default) with ruleset projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2
+[debug] [2026-04-17T12:59:51.727Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:51.727Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:51.727Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) [none]
+[debug] [2026-04-17T12:59:51.727Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"release":{"name":"projects/facturacion-dd/releases/cloud.firestore/(default)","rulesetName":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2"}}
+[debug] [2026-04-17T12:59:52.216Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) 200
+[debug] [2026-04-17T12:59:52.217Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T12:59:53.053398Z"}
+[debug] [2026-04-17T12:59:52.217Z] [rules] updated release projects/facturacion-dd/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2026-04-17T12:59:52.217Z] [
+  {
+    "config": {
+      "public": "dist/frontend/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "facturacion-dd"
+    },
+    "version": "projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb"
+  }
+]
+[info] i  hosting[facturacion-dd]: finalizing version... 
+[debug] [2026-04-17T12:59:52.219Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:52.219Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:52.219Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/7980602feb398beb updateMask=status%2Cconfig
+[debug] [2026-04-17T12:59:52.219Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/7980602feb398beb {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-04-17T12:59:52.795Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/7980602feb398beb 200
+[debug] [2026-04-17T12:59:52.795Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/7980602feb398beb {"name":"projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:59:45.269675Z","createUser":{"email":"anosbel@gmail.com"},"finalizeTime":"2026-04-17T12:59:53.547314Z","finalizeUser":{"email":"anosbel@gmail.com"}}
+[debug] [2026-04-17T12:59:52.795Z] [hosting] finalized version for facturacion-dd:[object Object]
+[info] +  hosting[facturacion-dd]: version finalized 
+[info] i  hosting[facturacion-dd]: releasing new version... 
+[debug] [2026-04-17T12:59:52.796Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:52.796Z] Checked if tokens are valid: true, expires at: 1776432087369
+[debug] [2026-04-17T12:59:52.796Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases versionName=projects%2F586057447376%2Fsites%2Ffacturacion-dd%2Fversions%2F7980602feb398beb
+[debug] [2026-04-17T12:59:52.796Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {}
+[debug] [2026-04-17T12:59:53.445Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases 200
+[debug] [2026-04-17T12:59:53.445Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776430793522000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:59:45.269675Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:59:53.547314Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:59:53.522Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[debug] [2026-04-17T12:59:53.445Z] [hosting] release: {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776430793522000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/7980602feb398beb","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T12:59:45.269675Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T12:59:53.547314Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T12:59:53.522Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[info] +  hosting[facturacion-dd]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/facturacion-dd/overview
+[info] Hosting URL: https://facturacion-dd.web.app
+[debug] [2026-04-17T13:12:28.151Z] ----------------------------------------------------------------------
+[debug] [2026-04-17T13:12:28.153Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LEGION\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only firestore:rules firestore:indexes hosting
+[debug] [2026-04-17T13:12:28.154Z] CLI Version:   15.15.0
+[debug] [2026-04-17T13:12:28.154Z] Platform:      win32
+[debug] [2026-04-17T13:12:28.154Z] Node Version:  v24.13.0
+[debug] [2026-04-17T13:12:28.154Z] Time:          Fri Apr 17 2026 07:12:28 GMT-0600 (hora estándar central)
+[debug] [2026-04-17T13:12:28.154Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-17T13:12:30.052Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-17T13:12:30.053Z] > authorizing via signed-in user (anosbel@gmail.com)
+[debug] [2026-04-17T13:12:30.053Z] [iam] checking project facturacion-dd for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-17T13:12:30.054Z] Checked if tokens are valid: false, expires at: 1776432087369
+[debug] [2026-04-17T13:12:30.054Z] Checked if tokens are valid: false, expires at: 1776432087369
+[debug] [2026-04-17T13:12:30.055Z] > refreshing access token with scopes: []
+[debug] [2026-04-17T13:12:30.056Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-04-17T13:12:30.056Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-17T13:12:30.446Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-04-17T13:12:30.446Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-17T13:12:30.453Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions [none]
+[debug] [2026-04-17T13:12:30.453Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions  x-goog-user-project=facturacion-dd
+[debug] [2026-04-17T13:12:30.454Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T13:12:33.951Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions 200
+[debug] [2026-04-17T13:12:33.951Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/facturacion-dd:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-17T13:12:33.952Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:33.952Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:33.952Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd [none]
+[debug] [2026-04-17T13:12:35.531Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd 200
+[debug] [2026-04-17T13:12:35.531Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/facturacion-dd {"projectId":"facturacion-dd","projectNumber":"586057447376","displayName":"Facturacion DD","name":"projects/facturacion-dd","resources":{"hostingSite":"facturacion-dd"},"state":"ACTIVE","etag":"1_2bf629a1-1b25-4cbe-8b23-cc4151fec393"}
+[info] 
+[info] === Deploying to 'facturacion-dd'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-17T13:12:35.534Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:35.534Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:35.534Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T13:12:36.219Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T13:12:36.219Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IOzms5/79JMDML6m46Dz9JMD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-17T13:12:36.220Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:36.221Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:36.221Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [none]
+[debug] [2026-04-17T13:12:36.221Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test [omitted]
+[debug] [2026-04-17T13:12:36.748Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test 200
+[debug] [2026-04-17T13:12:36.748Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/facturacion-dd:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-04-17T13:12:36.751Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:36.751Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:36.751Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions [none]
+[debug] [2026-04-17T13:12:36.751Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T13:12:38.048Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions 200
+[debug] [2026-04-17T13:12:38.048Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions {"name":"projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-17T13:12:38.049Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.049Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.049Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases pageSize=10&pageToken=
+[debug] [2026-04-17T13:12:38.238Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases 200
+[debug] [2026-04-17T13:12:38.238Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases {"releases":[{"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T12:59:53.053398Z"}]}
+[debug] [2026-04-17T13:12:38.238Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.238Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.238Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2 [none]
+[debug] [2026-04-17T13:12:38.425Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2 200
+[debug] [2026-04-17T13:12:38.425Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2026-04-17T13:12:38.427Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.427Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.427Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-17T13:12:38.575Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-17T13:12:38.575Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/indexes {"indexes":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/invoices/indexes/CICAgOjXh4EK","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}],"state":"READY","density":"SPARSE_ALL"},{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/generatedInvoices/indexes/CICAgOi3kJAK","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}],"state":"READY","density":"SPARSE_ALL"}]}
+[debug] [2026-04-17T13:12:38.576Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.576Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.576Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-17T13:12:38.709Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-17T13:12:38.709Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/facturacion-dd/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-04-17T13:12:38.709Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.709Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.709Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) [none]
+[debug] [2026-04-17T13:12:38.871Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) 200
+[debug] [2026-04-17T13:12:38.871Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/facturacion-dd/databases/(default) {"name":"projects/facturacion-dd/databases/(default)","uid":"62e024e0-b6b0-4e77-a1c4-2b4df658728a","createTime":"2026-04-17T12:36:47.763432Z","updateTime":"2026-04-17T12:36:47.763432Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-17T12:36:47.763432Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"INfV1qD79JMDML6m46Dz9JMD"}
+[debug] [2026-04-17T13:12:38.872Z] Skipping existing index: {"collectionGroup":"invoices","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}]}
+[debug] [2026-04-17T13:12:38.872Z] Skipping existing index: {"collectionGroup":"generatedInvoices","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"issueDate","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}]}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] i  hosting[facturacion-dd]: beginning deploy... 
+[info] i  hosting[facturacion-dd]: found 26 files in dist/frontend/browser 
+[debug] [2026-04-17T13:12:38.884Z] [hosting] uploading with 200 concurrency
+[debug] [2026-04-17T13:12:38.921Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.921Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:38.922Z] [hosting] hash cache [ZGlzdFxmcm9udGVuZFxicm93c2Vy] stored for 26 files
+[debug] [2026-04-17T13:12:38.922Z] [hosting][hash queue][FINAL] {"max":33,"min":0,"avg":11,"active":0,"complete":26,"success":26,"errored":0,"retried":0,"total":26,"elapsed":37}
+[debug] [2026-04-17T13:12:38.923Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405:populateFiles [none]
+[debug] [2026-04-17T13:12:38.923Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405:populateFiles {"files":{"/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/images/logo.png":"97fa5c6fb05d72de45e4f92f61b6696e85cb9a0a6cb6f3826d344d628028ce0f","/chunk-XJ2WPLKG.js":"92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08","/chunk-YHT6YUXV.js":"77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a","/chunk-UITALLRO.js":"cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742","/styles-JKJX2YU2.css":"d7d96a83850f336478a71b3c85c86aab2658eda4486f217bba139d64b2ebc493","/index.html":"642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0","/chunk-SALORVW7.js":"3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188","/chunk-NW6OD7TE.js":"eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed","/chunk-LCISLSXA.js":"283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15","/chunk-IZ5I43MY.js":"34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e","/chunk-N7N4Y3Z7.js":"124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd","/chunk-HSJVMWBD.js":"e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c","/chunk-D2S2GGKF.js":"37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7","/chunk-7WJGPHGY.js":"0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d","/chunk-I2AQD6WH.js":"27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f","/chunk-BBP5AOEX.js":"6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091","/chunk-2HQ26YBZ.js":"fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373","/chunk-7JA2RWCQ.js":"36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407","/main-TEXUPEFE.js":"ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba","/chunk-2ACVD5AP.js":"6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79","/chunk-KHUJX4J7.js":"7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89","/chunk-UVR7X3PQ.js":"cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28","/chunk-NLRYWICV.js":"05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c","/chunk-4EE65T7Z.js":"d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7","/chunk-VJEBI6DM.js":"a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee"}}
+[debug] [2026-04-17T13:12:39.465Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405:populateFiles 200
+[debug] [2026-04-17T13:12:39.465Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405:populateFiles {"uploadRequiredHashes":["6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79","27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f","05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c","0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d","a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee","cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742","cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28","37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7","fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373","77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a","283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15","e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c","92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08","36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407","eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed","ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba","d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7","34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e","124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd","7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89","642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0","3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188","6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files"}
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.466Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.467Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.468Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.469Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:39.470Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79 [none]
+[debug] [2026-04-17T13:12:39.470Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79 [stream]
+[debug] [2026-04-17T13:12:39.472Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f [none]
+[debug] [2026-04-17T13:12:39.472Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f [stream]
+[debug] [2026-04-17T13:12:39.473Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c [none]
+[debug] [2026-04-17T13:12:39.473Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c [stream]
+[debug] [2026-04-17T13:12:39.473Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d [none]
+[debug] [2026-04-17T13:12:39.474Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d [stream]
+[debug] [2026-04-17T13:12:39.474Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee [none]
+[debug] [2026-04-17T13:12:39.474Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee [stream]
+[debug] [2026-04-17T13:12:39.475Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742 [none]
+[debug] [2026-04-17T13:12:39.475Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742 [stream]
+[debug] [2026-04-17T13:12:39.475Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28 [none]
+[debug] [2026-04-17T13:12:39.476Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28 [stream]
+[debug] [2026-04-17T13:12:39.476Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7 [none]
+[debug] [2026-04-17T13:12:39.476Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7 [stream]
+[debug] [2026-04-17T13:12:39.477Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373 [none]
+[debug] [2026-04-17T13:12:39.477Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373 [stream]
+[debug] [2026-04-17T13:12:39.477Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a [none]
+[debug] [2026-04-17T13:12:39.477Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a [stream]
+[debug] [2026-04-17T13:12:39.478Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15 [none]
+[debug] [2026-04-17T13:12:39.478Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15 [stream]
+[debug] [2026-04-17T13:12:39.479Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c [none]
+[debug] [2026-04-17T13:12:39.479Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c [stream]
+[debug] [2026-04-17T13:12:39.479Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08 [none]
+[debug] [2026-04-17T13:12:39.479Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08 [stream]
+[debug] [2026-04-17T13:12:39.480Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407 [none]
+[debug] [2026-04-17T13:12:39.480Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407 [stream]
+[debug] [2026-04-17T13:12:39.480Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed [none]
+[debug] [2026-04-17T13:12:39.480Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed [stream]
+[debug] [2026-04-17T13:12:39.481Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba [none]
+[debug] [2026-04-17T13:12:39.482Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba [stream]
+[debug] [2026-04-17T13:12:39.483Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7 [none]
+[debug] [2026-04-17T13:12:39.483Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7 [stream]
+[debug] [2026-04-17T13:12:39.484Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e [none]
+[debug] [2026-04-17T13:12:39.484Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e [stream]
+[debug] [2026-04-17T13:12:39.484Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd [none]
+[debug] [2026-04-17T13:12:39.484Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd [stream]
+[debug] [2026-04-17T13:12:39.485Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89 [none]
+[debug] [2026-04-17T13:12:39.485Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89 [stream]
+[debug] [2026-04-17T13:12:39.485Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0 [none]
+[debug] [2026-04-17T13:12:39.485Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0 [stream]
+[debug] [2026-04-17T13:12:39.486Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188 [none]
+[debug] [2026-04-17T13:12:39.486Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188 [stream]
+[debug] [2026-04-17T13:12:39.487Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091 [none]
+[debug] [2026-04-17T13:12:39.487Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091 [stream]
+[debug] [2026-04-17T13:12:39.487Z] [hosting][populate queue][FINAL] {"max":549,"min":549,"avg":549,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":566}
+[debug] [2026-04-17T13:12:39.487Z] [hosting] uploads queued: 23
+[debug] [2026-04-17T13:12:40.331Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f 200
+[debug] [2026-04-17T13:12:40.332Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/27b058406fa0a552692deba628119ad82002a8cfff54abb986f3fe436a917b1f [stream]
+[debug] [2026-04-17T13:12:40.357Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed 200
+[debug] [2026-04-17T13:12:40.357Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/eca93353874395a120f2dd13775a5fce343b7e9a10bb3f826b73ba92231f1bed [stream]
+[debug] [2026-04-17T13:12:40.362Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79 200
+[debug] [2026-04-17T13:12:40.362Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6daa78b3f73c678346ee16f076ddd1c6e6020410d5db487e25ddd572f0ea6d79 [stream]
+[debug] [2026-04-17T13:12:40.369Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e 200
+[debug] [2026-04-17T13:12:40.369Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/34f967eb6cd1f10714b200edb1557ad0e2f746f6b52d4d9cc17f286cbc55935e [stream]
+[debug] [2026-04-17T13:12:40.370Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742 200
+[debug] [2026-04-17T13:12:40.370Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cc29fa56391242438d75c4fcb4743f92601aac8c6716f02ba857472d76f30742 [stream]
+[debug] [2026-04-17T13:12:40.379Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7 200
+[debug] [2026-04-17T13:12:40.379Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/37c5e2148b5005775a2e57333661392678729a23617b0f17b19cd97f5a5cfea7 [stream]
+[debug] [2026-04-17T13:12:40.383Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373 200
+[debug] [2026-04-17T13:12:40.383Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/fdc4fc9ce80a241505e3ae00e6ab7e1cbc0c2171d252d41062abf126700c5373 [stream]
+[debug] [2026-04-17T13:12:40.401Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15 200
+[debug] [2026-04-17T13:12:40.401Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/283c6a6dd4b327290b65fa29d6019dddfaa97e12e0ebd316f188ed94ec3f3a15 [stream]
+[debug] [2026-04-17T13:12:40.403Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188 200
+[debug] [2026-04-17T13:12:40.404Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/3594640487c5efcd8a6ec2a6ca593ffbea10d95280d03e2ad9e375f8287b0188 [stream]
+[debug] [2026-04-17T13:12:40.413Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89 200
+[debug] [2026-04-17T13:12:40.413Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/7837a54bf82cbef9063444a905a51361bf1ad9f8fa91cf444f82d7c165df3c89 [stream]
+[debug] [2026-04-17T13:12:40.434Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08 200
+[debug] [2026-04-17T13:12:40.435Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/92f889978695c932b4f889a9988d6113f8e6eddcef79882c8b0f1e21250b5e08 [stream]
+[debug] [2026-04-17T13:12:40.449Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a 200
+[debug] [2026-04-17T13:12:40.449Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/77807a239c335eb6243b8ba660f18ffc73ca78c2ada3f204ca979ed2de4aa28a [stream]
+[debug] [2026-04-17T13:12:40.454Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee 200
+[debug] [2026-04-17T13:12:40.454Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/a8b655eb952fbb3934a84a8d43388ba63f1f010e65614f1d02a47c529955dbee [stream]
+[debug] [2026-04-17T13:12:40.464Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba 200
+[debug] [2026-04-17T13:12:40.464Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/ce0c16f917f92beab9dcaff93c253cc8acb453ab22266d7d7e6385a40dfc47ba [stream]
+[debug] [2026-04-17T13:12:40.505Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091 200
+[debug] [2026-04-17T13:12:40.506Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/6fcaceacdd671dc6b531f6588f34c16dd2078c62614cafda0ee32c7e3756a091 [stream]
+[debug] [2026-04-17T13:12:40.518Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c 200
+[debug] [2026-04-17T13:12:40.519Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/e8cebf8f4cccb2b7c65215a6d832f3fdfab99810cab5ca1d31c5e82d1b9e242c [stream]
+[debug] [2026-04-17T13:12:40.519Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c 200
+[debug] [2026-04-17T13:12:40.519Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/05224dc817f36f7996e9f88b50edd21363f725a7b08be7ad92954e54599d1e0c [stream]
+[debug] [2026-04-17T13:12:40.554Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd 200
+[debug] [2026-04-17T13:12:40.554Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/124b4a77be15bc8c9fe660d6f1a84d67fb1abe833d3a4dc2681b87635706b5dd [stream]
+[debug] [2026-04-17T13:12:40.586Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7 200
+[debug] [2026-04-17T13:12:40.586Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/d788e0c250b71ded26fe946ec79f10d51a7d57c0c79326fd085636b92e150cd7 [stream]
+[debug] [2026-04-17T13:12:40.595Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0 200
+[debug] [2026-04-17T13:12:40.595Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/642c657fd28b0e8842fce9bf4e020e18726ccbc390057b79aa896e6b695244f0 [stream]
+[debug] [2026-04-17T13:12:40.715Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d 200
+[debug] [2026-04-17T13:12:40.715Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/0539c6c70f7227645012231628c0e5c687df2c82a3a5690448cbd393d9c62e5d [stream]
+[debug] [2026-04-17T13:12:40.734Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28 200
+[debug] [2026-04-17T13:12:40.734Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/cd0b94b97e6c1f401ed3df6040d7906a8d4614567210011747f14fcc02ed5a28 [stream]
+[debug] [2026-04-17T13:12:40.755Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407 200
+[debug] [2026-04-17T13:12:40.755Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/facturacion-dd/versions/8d68a98c1e9c4405/files/36edd059ae8f7d0707f4e5c1b5ba1195f667cf23c4bae75c48086c9c8f4a2407 [stream]
+[debug] [2026-04-17T13:12:40.756Z] [hosting][upload queue][FINAL] {"max":1288,"min":866,"avg":1012.695652173913,"active":0,"complete":23,"success":23,"errored":0,"retried":0,"total":23,"elapsed":1290}
+[info] i  hosting: upload complete 
+[info] +  hosting[facturacion-dd]: file upload complete 
+[debug] [2026-04-17T13:12:40.756Z] [hosting] deploy completed after 1882ms
+[debug] [2026-04-17T13:12:40.756Z] [rules] releasing cloud.firestore/(default) with ruleset projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2
+[debug] [2026-04-17T13:12:40.757Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:40.757Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:40.757Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) [none]
+[debug] [2026-04-17T13:12:40.757Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"release":{"name":"projects/facturacion-dd/releases/cloud.firestore/(default)","rulesetName":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2"}}
+[debug] [2026-04-17T13:12:41.091Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) 200
+[debug] [2026-04-17T13:12:41.091Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/facturacion-dd/releases/cloud.firestore/(default) {"name":"projects/facturacion-dd/releases/cloud.firestore","rulesetName":"projects/facturacion-dd/rulesets/c273131b-4de7-4394-9440-cdce58272ae2","createTime":"2026-04-17T12:36:59.347402Z","updateTime":"2026-04-17T13:12:41.917134Z"}
+[debug] [2026-04-17T13:12:41.091Z] [rules] updated release projects/facturacion-dd/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2026-04-17T13:12:41.091Z] [
+  {
+    "config": {
+      "public": "dist/frontend/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "facturacion-dd"
+    },
+    "version": "projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405"
+  }
+]
+[info] i  hosting[facturacion-dd]: finalizing version... 
+[debug] [2026-04-17T13:12:41.092Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:41.092Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:41.092Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/8d68a98c1e9c4405 updateMask=status%2Cconfig
+[debug] [2026-04-17T13:12:41.092Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/8d68a98c1e9c4405 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-04-17T13:12:41.711Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/8d68a98c1e9c4405 200
+[debug] [2026-04-17T13:12:41.711Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/versions/8d68a98c1e9c4405 {"name":"projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T13:12:38.339852Z","createUser":{"email":"anosbel@gmail.com"},"finalizeTime":"2026-04-17T13:12:42.488125Z","finalizeUser":{"email":"anosbel@gmail.com"}}
+[debug] [2026-04-17T13:12:41.711Z] [hosting] finalized version for facturacion-dd:[object Object]
+[info] +  hosting[facturacion-dd]: version finalized 
+[info] i  hosting[facturacion-dd]: releasing new version... 
+[debug] [2026-04-17T13:12:41.712Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:41.712Z] Checked if tokens are valid: true, expires at: 1776435149447
+[debug] [2026-04-17T13:12:41.712Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases versionName=projects%2F586057447376%2Fsites%2Ffacturacion-dd%2Fversions%2F8d68a98c1e9c4405
+[debug] [2026-04-17T13:12:41.712Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {}
+[debug] [2026-04-17T13:12:42.307Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases 200
+[debug] [2026-04-17T13:12:42.307Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/facturacion-dd/channels/live/releases {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776431562408000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T13:12:38.339852Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T13:12:42.488125Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T13:12:42.408Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[debug] [2026-04-17T13:12:42.307Z] [hosting] release: {"name":"projects/586057447376/sites/facturacion-dd/channels/live/releases/1776431562408000","version":{"name":"projects/586057447376/sites/facturacion-dd/versions/8d68a98c1e9c4405","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-04-17T13:12:38.339852Z","createUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"},"finalizeTime":"2026-04-17T13:12:42.488125Z","finalizeUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}},"type":"DEPLOY","releaseTime":"2026-04-17T13:12:42.408Z","releaseUser":{"email":"anosbel@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocKvM8JMXtOVBPnLlBvYWrZKjNM_BF3QVccAY9AJhscjXpoao4Ex"}}
+[info] +  hosting[facturacion-dd]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/facturacion-dd/overview
+[info] Hosting URL: https://facturacion-dd.web.app

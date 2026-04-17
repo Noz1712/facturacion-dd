@@ -1,0 +1,146 @@
+<section class="movements-grid">
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Filtros</p>
+        <h2>Filtrar por fecha</h2>
+      </div>
+    </div>
+
+    <div class="filters-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Desde</mat-label>
+        <input
+          matInput
+          placeholder="DD/MM/YYYY"
+          [value]="filters().from"
+          (input)="updateFilter('from', $any($event.target).value)"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hasta</mat-label>
+        <input
+          matInput
+          placeholder="DD/MM/YYYY"
+          [value]="filters().to"
+          (input)="updateFilter('to', $any($event.target).value)"
+        />
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Por generar</p>
+        <h2>Recurrencias proximas</h2>
+      </div>
+      @if (loading()) {
+        <mat-spinner diameter="24" />
+      }
+    </div>
+
+    @if (upcomingRecurrences().length) {
+      <div class="movement-list">
+        @for (item of upcomingRecurrences(); track item.recurrence.id + item.periodKey) {
+          <article class="movement-item">
+            <div class="movement-main">
+              <h3>{{ item.recurrence.clientName }}</h3>
+              <p>Recurrencia {{ item.recurrence.number }}</p>
+              <p>Se genera el {{ item.nextGenerateDate | date: 'dd/MM/yyyy' }}</p>
+              <div class="line-list">
+                @for (line of item.recurrence.items; track line.name + line.amount) {
+                  <span>{{ line.name }} | {{ currencySymbol(item.recurrence.currency) }} {{ line.amount | number: '1.2-2' }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="movement-side">
+              <strong>{{ currencySymbol(item.recurrence.currency) }} {{ item.recurrence.amount | number: '1.2-2' }}</strong>
+              <button
+                mat-flat-button
+                type="button"
+                class="primary-button"
+                [disabled]="item.alreadyGenerated"
+                (click)="generateNow(item)"
+              >
+                {{ item.alreadyGenerated ? 'Ya generada' : 'Generar ahora' }}
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>event_busy</mat-icon>
+        <p>No hay recurrencias cercanas por generar.</p>
+      </div>
+    }
+  </mat-card>
+
+  <mat-card class="panel-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Generadas</p>
+        <h2>Facturas emitidas desde recurrencias</h2>
+      </div>
+    </div>
+
+    @if (recentGeneratedInvoices().length) {
+      <div class="movement-list">
+        @for (invoice of recentGeneratedInvoices(); track invoice.id) {
+          <article class="movement-item generated-item">
+            <div class="movement-main">
+              <h3>{{ invoice.clientName }}</h3>
+              <p>{{ invoice.recurrenceCode }} | {{ invoice.issueDate | date: 'dd/MM/yyyy' }}</p>
+              <div class="line-list">
+                @for (line of invoice.items; track line.name + line.amount) {
+                  <span>{{ line.name }} | {{ currencySymbol(invoice.currency) }} {{ line.amount | number: '1.2-2' }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="payment-panel">
+              <strong>{{ currencySymbol(invoice.currency) }} {{ invoice.amount | number: '1.2-2' }}</strong>
+
+              <mat-form-field appearance="outline">
+                <mat-label>No. transaccion</mat-label>
+                <input
+                  matInput
+                  [value]="getDraft(invoice).transactionNumber"
+                  (input)="updateDraft(invoice, { transactionNumber: $any($event.target).value })"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Estado</mat-label>
+                <mat-select
+                  [value]="getDraft(invoice).status"
+                  (selectionChange)="updateDraft(invoice, { status: $event.value })"
+                >
+                  <mat-option value="Pendiente">Pendiente</mat-option>
+                  <mat-option value="Pagada">Pagada</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="payment-actions">
+                <button mat-flat-button type="button" class="primary-button" (click)="savePayment(invoice)">
+                  Guardar movimiento
+                </button>
+                <button mat-stroked-button type="button" (click)="revert(invoice.id)">
+                  Revertir
+                </button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>receipt_long</mat-icon>
+        <p>Aun no has generado facturas desde recurrencias.</p>
+      </div>
+    }
+  </mat-card>
+</section>

@@ -1,0 +1,6 @@
+<mat-card class="profile-card" appearance="outlined">
+  <mat-icon>account_circle</mat-icon>
+  <h2>Perfil</h2>
+  <p><strong>Nombre:</strong> {{ user()?.displayName || 'Sin nombre' }}</p>
+  <p><strong>Correo:</strong> {{ user()?.email || 'Sin correo' }}</p>
+</mat-card>

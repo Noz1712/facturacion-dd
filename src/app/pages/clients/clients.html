@@ -1,0 +1,104 @@
+<section class="clients-grid">
+  <mat-card class="form-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Cliente</p>
+        <h2>{{ isEditing() ? 'Editar cliente' : 'Nuevo cliente' }}</h2>
+      </div>
+      <mat-icon>groups</mat-icon>
+    </div>
+
+    <form class="client-form" [formGroup]="form" (ngSubmit)="saveClient()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>RUC</mat-label>
+        <input matInput formControlName="ruc" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Direccion</mat-label>
+        <textarea matInput rows="3" formControlName="address"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Responsable</mat-label>
+        <input matInput formControlName="manager" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correos de facturacion</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          formControlName="billingEmails"
+          placeholder="correo1@empresa.com, correo2@empresa.com"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-flat-button type="submit" class="save-button">
+          {{ isEditing() ? 'Actualizar cliente' : 'Guardar cliente' }}
+        </button>
+
+        @if (isEditing()) {
+          <button mat-stroked-button type="button" (click)="cancelEdit()">
+            Cancelar
+          </button>
+        }
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-card class="list-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Listado</p>
+        <h2>Clientes registrados</h2>
+      </div>
+      @if (loading()) {
+        <mat-spinner diameter="24" />
+      }
+    </div>
+
+    @if (clients().length) {
+      <div class="clients-list">
+        @for (client of clients(); track client.id) {
+          <article class="client-item">
+            <div class="client-main">
+              <h3>{{ client.name }}</h3>
+              <p><strong>RUC:</strong> {{ client.ruc }}</p>
+              <p><strong>Direccion:</strong> {{ client.address }}</p>
+              <p><strong>Responsable:</strong> {{ client.manager }}</p>
+              <div class="email-block">
+                <strong>Correos:</strong>
+                <div class="email-list">
+                  @for (email of client.billingEmails; track email) {
+                    <span class="email-chip">{{ email }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="client-actions">
+              <button mat-stroked-button type="button" (click)="editClient(client)">
+                Editar
+              </button>
+              <button mat-flat-button type="button" class="delete-button" (click)="deleteClient(client.id)">
+                Eliminar
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>person_add</mat-icon>
+        <p>Aun no has registrado clientes.</p>
+      </div>
+    }
+  </mat-card>
+</section>

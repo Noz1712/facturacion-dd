@@ -1,0 +1,54 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav class="shell-nav" mode="side" opened>
+    <div class="brand-block">
+      <div class="brand-mark">FD</div>
+      <div>
+        <strong>Facturacion DD</strong>
+        <p>Panel operativo</p>
+      </div>
+    </div>
+
+    <mat-nav-list>
+      @for (item of menuItems; track item.route) {
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+          @if (item.label === 'Recurrencias') {
+            <span class="nav-count">{{ invoiceCount() }}</span>
+          }
+          @if (item.label === 'Movimiento') {
+            <span class="nav-count">{{ movementCount() }}</span>
+          }
+        </a>
+      }
+    </mat-nav-list>
+
+    <div class="user-panel">
+      <div>
+        <strong>{{ user()?.displayName || 'Usuario' }}</strong>
+        <p>{{ user()?.email }}</p>
+      </div>
+
+      <button mat-stroked-button type="button" (click)="logout()">
+        Cerrar sesion
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="shell-toolbar">
+      <div>
+        <p class="toolbar-label">Seguimiento</p>
+        <h1>Menu principal</h1>
+      </div>
+    </mat-toolbar>
+
+    <main class="shell-content">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

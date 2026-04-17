@@ -1,0 +1,95 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 420px);
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem;
+  background:
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.28), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.24), transparent 28%),
+    linear-gradient(135deg, #fcfbff 0%, #f4eeff 55%, #efe7ff 100%);
+}
+
+.hero-copy {
+  max-width: 40rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand-700);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--brand-950);
+}
+
+.supporting-text {
+  margin: 1.5rem 0 0;
+  max-width: 32rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+.login-card {
+  padding: 2rem;
+  border-radius: 28px;
+  border-color: rgba(76, 29, 149, 0.12);
+  background: var(--surface-strong);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 90px rgba(76, 29, 149, 0.16);
+}
+
+.card-badge {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-900));
+  color: #fff;
+}
+
+h2 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.8rem;
+  color: var(--brand-950);
+}
+
+.login-card p {
+  margin: 0 0 1.75rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.google-button {
+  width: 100%;
+  min-height: 3.5rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand-900), var(--brand-500));
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .login-card {
+    max-width: 28rem;
+  }
+}

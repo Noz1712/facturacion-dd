@@ -1,0 +1,95 @@
+.shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(168, 85, 247, 0.2), transparent 18%),
+    linear-gradient(180deg, #fcfbff 0%, #f3edff 100%);
+}
+
+.shell-nav {
+  width: 300px;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid rgba(76, 29, 149, 0.08);
+  background: linear-gradient(180deg, #4c1d95 0%, #6d28d9 48%, #7c3aed 100%);
+  color: #faf5ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.brand-mark {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ede9fe, #f5d0fe);
+  color: var(--brand-900);
+  font-weight: 700;
+}
+
+.brand-block p,
+.user-panel p,
+.toolbar-label {
+  margin: 0;
+  opacity: 0.72;
+}
+
+.active-link {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.nav-count {
+  margin-left: auto;
+  min-width: 2rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+}
+
+.user-panel {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.user-panel button {
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: 999px;
+}
+
+.shell-toolbar {
+  min-height: 96px;
+  padding: 1.5rem 2rem;
+  background: transparent;
+}
+
+.shell-toolbar h1 {
+  margin: 0.2rem 0 0;
+  font-size: 1.8rem;
+  color: var(--brand-950);
+}
+
+.shell-content {
+  padding: 0 2rem 2rem;
+}
+
+@media (max-width: 960px) {
+  .shell-nav {
+    width: 260px;
+  }
+
+  .shell-content,
+  .shell-toolbar {
+    padding-inline: 1rem;
+  }
+}

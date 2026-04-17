@@ -1,0 +1,24 @@
+.profile-card {
+  min-height: 280px;
+  border-radius: 24px;
+  border-color: rgba(76, 29, 149, 0.08);
+  background: var(--surface-strong);
+  box-shadow: 0 24px 50px rgba(76, 29, 149, 0.09);
+  padding: 2rem;
+}
+
+.profile-card mat-icon {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--brand-700);
+}
+
+.profile-card h2 {
+  margin: 0.75rem 0 1rem;
+  color: var(--brand-950);
+}
+
+.profile-card p {
+  color: var(--text-soft);
+}

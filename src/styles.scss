@@ -1,0 +1,51 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$facturacion-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$violet-palette,
+    tertiary: mat.$magenta-palette,
+  ),
+  typography: (
+    brand-family: 'Space Grotesk, "Segoe UI", sans-serif',
+    plain-family: 'Space Grotesk, "Segoe UI", sans-serif',
+  ),
+));
+
+html {
+  @include mat.all-component-themes($facturacion-theme);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  color: #24153d;
+  background:
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.18), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.16), transparent 20%),
+    linear-gradient(180deg, #fcfbff 0%, #f5f0ff 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --brand-950: #2d1066;
+  --brand-900: #4c1d95;
+  --brand-700: #7c3aed;
+  --brand-500: #a855f7;
+  --brand-300: #d8b4fe;
+  --brand-100: #f3e8ff;
+  --surface-strong: #ffffffd9;
+  --surface-soft: #f7f1ff;
+  --text-strong: #24153d;
+  --text-soft: #665a7c;
+}

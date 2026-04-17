@@ -1,0 +1,162 @@
+<section class="invoice-grid">
+  <mat-card class="summary-card" appearance="outlined">
+    <p class="section-label">Resumen</p>
+    <div class="summary-metrics">
+      <div>
+        <span class="metric-label">Recurrencias activas</span>
+        <strong>{{ invoices().length }}</strong>
+      </div>
+      <div>
+        <span class="metric-label">Programado en C$</span>
+        <strong>C$ {{ nioTotal() | number: '1.2-2' }}</strong>
+      </div>
+      <div>
+        <span class="metric-label">Programado en $</span>
+        <strong>$ {{ usdTotal() | number: '1.2-2' }}</strong>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="form-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Nueva recurrencia</p>
+        <h2>Programar generacion mensual</h2>
+      </div>
+      <mat-icon>event_repeat</mat-icon>
+    </div>
+
+    <form class="invoice-form" [formGroup]="form" (ngSubmit)="saveInvoice()">
+      <mat-form-field appearance="outline">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="clientId">
+          @for (client of clients(); track client.id) {
+            <mat-option [value]="client.id">{{ client.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Moneda</mat-label>
+        <mat-select formControlName="currency">
+          <mat-option value="NIO">C$ Cordoba</mat-option>
+          <mat-option value="USD">$ Dolar</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de inicio</mat-label>
+        <input matInput formControlName="issueDateDisplay" placeholder="DD/MM/YYYY" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Dia del mes a generar</mat-label>
+        <input matInput type="number" min="1" max="31" formControlName="recurringDay" />
+      </mat-form-field>
+
+      <div class="full-width items-panel" formArrayName="items">
+        <div class="items-header">
+          <div>
+            <p class="section-label">Detalle</p>
+            <h3>Lineas que se generaran</h3>
+          </div>
+          <button mat-stroked-button type="button" (click)="addItem()">
+            Agregar linea
+          </button>
+        </div>
+
+        <div class="item-list">
+          @for (item of items.controls; track $index) {
+            <div class="item-row" [formGroupName]="$index">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Monto</mat-label>
+                <input matInput type="number" min="0.01" step="0.01" formControlName="amount" />
+              </mat-form-field>
+
+              <button
+                mat-icon-button
+                type="button"
+                class="remove-item-button"
+                [disabled]="items.length === 1"
+                (click)="removeItem($index)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
+        </div>
+
+        <div class="items-total">
+          <span>Total calculado</span>
+          <strong>{{ currencySymbol(form.controls.currency.value) }} {{ draftAmount() | number: '1.2-2' }}</strong>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Notas</mat-label>
+        <textarea matInput rows="4" formControlName="notes"></textarea>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" class="save-button">
+        Guardar recurrencia
+      </button>
+    </form>
+  </mat-card>
+
+  <mat-card class="table-card" appearance="outlined">
+    <div class="card-header">
+      <div>
+        <p class="section-label">Programadas</p>
+        <h2>Recurrencias guardadas</h2>
+      </div>
+
+      @if (loading()) {
+        <mat-spinner diameter="24" />
+      }
+    </div>
+
+    @if (invoices().length) {
+      <table mat-table [dataSource]="invoices()" class="invoice-table">
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
+          <td mat-cell *matCellDef="let invoice">{{ invoice.number }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="clientName">
+          <th mat-header-cell *matHeaderCellDef>Cliente</th>
+          <td mat-cell *matCellDef="let invoice">{{ invoice.clientName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="recurringDay">
+          <th mat-header-cell *matHeaderCellDef>Generacion</th>
+          <td mat-cell *matCellDef="let invoice">Dia {{ invoice.recurringDay }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef>Moneda</th>
+          <td mat-cell *matCellDef="let invoice">{{ currencySymbol(invoice.currency) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let invoice">
+            {{ currencySymbol(invoice.currency) }} {{ invoice.amount | number: '1.2-2' }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>inventory_2</mat-icon>
+        <p>Aun no has programado recurrencias.</p>
+      </div>
+    }
+  </mat-card>
+</section>

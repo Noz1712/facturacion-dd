@@ -1,0 +1,33 @@
+<section class="login-page">
+  <div class="hero-copy">
+    <p class="eyebrow">Facturacion DD</p>
+    <h1>Controla tus facturas en un solo panel.</h1>
+    <p class="supporting-text">
+      Inicia sesion con Google para registrar, consultar y dar seguimiento a tus
+      cobros desde Firestore.
+    </p>
+  </div>
+
+  <mat-card class="login-card" appearance="outlined">
+    <div class="card-badge">
+      <mat-icon>receipt_long</mat-icon>
+    </div>
+    <h2>Entrar al sistema</h2>
+    <p>Usa tu cuenta de Google autorizada en Firebase Authentication.</p>
+
+    <button
+      mat-flat-button
+      class="google-button"
+      type="button"
+      [disabled]="submitting() || checkingSession()"
+      (click)="loginWithGoogle()"
+    >
+      @if (submitting() || checkingSession()) {
+        <mat-spinner diameter="20" />
+      } @else {
+        <mat-icon>login</mat-icon>
+      }
+      Continuar con Google
+    </button>
+  </mat-card>
+</section>

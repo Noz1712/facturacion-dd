@@ -653,14 +653,16 @@ export class MovementsPage {
     doc.setTextColor(...textSoft);
     doc.text(`Moneda: ${invoice.currency}`, 18, 64.8);
     doc.text(`Tel: ${this.companyProfile()?.phone?.trim() || '-'}`, 18, 70.2, { maxWidth: 80 });
-    doc.text(`Codigo: ${clientCode}`, 112, 64.8, { maxWidth: 80 });
-    doc.text(`Telefono: ${clientPhone}`, 112, 70.2, { maxWidth: 80 });
+    if (clientRuc) {
+      doc.text(`RUC: ${clientRuc}`, 112, 64.8, { maxWidth: 80 });
+      doc.text(`Codigo: ${clientCode}`, 112, 70.2, { maxWidth: 80 });
+    } else {
+      doc.text(`Codigo: ${clientCode}`, 112, 64.8, { maxWidth: 80 });
+      doc.text(`Telefono: ${clientPhone}`, 112, 70.2, { maxWidth: 80 });
+    }
 
     doc.setFontSize(8.3);
     doc.text(`Contacto: ${clientManager}`, 112, 75, { maxWidth: 80 });
-    if (clientRuc) {
-      doc.text(`RUC: ${clientRuc}`, 18, 75, { maxWidth: 80 });
-    }
 
     return 86;
   }

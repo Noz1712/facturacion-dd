@@ -15,6 +15,7 @@ import { firestore } from '../firebase';
 import { GeneratedInvoice } from '../models/generated-invoice.model';
 import { Invoice } from '../models/invoice.model';
 import { Notifications } from './notifications';
+import { toLocalIsoDate, toPeriodKey } from '../utils/recurrence-schedule';
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +57,7 @@ export class GeneratedInvoices {
   }
 
   async generateNow(recurrence: Invoice, scheduledDate: Date, paymentTermDays = 0) {
-    const periodKey = `${scheduledDate.getFullYear()}-${String(scheduledDate.getMonth() + 1).padStart(2, '0')}`;
+    const periodKey = toPeriodKey(scheduledDate);
     const alreadyGenerated = this.items().some(
       (item) => item.recurrenceId === recurrence.id && item.periodKey === periodKey,
     );
@@ -66,7 +67,7 @@ export class GeneratedInvoices {
       return;
     }
 
-    const today = new Date().toISOString().slice(0, 10);
+    const today = toLocalIsoDate(new Date());
     const dueDate = this.addDaysToIso(today, paymentTermDays);
     const invoiceCode = this.buildInvoiceCode(recurrence.clientCode, recurrence.clientId);
     const chargeTotal = this.getChargeTotal(recurrence);
@@ -84,7 +85,7 @@ export class GeneratedInvoices {
         currency: recurrence.currency,
         issueDate: today,
         dueDate,
-        scheduledDate: scheduledDate.toISOString().slice(0, 10),
+        scheduledDate: toLocalIsoDate(scheduledDate),
         periodKey,
         items: recurrence.items,
         chargeTotal,

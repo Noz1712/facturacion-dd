@@ -22,12 +22,15 @@ import { CompanyProfileService } from '../../core/services/company-profile';
 import { GeneratedInvoices } from '../../core/services/generated-invoices';
 import { Invoices } from '../../core/services/invoices';
 import { Notifications } from '../../core/services/notifications';
+import { getRecurrenceSchedule } from '../../core/utils/recurrence-schedule';
 
 interface UpcomingRecurrence {
   recurrence: Invoice;
   nextGenerateDate: Date;
   periodKey: string;
-  alreadyGenerated: boolean;
+  overdue: boolean;
+  /** True when an older pending period of the same recurrence must be generated first. */
+  blocked: boolean;
 }
 
 @Component({
@@ -91,28 +94,30 @@ export class MovementsPage {
     items: this.formBuilder.array([this.createManualItemGroup()]),
     notes: [''],
   });
-  readonly upcomingRecurrences = computed<UpcomingRecurrence[]>(() =>
-    [...this.recurrences()]
-      .map((recurrence) => {
-        const nextGenerateDate = this.getNextGenerateDate(recurrence.recurringDay);
-        const periodKey = `${nextGenerateDate.getFullYear()}-${String(nextGenerateDate.getMonth() + 1).padStart(2, '0')}`;
-        const alreadyGenerated = this.generatedInvoices().some(
-          (generated) =>
-            generated.recurrenceId === recurrence.id && generated.periodKey === periodKey,
-        );
+  readonly upcomingRecurrences = computed<UpcomingRecurrence[]>(() => {
+    const generated = this.generatedInvoices();
 
-        return {
+    return this.recurrences()
+      .flatMap((recurrence) => {
+        const { pending, next } = getRecurrenceSchedule(recurrence, generated);
+        const periods = pending.length ? pending : next ? [next] : [];
+
+        return periods.map((period, index) => ({
           recurrence,
-          nextGenerateDate,
-          periodKey,
-          alreadyGenerated,
-        };
+          nextGenerateDate: period.date,
+          periodKey: period.periodKey,
+          overdue: period.overdue,
+          blocked: index > 0,
+        }));
       })
-      .filter((item) => !item.alreadyGenerated)
       .filter((item) => this.matchesRange(item.nextGenerateDate))
-      .sort((left, right) => left.nextGenerateDate.getTime() - right.nextGenerateDate.getTime())
-      .slice(0, 8),
-  );
+      .sort(
+        (left, right) =>
+          left.nextGenerateDate.getTime() - right.nextGenerateDate.getTime() ||
+          left.recurrence.clientName.localeCompare(right.recurrence.clientName),
+      )
+      .slice(0, 30);
+  });
   readonly recentGeneratedInvoices = computed(() =>
     this.generatedInvoices()
       .filter((invoice) => this.matchesRange(this.isoToDate(invoice.issueDate)))
@@ -1017,25 +1022,5 @@ export class MovementsPage {
   private isoToDate(value: string) {
     const [year, month, day] = value.split('-').map(Number);
     return new Date(year, month - 1, day);
-  }
-
-  private getNextGenerateDate(day: number) {
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth();
-    const currentDay = today.getDate();
-
-    const safeCurrentMonthDay = Math.min(day, new Date(currentYear, currentMonth + 1, 0).getDate());
-    if (safeCurrentMonthDay >= currentDay) {
-      return new Date(currentYear, currentMonth, safeCurrentMonthDay);
-    }
-
-    const nextMonthDate = new Date(currentYear, currentMonth + 1, 1);
-    const safeNextMonthDay = Math.min(
-      day,
-      new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth() + 1, 0).getDate(),
-    );
-
-    return new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), safeNextMonthDay);
   }
 }

@@ -66,7 +66,12 @@
             <div class="movement-main">
               <h3>{{ item.recurrence.clientName }}</h3>
               <p>Recurrencia {{ item.recurrence.number }}</p>
-              <p>Se genera el {{ item.nextGenerateDate | date: 'dd/MM/yyyy' }}</p>
+              <p>
+                {{ item.overdue ? 'Pendiente desde el' : 'Se genera el' }} {{ item.nextGenerateDate | date: 'dd/MM/yyyy' }}
+                @if (item.overdue) {
+                  <span class="status-tag overdue">Atrasada</span>
+                }
+              </p>
               <div class="line-list">
                 @for (line of item.recurrence.items; track line.name + lineCharge(line)) {
                   <span>
@@ -85,10 +90,10 @@
                 mat-flat-button
                 type="button"
                 class="primary-button"
-                [disabled]="item.alreadyGenerated"
+                [disabled]="item.blocked"
                 (click)="generateNow(item)"
               >
-                {{ item.alreadyGenerated ? 'Ya generada' : 'Generar ahora' }}
+                {{ item.blocked ? 'Genera la anterior primero' : 'Generar ahora' }}
               </button>
             </div>
           </article>

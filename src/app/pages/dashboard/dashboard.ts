@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CurrencyCode, Invoice } from '../../core/models/invoice.model';
 import { GeneratedInvoices } from '../../core/services/generated-invoices';
 import { Invoices } from '../../core/services/invoices';
+import { getNextRecurrencePeriod } from '../../core/utils/recurrence-schedule';
 
 interface ClientSummary {
   clientName: string;
@@ -22,6 +23,7 @@ interface UpcomingCharge {
   margin: number;
   currency: CurrencyCode;
   nextChargeDate: Date;
+  overdue: boolean;
 }
 
 @Component({
@@ -73,15 +75,19 @@ export class DashboardPage {
   );
   readonly upcomingCharges = computed<UpcomingCharge[]>(() =>
     [...this.invoices()]
-      .map((invoice) => ({
-        number: invoice.number,
-        clientName: invoice.clientName,
-        recurringDay: invoice.recurringDay,
-        chargeTotal: this.chargeTotal(invoice),
-        margin: this.margin(invoice),
-        currency: invoice.currency,
-        nextChargeDate: this.getNextChargeDate(invoice.recurringDay),
-      }))
+      .map((invoice) => {
+        const period = getNextRecurrencePeriod(invoice, this.generatedInvoices());
+        return {
+          number: invoice.number,
+          clientName: invoice.clientName,
+          recurringDay: invoice.recurringDay,
+          chargeTotal: this.chargeTotal(invoice),
+          margin: this.margin(invoice),
+          currency: invoice.currency,
+          nextChargeDate: period?.date ?? new Date(),
+          overdue: period?.overdue ?? false,
+        };
+      })
       .sort((left, right) => left.nextChargeDate.getTime() - right.nextChargeDate.getTime())
       .slice(0, 5),
   );
@@ -114,25 +120,5 @@ export class DashboardPage {
     return source
       .filter((invoice) => invoice.currency === currency)
       .reduce((sum, invoice) => sum + this.chargeTotal(invoice), 0);
-  }
-
-  private getNextChargeDate(day: number) {
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth();
-    const currentDay = today.getDate();
-
-    const safeCurrentMonthDay = Math.min(day, new Date(currentYear, currentMonth + 1, 0).getDate());
-    if (safeCurrentMonthDay >= currentDay) {
-      return new Date(currentYear, currentMonth, safeCurrentMonthDay);
-    }
-
-    const nextMonthDate = new Date(currentYear, currentMonth + 1, 1);
-    const safeNextMonthDay = Math.min(
-      day,
-      new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth() + 1, 0).getDate(),
-    );
-
-    return new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), safeNextMonthDay);
   }
 }

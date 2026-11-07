@@ -87,7 +87,7 @@
               <p>Recurrencia {{ charge.number }} | Dia {{ charge.recurringDay }}</p>
             </div>
             <div class="list-meta">
-              <span>{{ charge.nextChargeDate | date: 'dd/MM/yyyy' }}</span>
+              <span>{{ charge.overdue ? 'Atrasada · ' : '' }}{{ charge.nextChargeDate | date: 'dd/MM/yyyy' }}</span>
               <strong>{{ currencySymbol(charge.currency) }} {{ chargeTotal(charge) | number: '1.2-2' }}</strong>
               <small>Margen: {{ currencySymbol(charge.currency) }} {{ margin(charge) | number: '1.2-2' }}</small>
             </div>

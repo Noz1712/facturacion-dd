@@ -7,6 +7,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  serverTimestamp,
   updateDoc,
   where,
 } from 'firebase/firestore';
@@ -94,6 +95,7 @@ export class GeneratedInvoices {
         status: 'Pendiente',
         transactionNumber: '',
         notes: recurrence.notes ?? '',
+        createdAt: serverTimestamp(),
       });
       this.notifications.success('Factura generada correctamente.');
     } catch {
@@ -156,6 +158,7 @@ export class GeneratedInvoices {
         status: 'Pendiente',
         transactionNumber: '',
         notes: payload.notes ?? '',
+        createdAt: serverTimestamp(),
       });
       this.notifications.success('Factura manual registrada correctamente.');
     } catch {
@@ -180,7 +183,12 @@ export class GeneratedInvoices {
     const chargeTotal = payload.items.reduce((sum, item) => sum + Number(item.charge || 0), 0);
     const costTotal = payload.items.reduce((sum, item) => sum + Number(item.cost || 0), 0);
     const margin = chargeTotal - costTotal;
-    const invoiceCode = this.buildInvoiceCode(payload.clientCode, payload.clientId);
+    const current = this.items().find((item) => item.id === invoiceId);
+    // Keep the number already given to the client; only renumber if the client changed.
+    const invoiceCode =
+      current?.invoiceCode && current.clientId === payload.clientId
+        ? current.invoiceCode
+        : this.buildInvoiceCode(payload.clientCode, payload.clientId);
 
     try {
       await updateDoc(doc(firestore, 'generatedInvoices', invoiceId), {
@@ -241,7 +249,7 @@ export class GeneratedInvoices {
 
   private buildInvoiceCode(clientCode: string | undefined, clientId: string) {
     const safeClientCode = this.getClientCode(clientCode, clientId);
-    const sequence = this.getClientSequence(clientId);
+    const sequence = this.getClientSequence(clientId, safeClientCode);
     return `${safeClientCode}${sequence}`;
   }
 
@@ -251,9 +259,20 @@ export class GeneratedInvoices {
     return shortCode || 'CLIENT';
   }
 
-  private getClientSequence(clientId: string) {
-    const count = this.items().filter((item) => item.clientId === clientId).length;
-    return String(count + 1).padStart(5, '0');
+  private getClientSequence(clientId: string, clientCode: string) {
+    const clientInvoices = this.items().filter((item) => item.clientId === clientId);
+    // Use the highest number already issued (not the count) so deleted/reverted
+    // invoices never cause a repeated number.
+    const highest = clientInvoices.reduce((max, item) => {
+      const code = item.invoiceCode ?? '';
+      if (!code.startsWith(clientCode)) {
+        return max;
+      }
+      const value = Number(code.slice(clientCode.length));
+      return Number.isFinite(value) ? Math.max(max, value) : max;
+    }, 0);
+    const next = Math.max(highest, clientInvoices.length) + 1;
+    return String(next).padStart(5, '0');
   }
 
   private addDaysToIso(issueDate: string, days: number) {

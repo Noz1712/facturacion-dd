@@ -121,7 +121,14 @@ export class MovementsPage {
   readonly recentGeneratedInvoices = computed(() =>
     this.generatedInvoices()
       .filter((invoice) => this.matchesRange(this.isoToDate(invoice.issueDate)))
-      .slice(0, 10),
+      .sort((left, right) => {
+        // Pending first so they are never hidden, then newest first.
+        if (left.status !== right.status) {
+          return left.status === 'Pendiente' ? -1 : 1;
+        }
+        return right.issueDate.localeCompare(left.issueDate);
+      })
+      .slice(0, 50),
   );
 
   constructor() {
@@ -307,6 +314,16 @@ export class MovementsPage {
   }
 
   async revert(invoiceId: string) {
+    const invoice = this.generatedInvoices().find((item) => item.id === invoiceId);
+    const label = invoice?.invoiceCode ? ` ${invoice.invoiceCode}` : '';
+    const message =
+      invoice?.status === 'Pagada'
+        ? `La factura${label} ya esta PAGADA. Si la reviertes se elimina junto con su pago. ¿Continuar?`
+        : `¿Revertir (eliminar) la factura${label}? Esta accion no se puede deshacer.`;
+    if (!window.confirm(message)) {
+      return;
+    }
+
     try {
       await this.generatedInvoicesService.revert(invoiceId);
     } catch {
@@ -443,7 +460,8 @@ export class MovementsPage {
   downloadInvoicePdf(invoice: GeneratedInvoice) {
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const profile = this.companyProfile();
-    const issuer = this.auth.user()?.displayName || this.auth.user()?.email || 'Facturacion DD';
+    // Client-facing document: only charge prices are printed, never costs or margins.
+    const issuer = profile?.name?.trim() || this.auth.user()?.displayName || 'Facturacion DD';
     const chargeTotal = this.chargeTotal(invoice);
     const emittedInvoiceCode = invoice.invoiceCode || this.buildEmittedInvoiceCode(invoice);
 
@@ -470,6 +488,7 @@ export class MovementsPage {
         ];
       }),
       theme: 'striped',
+      margin: { top: 16, bottom: 32 },
       headStyles: {
         fillColor: [76, 29, 149],
         textColor: [255, 255, 255],
@@ -498,7 +517,7 @@ export class MovementsPage {
     const finalY = (doc as jsPDF & { lastAutoTable?: { finalY: number } }).lastAutoTable?.finalY ?? 70;
 
     const totalsEndY = this.drawTotalsCard(doc, invoice.currency, chargeTotal, finalY + 8);
-    this.drawBankAccountsSection(doc, totalsEndY + 8);
+    this.drawBankAccountsSection(doc, totalsEndY + 8, invoice.currency);
 
     this.drawCompanyFooter(doc);
 
@@ -637,7 +656,7 @@ export class MovementsPage {
     doc.setFont('helvetica', 'normal');
     doc.text(this.formatDate(invoice.issueDate), 194, 26.5, { align: 'right' });
     doc.text(this.formatDate(invoice.dueDate || invoice.issueDate), 194, 33, { align: 'right' });
-    doc.text(invoice.status, 194, 39.5, { align: 'right' });
+    doc.text(invoice.status === 'Pagada' ? 'Pagada' : 'Pendiente de pago', 194, 39.5, { align: 'right' });
 
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(221, 214, 254);
@@ -656,18 +675,19 @@ export class MovementsPage {
 
     doc.setFontSize(8.7);
     doc.setTextColor(...textSoft);
-    doc.text(`Moneda: ${invoice.currency}`, 18, 64.8);
-    doc.text(`Tel: ${this.companyProfile()?.phone?.trim() || '-'}`, 18, 70.2, { maxWidth: 80 });
-    if (clientRuc) {
-      doc.text(`RUC: ${clientRuc}`, 112, 64.8, { maxWidth: 80 });
-      doc.text(`Codigo: ${clientCode}`, 112, 70.2, { maxWidth: 80 });
-    } else {
-      doc.text(`Codigo: ${clientCode}`, 112, 64.8, { maxWidth: 80 });
-      doc.text(`Telefono: ${clientPhone}`, 112, 70.2, { maxWidth: 80 });
+    const profile = this.companyProfile();
+    doc.text(`Tel: ${profile?.phone?.trim() || '-'}  |  Moneda: ${invoice.currency}`, 18, 64.8, { maxWidth: 80 });
+    if (profile?.address?.trim()) {
+      doc.setFontSize(8.1);
+      const addressLines = doc.splitTextToSize(`Direccion: ${profile.address.trim()}`, 80).slice(0, 2);
+      doc.text(addressLines, 18, 70.2);
+      doc.setFontSize(8.7);
     }
-
-    doc.setFontSize(8.3);
-    doc.text(`Contacto: ${clientManager}`, 112, 75, { maxWidth: 80 });
+    doc.text(clientRuc ? `RUC: ${clientRuc}  |  Codigo: ${clientCode}` : `Codigo: ${clientCode}`, 112, 64.8, {
+      maxWidth: 80,
+    });
+    doc.text(`Tel: ${clientPhone}`, 112, 69.6, { maxWidth: 80 });
+    doc.text(`Contacto: ${clientManager}`, 112, 74.4, { maxWidth: 80 });
 
     return 86;
   }
@@ -691,8 +711,8 @@ export class MovementsPage {
     const matches = this.generatedInvoices()
       .filter((item) => item.clientId === invoice.clientId)
       .sort((left, right) => {
-        const leftTime = left.createdAt ? Date.parse(left.createdAt) : 0;
-        const rightTime = right.createdAt ? Date.parse(right.createdAt) : 0;
+        const leftTime = this.toMillis(left.createdAt);
+        const rightTime = this.toMillis(right.createdAt);
         if (leftTime !== rightTime) {
           return leftTime - rightTime;
         }
@@ -704,13 +724,25 @@ export class MovementsPage {
     return String(sequenceNumber).padStart(5, '0');
   }
 
-  private drawTotalsCard(doc: jsPDF, currency: CurrencyCode, total: number, y: number) {
-    const cardY = Math.max(y, 90);
+  private toMillis(value: unknown) {
+    if (value && typeof (value as { toMillis?: () => number }).toMillis === 'function') {
+      return (value as { toMillis: () => number }).toMillis();
+    }
+    const parsed = typeof value === 'string' ? Date.parse(value) : NaN;
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  private drawTotalsCard(doc: jsPDF, currency: CurrencyCode, total: number, y: number): number {
+    const cardY = doc.getNumberOfPages() > 1 ? y : Math.max(y, 90);
     const cardX = 124;
     const cardW = 72;
     const amountInWords = this.amountToSpanishWords(total, currency);
     const amountLines = doc.splitTextToSize(amountInWords, cardW - 8);
     const cardH = Math.max(28, 18 + amountLines.length * 4.2);
+    if (cardY + cardH > doc.internal.pageSize.getHeight() - 30) {
+      doc.addPage();
+      return this.drawTotalsCard(doc, currency, total, 20);
+    }
 
     doc.setFillColor(247, 241, 255);
     doc.setDrawColor(124, 58, 237);
@@ -731,18 +763,21 @@ export class MovementsPage {
     return cardY + cardH;
   }
 
-  private drawBankAccountsSection(doc: jsPDF, suggestedY: number) {
+  private drawBankAccountsSection(doc: jsPDF, suggestedY: number, currency: CurrencyCode) {
     const profile = this.companyProfile();
-    const accounts = profile?.bankAccounts ?? [];
+    const allAccounts = profile?.bankAccounts ?? [];
+    // Only accounts in the invoice currency; fall back to all if none match.
+    const sameCurrency = allAccounts.filter((account) => account.currency === currency);
+    const accounts = sameCurrency.length ? sameCurrency : allAccounts;
 
     if (!accounts.length) {
       return;
     }
 
-    let y = Math.max(suggestedY, 118);
+    let y = doc.getNumberOfPages() > 1 ? suggestedY : Math.max(suggestedY, 118);
     const pageHeight = doc.internal.pageSize.getHeight();
 
-    if (y > pageHeight - 56) {
+    if (y > pageHeight - 50) {
       doc.addPage();
       y = 20;
     }
@@ -871,8 +906,9 @@ export class MovementsPage {
 
   private amountToSpanishWords(amount: number, currency: CurrencyCode) {
     const safeAmount = Number.isFinite(amount) ? Math.max(0, amount) : 0;
-    const integerPart = Math.floor(safeAmount);
-    const decimalPart = Math.round((safeAmount - integerPart) * 100);
+    const cents = Math.round(safeAmount * 100);
+    const integerPart = Math.floor(cents / 100);
+    const decimalPart = cents % 100;
     const integerWords = this.integerToSpanishWords(integerPart);
     const currencyWord = currency === 'USD' ? 'dolares' : 'cordobas';
 
@@ -966,6 +1002,9 @@ export class MovementsPage {
       return `${hundreds[hundred]} ${tens[ten]}${separator}${units[unit]}`.trim();
     };
 
+    // "veintiuno mil" -> "veintiun mil", "ciento uno mil" -> "ciento un mil"
+    const apocope = (words: string) => words.replace(/uno$/, 'un');
+
     const millions = Math.floor(value / 1000000);
     const thousands = Math.floor((value % 1000000) / 1000);
     const remainder = value % 1000;
@@ -976,7 +1015,7 @@ export class MovementsPage {
       if (millions === 1) {
         parts.push('un millon');
       } else {
-        parts.push(`${underOneThousand(millions)} millones`.trim());
+        parts.push(`${apocope(underOneThousand(millions))} millones`.trim());
       }
     }
 
@@ -984,7 +1023,7 @@ export class MovementsPage {
       if (thousands === 1) {
         parts.push('mil');
       } else {
-        parts.push(`${underOneThousand(thousands)} mil`.trim());
+        parts.push(`${apocope(underOneThousand(thousands))} mil`.trim());
       }
     }
 

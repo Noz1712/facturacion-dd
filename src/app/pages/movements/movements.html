@@ -144,6 +144,10 @@
                 <button mat-stroked-button type="button" (click)="downloadInvoicePdf(invoice)">
                   Descargar PDF
                 </button>
+                <button mat-stroked-button type="button" (click)="sendByEmail(invoice)">
+                  <mat-icon>mail</mat-icon>
+                  Enviar por correo
+                </button>
                 @if (isManualInvoice(invoice)) {
                   <button mat-stroked-button type="button" (click)="editManualInvoice(invoice)">
                     Editar

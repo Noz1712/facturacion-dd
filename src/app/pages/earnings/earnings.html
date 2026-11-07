@@ -1,0 +1,166 @@
+<section class="earnings">
+  <header class="filters">
+    <div>
+      <p class="section-label">Ganancias</p>
+      <h2>¿Cuánto estoy ganando?</h2>
+    </div>
+
+    <div class="filter-row">
+      <mat-button-toggle-group
+        [value]="range()"
+        (change)="setRange($event.value)"
+        hideSingleSelectionIndicator
+        aria-label="Periodo"
+      >
+        @for (option of ranges; track option.key) {
+          <mat-button-toggle [value]="option.key">{{ option.label }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+
+      @if (availableCurrencies().length > 1) {
+        <mat-button-toggle-group
+          [value]="currency()"
+          (change)="setCurrency($event.value)"
+          hideSingleSelectionIndicator
+          aria-label="Moneda"
+        >
+          @for (code of availableCurrencies(); track code) {
+            <mat-button-toggle [value]="code">{{ code === 'USD' ? 'Dólares' : 'Córdobas' }}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      }
+    </div>
+  </header>
+
+  <mat-card class="card hero" appearance="outlined">
+    <span class="muted">Ganancia del periodo</span>
+    <strong class="hero-number" [class.negative]="totals().profit < 0">
+      {{ symbol() }} {{ totals().profit | number: '1.2-2' }}
+    </strong>
+    <span class="muted">
+      {{ marginPct() | number: '1.0-1' }}% de margen sobre {{ symbol() }} {{ totals().billed | number: '1.2-2' }}
+      facturados en {{ totals().count }} factura(s)
+    </span>
+
+    <div class="split" aria-hidden="true">
+      <span class="split-cost" [style.width.%]="shareOf(totals().cost, totals().billed)"></span>
+      <span class="split-profit" [style.width.%]="shareOf(totals().profit, totals().billed)"></span>
+    </div>
+    <div class="split-legend">
+      <span><i class="dot cost"></i>Costo {{ symbol() }} {{ totals().cost | number: '1.2-2' }}</span>
+      <span><i class="dot profit"></i>Ganancia {{ symbol() }} {{ totals().profit | number: '1.2-2' }}</span>
+    </div>
+  </mat-card>
+
+  <div class="kpis">
+    <mat-card class="card kpi" appearance="outlined">
+      <mat-icon>savings</mat-icon>
+      <span class="muted">Ganancia ya cobrada</span>
+      <strong>{{ symbol() }} {{ totals().profitCollected | number: '1.2-2' }}</strong>
+      <small class="muted">De facturas marcadas como pagadas</small>
+    </mat-card>
+    <mat-card class="card kpi" appearance="outlined">
+      <mat-icon>task_alt</mat-icon>
+      <span class="muted">Cobrado</span>
+      <strong>{{ symbol() }} {{ totals().collected | number: '1.2-2' }}</strong>
+      <small class="muted">Dinero que ya entró</small>
+    </mat-card>
+    <mat-card class="card kpi" appearance="outlined">
+      <mat-icon>schedule</mat-icon>
+      <span class="muted">Por cobrar</span>
+      <strong>{{ symbol() }} {{ totals().receivable | number: '1.2-2' }}</strong>
+      <small class="muted">Facturas pendientes de pago</small>
+    </mat-card>
+    <mat-card class="card kpi" appearance="outlined">
+      <mat-icon>event_repeat</mat-icon>
+      <span class="muted">Ganancia mensual esperada</span>
+      <strong>{{ symbol() }} {{ recurringMonthly().profit | number: '1.2-2' }}</strong>
+      <small class="muted">Según tus recurrencias activas</small>
+    </mat-card>
+  </div>
+
+  <mat-card class="card" appearance="outlined">
+    <div class="card-head">
+      <div>
+        <p class="section-label">Tendencia</p>
+        <h3>Ganancia por mes (últimos 12 meses)</h3>
+      </div>
+      <button type="button" class="link-button" (click)="showTable.set(!showTable())">
+        {{ showTable() ? 'Ver gráfico' : 'Ver tabla' }}
+      </button>
+    </div>
+
+    @if (readout(); as bar) {
+      <p class="readout">
+        <strong>{{ bar.label }}</strong> · Ganancia {{ symbol() }} {{ bar.profit | number: '1.2-2' }} · Facturado
+        {{ symbol() }} {{ bar.billed | number: '1.2-2' }} · Costo {{ symbol() }} {{ bar.cost | number: '1.2-2' }}
+      </p>
+    }
+
+    @if (showTable()) {
+      <div class="table">
+        <div class="row head"><span>Mes</span><span>Facturado</span><span>Costo</span><span>Ganancia</span></div>
+        @for (bar of months(); track bar.key) {
+          <div class="row">
+            <span>{{ bar.label }}</span>
+            <span>{{ bar.billed | number: '1.2-2' }}</span>
+            <span>{{ bar.cost | number: '1.2-2' }}</span>
+            <span>{{ bar.profit | number: '1.2-2' }}</span>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="chart" role="img" [attr.aria-label]="'Ganancia mensual, máximo ' + symbol() + ' ' + (chartMax() | number: '1.0-0')">
+        <div class="grid-line top"><span>{{ symbol() }} {{ chartMax() | number: '1.0-0' }}</span></div>
+        <div class="grid-line mid"><span>{{ symbol() }} {{ chartMax() / 2 | number: '1.0-0' }}</span></div>
+        <div class="bars" (mouseleave)="hovered.set(null)">
+          @for (bar of months(); track bar.key) {
+            <button
+              type="button"
+              class="bar-slot"
+              [class.active]="hovered()?.key === bar.key"
+              (mouseenter)="hovered.set(bar)"
+              (focus)="hovered.set(bar)"
+              (click)="hovered.set(bar)"
+              [attr.aria-label]="bar.label + ': ' + symbol() + ' ' + (bar.profit | number: '1.2-2')"
+            >
+              <span class="bar-track">
+                <span class="bar" [style.height.%]="bar.heightPct" [class.best]="bestMonth()?.key === bar.key"></span>
+              </span>
+              <span class="bar-label">{{ bar.label }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </mat-card>
+
+  <mat-card class="card" appearance="outlined">
+    <div class="card-head">
+      <div>
+        <p class="section-label">Clientes</p>
+        <h3>¿Quién me deja más ganancia?</h3>
+      </div>
+    </div>
+
+    @if (clients().length) {
+      <div class="client-list">
+        @for (row of clients(); track row.clientName) {
+          <div class="client">
+            <div class="client-top">
+              <strong>{{ row.clientName }}</strong>
+              <strong>{{ symbol() }} {{ row.profit | number: '1.2-2' }}</strong>
+            </div>
+            <div class="meter"><span [style.width.%]="shareOf(row.profit, topClientProfit())"></span></div>
+            <small class="muted">
+              Facturado {{ symbol() }} {{ row.billed | number: '1.2-2' }} · {{ row.marginPct | number: '1.0-1' }}% margen ·
+              {{ row.count }} factura(s)
+            </small>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="muted">{{ loading() ? 'Cargando...' : 'No hay facturas en este periodo.' }}</p>
+    }
+  </mat-card>
+</section>

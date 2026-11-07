@@ -48,6 +48,7 @@ export class AppShell {
   readonly isMobile = computed(() => this.mobileBreakpoint().matches);
   readonly menuItems = [
     { label: 'Dashboard', icon: 'dashboard', route: '/app/dashboard' },
+    { label: 'Ganancias', icon: 'trending_up', route: '/app/ganancias' },
     { label: 'Cliente', icon: 'groups', route: '/app/cliente' },
     { label: 'Recurrencias', icon: 'event_repeat', route: '/app/recurrencias' },
     { label: 'Movimiento', icon: 'receipt_long', route: '/app/movimiento' },

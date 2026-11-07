@@ -457,7 +457,60 @@ export class MovementsPage {
     transactionControl.updateValueAndValidity({ emitEvent: false });
   }
 
-  downloadInvoicePdf(invoice: GeneratedInvoice) {
+  /**
+   * Opens the user's mail app addressed to the client's billing emails and downloads the PDF
+   * so it can be attached. Client-facing: only charges, never costs or margins.
+   */
+  sendByEmail(invoice: GeneratedInvoice) {
+    const client = this.clients().find((item) => item.id === invoice.clientId);
+    const recipients = (client?.billingEmails ?? []).map((email) => email.trim()).filter(Boolean);
+    if (!recipients.length) {
+      this.notifications.warning('El cliente no tiene correos de facturacion. Agregalos en Cliente.');
+      return;
+    }
+
+    const profile = this.companyProfile();
+    const companyName = profile?.name?.trim() || 'Facturacion DD';
+    const code = invoice.invoiceCode || this.buildEmittedInvoiceCode(invoice);
+    const total = this.currencyLabel(invoice.currency, this.chargeTotal(invoice));
+    const accounts = (profile?.bankAccounts ?? []).filter((account) => account.currency === invoice.currency);
+
+    const lines = [
+      `Estimado(a) ${client?.manager?.trim() || invoice.clientName}:`,
+      '',
+      `Le compartimos la orden de servicio ${code} por un total de ${total}` +
+        `, con fecha de vencimiento ${this.formatDate(invoice.dueDate || invoice.issueDate)}.`,
+      '',
+      'Detalle:',
+      ...invoice.items.map((line) => `- ${line.name}: ${this.currencyLabel(invoice.currency, this.lineCharge(line))}`),
+      '',
+      ...(accounts.length
+        ? [
+            'Datos para el pago:',
+            ...accounts.map(
+              (account) => `- ${account.bank} | Cuenta ${account.accountNumber || '-'} | ${account.holder} | ${account.currency}`,
+            ),
+            '',
+          ]
+        : []),
+      'Adjuntamos el documento en PDF. Quedamos atentos a cualquier consulta.',
+      '',
+      'Saludos,',
+      companyName,
+      ...(profile?.phone?.trim() ? [`Tel: ${profile.phone.trim()}`] : []),
+    ];
+
+    const subject = `Orden de servicio ${code} - ${companyName}`;
+    const href =
+      `mailto:${recipients.join(',')}` +
+      `?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\r\n'))}`;
+
+    this.downloadInvoicePdf(invoice, 'download');
+    this.notifications.success('Se descargo el PDF: adjuntalo al correo que se abrio.');
+    window.location.href = href;
+  }
+
+  downloadInvoicePdf(invoice: GeneratedInvoice, mode: 'open' | 'download' = 'open') {
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const profile = this.companyProfile();
     // Client-facing document: only charge prices are printed, never costs or margins.
@@ -528,6 +581,11 @@ export class MovementsPage {
     doc.setProperties({
       title: filename,
     });
+
+    if (mode === 'download') {
+      doc.save(filename);
+      return;
+    }
 
     const blobUrl = doc.output('bloburl');
     window.open(blobUrl, '_blank', 'noopener,noreferrer');

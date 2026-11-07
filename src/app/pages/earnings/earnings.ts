@@ -48,7 +48,7 @@ export class EarningsPage {
   private readonly recurrencesService = inject(Invoices);
 
   readonly loading = this.generatedInvoicesService.loading;
-  readonly currency = signal<CurrencyCode>('NIO');
+  private readonly selectedCurrency = signal<CurrencyCode | null>(null);
   readonly range = signal<RangeKey>('12m');
   readonly hovered = signal<MonthBar | null>(null);
   readonly showTable = signal(false);
@@ -67,6 +67,13 @@ export class EarningsPage {
     const used = new Set(this.generatedInvoicesService.items().map((item) => item.currency));
     const list = (['NIO', 'USD'] as CurrencyCode[]).filter((code) => used.has(code));
     return list.length ? list : ['NIO'];
+  });
+
+  /** Selected currency, falling back to one that actually has invoices. */
+  readonly currency = computed<CurrencyCode>(() => {
+    const available = this.availableCurrencies();
+    const selected = this.selectedCurrency();
+    return selected && available.includes(selected) ? selected : available[0];
   });
 
   private readonly invoicesInCurrency = computed(() =>
@@ -164,7 +171,7 @@ export class EarningsPage {
   }
 
   setCurrency(value: CurrencyCode) {
-    this.currency.set(value);
+    this.selectedCurrency.set(value);
     this.hovered.set(null);
   }
 

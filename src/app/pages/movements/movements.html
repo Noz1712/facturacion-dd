@@ -111,7 +111,7 @@
     <div class="card-header">
       <div>
         <p class="section-label">Generadas</p>
-        <h2>Facturas emitidas desde recurrencias</h2>
+        <h2>Facturas emitidas</h2>
       </div>
     </div>
 
@@ -124,7 +124,14 @@
                 <h3>{{ invoice.clientName }}</h3>
                 <span class="status-tag" [class.paid]="invoice.status === 'Pagada'">{{ invoice.status }}</span>
               </div>
-              <p>{{ invoice.recurrenceCode }} | Emitida {{ invoice.issueDate | date: 'dd/MM/yyyy' }}</p>
+              <p>
+                <strong>N° {{ invoice.invoiceCode || '-' }}</strong> |
+                {{ isManualInvoice(invoice) ? 'Manual' : invoice.recurrenceCode }} |
+                Emitida {{ invoice.issueDate | date: 'dd/MM/yyyy' }}
+                @if (invoice.dueDate) {
+                  | Vence {{ invoice.dueDate | date: 'dd/MM/yyyy' }}
+                }
+              </p>
               <div class="line-list">
                 @for (line of invoice.items; track line.name + lineCharge(line)) {
                   <span>
@@ -154,7 +161,7 @@
                   </button>
                 }
                 <button mat-flat-button type="button" class="primary-button" (click)="openPaymentDialog(invoice)">
-                  Registrar pago
+                  {{ invoice.status === 'Pagada' ? 'Editar pago' : 'Registrar pago' }}
                 </button>
                 <button mat-stroked-button type="button" (click)="revert(invoice.id)">
                   Revertir
@@ -167,7 +174,7 @@
     } @else {
       <div class="empty-state">
         <mat-icon>receipt_long</mat-icon>
-        <p>Aun no has generado facturas desde recurrencias.</p>
+        <p>Aun no hay facturas emitidas en este rango.</p>
       </div>
     }
   </mat-card>

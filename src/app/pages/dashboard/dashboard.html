@@ -45,7 +45,7 @@
     @if (recentInvoices().length) {
       <div class="table-like">
         <div class="table-head">
-          <span>Recurrencia</span>
+          <span>Factura</span>
           <span>Cliente</span>
           <span>Fecha</span>
           <span>Estado</span>
@@ -54,7 +54,7 @@
 
         @for (invoice of recentInvoices(); track invoice.id) {
           <article class="table-row">
-            <span>{{ invoice.recurrenceCode }}</span>
+            <span>{{ invoice.invoiceCode || invoice.recurrenceCode }}</span>
             <span>{{ invoice.clientName }}</span>
             <span>{{ invoice.issueDate | date: 'dd/MM/yyyy' }}</span>
             <span class="status-chip" [class.paid]="invoice.status === 'Pagada'">
